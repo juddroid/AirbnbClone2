@@ -17,3 +17,8 @@ export const GUEST = '인원';
 export const LOCATION_PLACEHOLDER = '어디로 여행가세요?';
 export const INPUT_DATE_PLACEHOLDER = '날짜 입력';
 export const GUEST_PLACEHOLDER = '게스트 추가';
+
+// Main > Slogan
+export const SLOGAN_HEADING = '슬기로운 자연생활';
+export const SLOGAN_CONTENT = '에어비앤비가 엄선한 위시리스트를 만나보세요.';
+export const SLOGAN_TARGET = '여행 아이디어 얻기';
