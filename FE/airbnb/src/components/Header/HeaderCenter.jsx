@@ -1,25 +1,40 @@
+import styled from 'styled-components';
 import Fieldset from './HeaderCenter/Fieldset';
-import Nav from './HeaderCenter/Nav';
+import FieldPanel from './HeaderCenter/FieldPanel';
 
 const HeaderCenterActive = () => {
   return <div>active</div>;
 };
 const HeaderCenterDeactive = () => {
   return (
-    <div>
+    <HeaderCenterDeactiveStyle>
       <Fieldset />
-      <Nav />
-    </div>
+      <FieldPanel />
+    </HeaderCenterDeactiveStyle>
   );
 };
 
 const HeaderCenter = () => {
   return (
-    <div>
-      <HeaderCenterActive />
+    <HeaderCenterStyle>
+      {/* <HeaderCenterActive /> */}
       <HeaderCenterDeactive />
-    </div>
+    </HeaderCenterStyle>
   );
 };
 
 export default HeaderCenter;
+
+const HeaderCenterStyle = styled.div`
+  padding-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+`;
+
+const HeaderCenterDeactiveStyle = styled.form`
+  margin: 0 auto;
+  max-width: 850px;
+  position: relative;
+  top: 40px;
+`;
