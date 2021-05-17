@@ -1,5 +1,9 @@
+import styled from 'styled-components';
+
 const Main = () => {
-  return <div>Main</div>;
+  return <MainStyle>Main</MainStyle>;
 };
 
 export default Main;
+
+const MainStyle = styled.div``;

@@ -9,7 +9,7 @@ const HeaderCenterDeactive = () => {
   return (
     <HeaderCenterDeactiveStyle>
       <Fieldset />
-      {/* <FieldPanel /> */}
+      <FieldPanel />
     </HeaderCenterDeactiveStyle>
   );
 };
@@ -25,6 +25,16 @@ const HeaderCenter = () => {
 
 export default HeaderCenter;
 
-const HeaderCenterStyle = styled.div``;
+const HeaderCenterStyle = styled.div`
+  padding-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+`;
 
-const HeaderCenterDeactiveStyle = styled.div``;
+const HeaderCenterDeactiveStyle = styled.form`
+  margin: 0 auto;
+  max-width: 850px;
+  position: relative;
+  top: 40px;
+`;

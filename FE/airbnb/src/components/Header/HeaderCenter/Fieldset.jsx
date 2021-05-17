@@ -20,8 +20,15 @@ const Fieldset = () => {
 
 export default Fieldset;
 
-const FieldsetStyle = styled.fieldset``;
+const FieldsetStyle = styled.fieldset`
+  border: 0;
+  margin: 0;
+  padding: 0;
+`;
 
 const FieldsetWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
 `;
