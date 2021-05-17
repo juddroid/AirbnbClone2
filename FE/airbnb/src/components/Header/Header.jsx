@@ -3,7 +3,7 @@ import HeaderCenter from './HeaderCenter';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
 
-const Header = ({ theme }) => {
+const Header = () => {
   return (
     <HeaderStyle>
       <HeaderLeft />
@@ -20,7 +20,6 @@ const HeaderStyle = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  outline: 1px solid red;
 
   @media ${({ theme }) => theme.S} {
     padding: 0px 24px;

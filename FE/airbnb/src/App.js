@@ -5,18 +5,28 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import theme from './components/style/theme';
+import React from 'react';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 function App() {
   return (
-    <ThemeProvider {...{ theme }}>
-      <GlobalStyles />
-      <AppStyle className="App">
-        <Aside />
-        <Header {...{ theme }} />
-        <Main />
-        <Footer />
-      </AppStyle>
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider {...{ theme }}>
+        <GlobalStyles />
+        <AppStyle className="App">
+          <Aside />
+          <Header />
+          <Main />
+          <Footer />
+        </AppStyle>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

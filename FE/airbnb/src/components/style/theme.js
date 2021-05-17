@@ -7,8 +7,6 @@ const size = {
 };
 
 const theme = {
-  gdaColor: '#fff',
-
   XXL: `(min-width: ${size.XXL})`,
   XL: `(min-width: ${size.XL})`,
   L: `(min-width: ${size.L})`,
