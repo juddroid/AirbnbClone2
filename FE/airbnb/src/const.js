@@ -38,6 +38,18 @@ export const SECTION_EXPERIENCE_TITLE = '체험 둘러보기';
 export const SECTION_EXPERIENCE_SUBTITLE =
   '현지 전문가와 함께하는 독특한 액티비티에 오프라인이나 온라인으로 참여해 보세요.';
 
+// Footer
+export const COPYRIGHT = '© 2021 Airbnb, Inc.';
+export const DOT = '·';
+export const PRIVACY = '개인정보 처리방침';
+export const AGREEMENT = '이용약관';
+export const SITEMAP = '사이트맵';
+export const REFUND = '한국의 변경된 환불정책';
+export const DETAIL_INFO = '회사 세부정보';
+export const LANGUAGE = '한국어 (KR)';
+export const MONEY_UNIT = '₩';
+export const MONEY_TEXT = 'KRW';
+
 // Mock Data
 
 export const SECTION_STAY_DATA = [
@@ -102,5 +114,59 @@ export const SECTION_EXPERIENCE_DATA = [
       subTitle: '어디에서든 세계 각지의 매력을 만나실 수 있습니다.',
       link: 'https://www.airbnb.co.kr/s/experiences?location_search=NEARBY',
     },
+  },
+];
+
+export const FOOTER_SECTION = [
+  {
+    id: 1,
+    sectionTitle: '소개',
+    sectionList: [
+      '에어비앤비 이용 방법',
+      '뉴스룸',
+      '투자자 정보',
+      '에어비앤비 플러스',
+      '에어비앤비 Luxe',
+      '호텔투나잇',
+      '에어비앤비 비즈니스 프로그램',
+      '호스트 분들이 있기에 가능합니다',
+      '채용정보',
+      '창립자 편지',
+    ],
+  },
+  {
+    id: 2,
+    sectionTitle: '커뮤니티',
+    sectionList: [
+      '다양성 및 소속감',
+      '접근성',
+      '에어비앤비 어소시에이트',
+      '구호 인력을 위한 숙소',
+      '게스트 추천',
+      'Airbnb.org',
+    ],
+  },
+  {
+    id: 3,
+    sectionTitle: '호스팅하기',
+    sectionList: [
+      '숙소 호스팅',
+      '온라인 체험 호스팅하기',
+      '체험 호스팅하기',
+      '책임감 있는 호스팅',
+      '자료 센터',
+      '커뮤니티 센터',
+    ],
+  },
+  {
+    id: 4,
+    sectionTitle: '에어비앤비 지원',
+    sectionList: [
+      '에어비앤비의 코로나19 대응 방안',
+      '도움말 센터',
+      '예약 취소 옵션',
+      '에어비앤비 이웃 민원 지원',
+      '신뢰와 안전',
+    ],
   },
 ];
