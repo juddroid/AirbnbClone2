@@ -1,7 +1,15 @@
 import styled from 'styled-components';
+import FooterInfoSection from './FooterInfoSection';
+import { FOOTER_SECTION } from '../../../const';
 
 const FooterInfo = () => {
-  return <FooterInfoStyle>FooterInfo</FooterInfoStyle>;
+  return (
+    <FooterInfoStyle>
+      {FOOTER_SECTION.map((data) => (
+        <FooterInfoSection {...{ data }} />
+      ))}
+    </FooterInfoStyle>
+  );
 };
 
 export default FooterInfo;
