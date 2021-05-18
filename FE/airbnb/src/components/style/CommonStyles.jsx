@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// Slogan
 export const MainSloganSize = styled.div`
   --hc-sm-height: 488;
   --hc-sm-width: 375;
@@ -54,11 +55,53 @@ export const SloganTargetSpanStyle = styled.span`
   --tl-line-height: 18px;
 `;
 
-export const MainSuburbSize = styled.div`
+// Section
+export const SectionStyle = styled.div`
   --exp-pdw-sm-bot: 48px;
   --exp-pdw-sm-top: 4px;
   --exp-pdw-md-bot: 8px;
   --exp-pdw-md-top: 40px;
   --exp-pdw-lg-bot: 24px;
   --exp-pdw-lg-top: 56px;
+`;
+
+export const SectionWrapper = styled(SectionStyle)`
+  margin-bottom: var(--exp-pdw-sm-bot, 40px);
+  margin-top: var(--exp-pdw-sm-top, 0px);
+  padding-left: var(--exp-pdw-sm-lead, 0px);
+  padding-right: var(--exp-pdw-sm-trail, 0px);
+  border: 1px solid red;
+
+  @media ${({ theme }) => theme.M} {
+    margin-bottom: var(--exp-pdw-md-bot, 40px);
+    margin-top: var(--exp-pdw-md-top, 0px);
+    padding-left: var(--exp-pdw-md-lead, 0px);
+    padding-right: var(--exp-pdw-md-trail, 0px);
+  }
+
+  @media ${({ theme }) => theme.XL} {
+    margin-bottom: var(--exp-pdw-lg-bot, 40px);
+    margin-top: var(--exp-pdw-lg-top, 0px);
+    padding-left: var(--exp-pdw-lg-lead, 0px);
+    padding-right: var(--exp-pdw-lg-trail, 0px);
+  }
+`;
+
+export const SectionContentWrapper = styled.div`
+  padding-left: 24px;
+  padding-right: 24px;
+  max-width: 1600px;
+
+  @media ${({ theme }) => theme.M} {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media ${({ theme }) => theme.L} {
+    margin: 0px auto;
+    position: relative;
+    max-width: 1760px;
+    padding-right: 80px;
+    padding-left: 80px;
+  }
 `;

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { SECTION_SUBURB } from '../../../const';
+import SectionTitle from '../Section/SectionTitle';
 import MainSuburbSectionContent from './MainSuburbSectionContent';
-import MainSuburbSectonTitle from './MainSuburbSectonTitle';
 
 const MainSuburbSection = () => {
   return (
     <MainSuburbSectionStyle>
-      <MainSuburbSectonTitle />
+      <SectionTitle title={SECTION_SUBURB} />
       <MainSuburbSectionContent />
     </MainSuburbSectionStyle>
   );

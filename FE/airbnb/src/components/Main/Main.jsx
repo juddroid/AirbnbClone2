@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import MainExperience from './MainExperience';
 import MainHost from './MainHost';
 import MainSlogan from './MainSlogan/MainSlogan';
-import MainStay from './MainStay';
+import MainStay from './MainStay/MainStay';
 import MainSuburb from './MainSuburb/MainSuburb';
 
 const Main = () => {
