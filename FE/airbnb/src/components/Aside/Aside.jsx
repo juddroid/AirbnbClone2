@@ -13,7 +13,7 @@ const Aside = () => {
 
 export default Aside;
 
-const AsideStyle = styled.div`
+const AsideStyle = styled.aside`
   background: #222;
   height: 58px;
   display: flex;

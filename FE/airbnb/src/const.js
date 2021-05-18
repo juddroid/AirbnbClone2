@@ -17,3 +17,90 @@ export const GUEST = '인원';
 export const LOCATION_PLACEHOLDER = '어디로 여행가세요?';
 export const INPUT_DATE_PLACEHOLDER = '날짜 입력';
 export const GUEST_PLACEHOLDER = '게스트 추가';
+
+// Main > Slogan
+export const SLOGAN_HEADING = '슬기로운 자연생활';
+export const SLOGAN_CONTENT = '에어비앤비가 엄선한 위시리스트를 만나보세요.';
+export const SLOGAN_TARGET = '여행 아이디어 얻기';
+
+// Main > Section Title
+export const SECTION_SUBURB = '가까운 여행지 둘러보기';
+export const SECTION_STAY = '어디에서나, 여행은 살아보는 거야!';
+
+// Main > Section Host
+export const SECTION_HOST_TITLE = '호스트가 되어보세요';
+export const SECTION_HOST_MSG =
+  '숙소를 공유하여 부수입을 올리고 새로운 가능성을 만나세요.';
+export const SECTION_HOST_DETAIL = '자세히 알아보기';
+
+// Main > Section Experience
+export const SECTION_EXPERIENCE_TITLE = '체험 둘러보기';
+export const SECTION_EXPERIENCE_SUBTITLE =
+  '현지 전문가와 함께하는 독특한 액티비티에 오프라인이나 온라인으로 참여해 보세요.';
+
+// Mock Data
+
+export const SECTION_STAY_DATA = [
+  {
+    id: 1,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/2f13349d-879d-43c6-83e3-8e5679291d53.jpg',
+      title: '자연생활을 만끽할 수 있는 숙소',
+      link: 'https://www.airbnb.co.kr/s/homes?refinement_paths%5B%5D=%2Fhomes%2Fsection%2FNEARBY_LISTINGS%3A483&room_types%5B%5D=Entire%20home%2Fapt&property_type_id%5B%5D=57&property_type_id%5B%5D=4&property_type_id%5B%5D=32&property_type_id%5B%5D=58&property_type_id%5B%5D=18&property_type_id%5B%5D=22&property_type_id%5B%5D=17&property_type_id%5B%5D=23&property_type_id%5B%5D=63&property_type_id%5B%5D=24&property_type_id%5B%5D=12&property_type_id%5B%5D=19&property_type_id%5B%5D=44&property_type_id%5B%5D=66&property_type_id%5B%5D=34&property_type_id%5B%5D=16&property_type_id%5B%5D=6&property_type_id%5B%5D=69&property_type_id%5B%5D=15&title_type=CURATED_PROPERTY_TYPE',
+    },
+  },
+  {
+    id: 2,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/36f53e61-db8d-403c-9122-5b761c0e4264.jpg',
+      title: '독특한 공간',
+      link: 'https://www.airbnb.co.kr/s/homes?refinement_paths%5B%5D=%2Fhomes%2Fsection%2FNEARBY_LISTINGS%3A2400&room_types%5B%5D=Entire%20home%2Fapt&property_type_id%5B%5D=5&property_type_id%5B%5D=6&property_type_id%5B%5D=8&property_type_id%5B%5D=10&property_type_id%5B%5D=12&property_type_id%5B%5D=15&property_type_id%5B%5D=16&property_type_id%5B%5D=17&property_type_id%5B%5D=18&property_type_id%5B%5D=19&property_type_id%5B%5D=23&property_type_id%5B%5D=24&property_type_id%5B%5D=25&property_type_id%5B%5D=28&property_type_id%5B%5D=32&property_type_id%5B%5D=34&property_type_id%5B%5D=44&property_type_id%5B%5D=50&property_type_id%5B%5D=54&property_type_id%5B%5D=57&property_type_id%5B%5D=58&property_type_id%5B%5D=61&property_type_id%5B%5D=63&property_type_id%5B%5D=64&property_type_id%5B%5D=66&property_type_id%5B%5D=67&property_type_id%5B%5D=68&property_type_id%5B%5D=69&property_type_id%5B%5D=62&property_type_id%5B%5D=51&title_type=CURATED_PROPERTY_TYPE',
+    },
+  },
+  {
+    id: 3,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/7d82ca14-56e5-4465-8218-dcfa7d69b6ac.jpg',
+      title: '집 전체',
+      link: 'https://www.airbnb.co.kr/s/homes?ne_lat=59.12927453041205&ne_lng=154.2003905675037&sw_lat=16.01072546958795&sw_lng=99.79960943249633&room_types%5B%5D=Entire%20home%2Fapt&property_type_id%5B%5D=2&search_type=NAVIGATION_CARD&title_type=CURATED_PROPERTY_TYPE',
+    },
+  },
+  {
+    id: 4,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/10a638e1-6aff-4313-8033-1275cec83987.jpg',
+      title: '반려동물 동반 가능',
+      link: 'https://www.airbnb.co.kr/s/homes?ne_lat=59.12927453041205&ne_lng=154.2003905675037&sw_lat=16.01072546958795&sw_lng=99.79960943249633&room_types%5B%5D=Entire%20home%2Fapt&amenities%5B%5D=12&search_type=NAVIGATION_CARD&title_type=CURATED_PROPERTY_TYPE',
+    },
+  },
+];
+
+export const SECTION_EXPERIENCE_DATA = [
+  {
+    id: 1,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/247a1ea3-946d-4eb8-a6ab-e8b9a66846f4.jpg',
+      title: '추천 컬레게션: 여행 본능을 깨우는 체험',
+      subTitle: '온라인 체험으로 집에서 랜선 여행을 즐기세요.',
+      link: 'https://www.airbnb.co.kr/s/all?refinement_paths%5B%5D=%2Fplaylists%2F46390&last_search_session_id=d9826573-e5bb-4f22-9d02-e5dfc1736f7e&search_type=section_navigation',
+    },
+  },
+  {
+    id: 2,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/a6b08861-feb8-4a01-a76d-b33d2867b441.jpg',
+      title: '온라인 체험',
+      subTitle: '호스트와 실시간으로 소통하면서 액티비티를 즐겨보세요.',
+      link: 'https://www.airbnb.co.kr/s/experiences/online',
+    },
+  },
+  {
+    id: 3,
+    data: {
+      img: 'https://a0.muscache.com/im/pictures/ad109d56-2421-40cd-98e6-e114160dc85b.jpg',
+      title: '체험',
+      subTitle: '어디에서든 세계 각지의 매력을 만나실 수 있습니다.',
+      link: 'https://www.airbnb.co.kr/s/experiences?location_search=NEARBY',
+    },
+  },
+];
