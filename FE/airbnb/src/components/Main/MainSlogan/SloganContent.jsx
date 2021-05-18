@@ -15,10 +15,7 @@ export default SloganContent;
 const SloganContentStyle = styled(SloganSpanContentStyle)`
   line-height: initial;
   padding-top: 12px;
-
-  @media ${({ theme }) => theme.L} {
-    padding-top: 16px;
-  }
+  word-break: keep-all;
 
   span {
     white-space: pre-line;
@@ -28,5 +25,10 @@ const SloganContentStyle = styled(SloganSpanContentStyle)`
     letter-spacing: var(--tl-letter-spacing, 0em);
     line-height: var(--tl-line-height, 18px);
     color: var(--tl-color, #717171);
+    word-break: keep-all;
+  }
+
+  @media ${({ theme }) => theme.L} {
+    padding-top: 16px;
   }
 `;

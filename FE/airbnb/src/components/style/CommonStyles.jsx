@@ -24,7 +24,7 @@ export const SloganFlexStyle = styled.div`
   --ac-lg-tc-text-align: start;
 `;
 
-export const SloganSpanStyle = styled.div`
+export const SloganSpanHeadingStyle = styled.span`
   --tl-color: #222;
   --tl-font-size: 55px;
   --tl-font-weight: 700;
@@ -32,7 +32,7 @@ export const SloganSpanStyle = styled.div`
   --tl-line-height: 62px;
 `;
 
-export const SloganSpanContentStyle = styled.div`
+export const SloganSpanContentStyle = styled.span`
   --tl-color: #222;
   --tl-font-size: 18px;
   --tl-font-weight: 400;
@@ -47,7 +47,7 @@ export const SloganTargetStyle = styled.div`
   --ehcta-background-style-highlighted: #222;
 `;
 
-export const SloganTargetSpanStyle = styled.div`
+export const SloganTargetSpanStyle = styled.span`
   --tl-color: #fff;
   --tl-font-size: 14px;
   --tl-font-weight: 600;

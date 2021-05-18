@@ -17,16 +17,16 @@ const SloganBox = () => {
 export default SloganBox;
 
 const SloganBoxStyle = styled(SloganFlexStyle)`
-  display: none;
+  display: flex;
   z-index: 0;
   flex-direction: column;
-  width: 280px;
+  width: 250px;
   align-items: var(--ac-sm-tc-align-items, flex-start);
   text-align: var(--ac-sm-tc-text-align, start);
 
-  outline: 1px solid red;
   @media ${({ theme }) => theme.M} {
-    width: 338px;
+    display: flex;
+    width: 345px;
     align-items: var(--ac-md-tc-align-items, flex-start);
     text-align: var(--ac-md-tc-text-align, start);
   }
@@ -37,9 +37,9 @@ const SloganBoxStyle = styled(SloganFlexStyle)`
     text-align: var(--ac-lg-tc-text-align, start);
   }
   @media ${({ theme }) => theme.XL} {
-    width: 312px;
+    width: 250px;
   }
   @media ${({ theme }) => theme.XXL} {
-    width: 416px;
+    width: 400px;
   }
 `;
