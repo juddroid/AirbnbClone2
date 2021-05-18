@@ -53,3 +53,12 @@ export const SloganTargetSpanStyle = styled.span`
   --tl-font-weight: 600;
   --tl-line-height: 18px;
 `;
+
+export const MainSuburbSize = styled.div`
+  --exp-pdw-sm-bot: 48px;
+  --exp-pdw-sm-top: 4px;
+  --exp-pdw-md-bot: 8px;
+  --exp-pdw-md-top: 40px;
+  --exp-pdw-lg-bot: 24px;
+  --exp-pdw-lg-top: 56px;
+`;

@@ -22,3 +22,6 @@ export const GUEST_PLACEHOLDER = '게스트 추가';
 export const SLOGAN_HEADING = '슬기로운 자연생활';
 export const SLOGAN_CONTENT = '에어비앤비가 엄선한 위시리스트를 만나보세요.';
 export const SLOGAN_TARGET = '여행 아이디어 얻기';
+
+// Main > SectionTitle
+export const SECTION_SUBURB = '가까운 여행지 둘러보기';

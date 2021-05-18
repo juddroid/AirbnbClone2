@@ -3,28 +3,22 @@ import MainExperience from './MainExperience';
 import MainHost from './MainHost';
 import MainSlogan from './MainSlogan/MainSlogan';
 import MainStay from './MainStay';
-import MainSuburb from './MainSuburb';
+import MainSuburb from './MainSuburb/MainSuburb';
 
 const Main = () => {
   return (
     <MainStyle>
-      <MainWrapper>
-        <MainSlogan />
-        <MainSuburb />
-        <MainStay />
-        <MainHost />
-        <MainExperience />
-      </MainWrapper>
+      <MainSlogan />
+      <MainSuburb />
+      <MainStay />
+      <MainHost />
+      <MainExperience />
     </MainStyle>
   );
 };
 
 export default Main;
 
-const MainStyle = styled.div`
+const MainStyle = styled.main`
   min-height: 400px;
-`;
-
-const MainWrapper = styled.div`
-  overflow-anchor: none;
 `;
