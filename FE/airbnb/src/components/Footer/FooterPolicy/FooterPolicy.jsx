@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import CopyRight from './CopyRight';
-import Social from './Social';
+import Copyright from './Copyright/Copyright';
+import Social from './Social/Social';
 
 const FooterPolicy = () => {
   return (
     <FooterPolicyStyle>
       <FooterSectionStyle>
-        <CopyRight />
         <Social />
+        <Copyright />
       </FooterSectionStyle>
     </FooterPolicyStyle>
   );

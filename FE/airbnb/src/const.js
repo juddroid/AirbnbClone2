@@ -38,6 +38,18 @@ export const SECTION_EXPERIENCE_TITLE = '체험 둘러보기';
 export const SECTION_EXPERIENCE_SUBTITLE =
   '현지 전문가와 함께하는 독특한 액티비티에 오프라인이나 온라인으로 참여해 보세요.';
 
+// Footer
+export const COPYRIGHT = '© 2021 Airbnb, Inc.';
+export const DOT = '·';
+export const PRIVACY = '개인정보 처리방침';
+export const AGREEMENT = '이용약관';
+export const SITEMAP = '사이트맵';
+export const REFUND = '한국의 변경된 환불정책';
+export const DETAIL_INFO = '회사 세부정보';
+export const LANGUAGE = '한국어 (KR)';
+export const MONEY_UNIT = '₩';
+export const MONEY_TEXT = 'KRW';
+
 // Mock Data
 
 export const SECTION_STAY_DATA = [

@@ -111,3 +111,21 @@ export const MainHostSize = styled.div`
   --exp-pdw-md-bot: 8px;
   --exp-pdw-lg-bot: 24px;
 `;
+
+// Footer
+export const FooterSpan = styled.span`
+  display: inline-block;
+  text-align: center;
+  width: 19px;
+`;
+
+export const FooterAnchor = styled.a`
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  text-decoration: none;
+  color: #222;
+  font-size: 14px;
+  line-height: 18px;
+`;
