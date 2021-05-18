@@ -19,7 +19,6 @@ const MainSloganStyle = styled(MainSloganSize)`
   align-items: stretch;
   justify-content: center;
   position: relative;
-  top: -80px;
   overflow: hidden;
   height: calc(var(--hc-sm-height, 4) / var(--hc-sm-width, 3) * 100vw);
 

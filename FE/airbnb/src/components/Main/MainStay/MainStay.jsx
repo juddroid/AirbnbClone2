@@ -14,4 +14,6 @@ const MainStay = () => {
 
 export default MainStay;
 
-const MainStayStyle = styled.div``;
+const MainStayStyle = styled.div`
+  margin-bottom: 60px;
+`;

@@ -1,32 +1,30 @@
 import styled from 'styled-components';
 import SectionInfoText from '../../Section/SectionTextBox';
-import StayInfoImg from './StayInfoImg';
+import ExperienceInfoImg from './ExperienceInfoImg';
 
-const StayInfo = ({ data }) => {
-  if (!data) return null;
-
+const ExperienceInfo = ({ data }) => {
   return (
-    <StayInfoStyle>
-      <StayInfoBox>
-        <StayInfoOuterBox>
-          <StayInfoAnchor href={data.link} target="blank">
-            <StayInfoInnerBox>
-              <StayInfoImg img={data.img} />
+    <ExperienceInfoStyle>
+      <ExperienceInfoBox>
+        <ExperienceOuterBox>
+          <ExperienceAnchor href={data.link} target="blank">
+            <ExperienceInnerBox>
+              <ExperienceInfoImg img={data.img} />
               <SectionInfoText txt={data} />
-            </StayInfoInnerBox>
-          </StayInfoAnchor>
-        </StayInfoOuterBox>
-      </StayInfoBox>
-    </StayInfoStyle>
+            </ExperienceInnerBox>
+          </ExperienceAnchor>
+        </ExperienceOuterBox>
+      </ExperienceInfoBox>
+    </ExperienceInfoStyle>
   );
 };
 
-export default StayInfo;
+export default ExperienceInfo;
 
-const StayInfoStyle = styled.li`
+const ExperienceInfoStyle = styled.li`
   border-width: 0px 5px;
-  max-width: 25%;
-  flex: 0 0 25%;
+  max-width: 33.3333%;
+  flex: 0 0 33.3333%;
   border-style: solid;
   border-color: transparent;
   scroll-snap-align: start;
@@ -34,20 +32,20 @@ const StayInfoStyle = styled.li`
   display: flex;
 `;
 
-const StayInfoBox = styled.div`
+const ExperienceInfoBox = styled.div`
   height: 100%;
   min-width: 100%;
   display: flex;
 `;
 
-const StayInfoOuterBox = styled.div`
+const ExperienceOuterBox = styled.div`
   width: 100%;
   margin-right: 6px;
   margin-top: 4px;
   margin-bottom: 8px;
 `;
 
-const StayInfoAnchor = styled.a`
+const ExperienceAnchor = styled.a`
   cursor: pointer;
   position: relative;
   touch-action: manipulation;
@@ -57,8 +55,7 @@ const StayInfoAnchor = styled.a`
   font-weight: inherit;
   border-radius: 0px;
   outline: none;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
-    -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  transition: box-shadow 0.2s ease 0s, transform 0.1s ease 0s;
   background: transparent;
   border: none;
   color: inherit;
@@ -71,13 +68,13 @@ const StayInfoAnchor = styled.a`
   width: 100%;
 `;
 
-const StayInfoInnerBox = styled.div`
+const ExperienceInnerBox = styled.div`
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   width: 272px;
   height: 100%;
 
-  @media ${({ theme }) => theme.M} {
+  @media (min-width: 744px) {
     width: 100%;
   }
 `;

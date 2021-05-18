@@ -1,26 +1,26 @@
 import styled from 'styled-components';
-import ImgBox from '../../MainExpereince/ExperienceInfo/ImgBox';
+import ImgBox from './ImgBox';
 
-const StayInfoImg = ({ img }) => {
+const ExperienceInfoImg = ({ img }) => {
   return (
-    <StayInfoImgStyle>
-      <StayInfoImgWrapper>
+    <ExperienceInfoImgStyle>
+      <ExperienceInfoImgWrapper>
         <ImgBox {...{ img }} />
-      </StayInfoImgWrapper>
-    </StayInfoImgStyle>
+      </ExperienceInfoImgWrapper>
+    </ExperienceInfoImgStyle>
   );
 };
 
-export default StayInfoImg;
+export default ExperienceInfoImg;
 
-const StayInfoImgStyle = styled.div`
+const ExperienceInfoImgStyle = styled.div`
   background: rgb(221, 221, 221);
   overflow: hidden;
   position: relative;
   border-radius: 8px;
 `;
 
-const StayInfoImgWrapper = styled.div`
+const ExperienceInfoImgWrapper = styled.div`
   padding-top: 100%;
   position: relative;
   flex: 1 1 0%;

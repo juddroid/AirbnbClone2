@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import { SECTION_STAY_DATA } from '../../../const';
 import StayInfo from './StayInfo/StayInfo';
+import { v4 as uuidv4 } from 'uuid';
 
 const MainStaySectionContent = () => {
   return (
     <MainStaySectionContentStyle>
       <StayInfoUl>
-        <StayInfo />
-        <StayInfo />
-        <StayInfo />
-        <StayInfo />
+        {SECTION_STAY_DATA.map((data) => (
+          <StayInfo data={data.data} key={uuidv4()} />
+        ))}
       </StayInfoUl>
     </MainStaySectionContentStyle>
   );

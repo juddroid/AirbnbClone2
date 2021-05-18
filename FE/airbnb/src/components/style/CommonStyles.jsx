@@ -70,7 +70,6 @@ export const SectionWrapper = styled(SectionStyle)`
   margin-top: var(--exp-pdw-sm-top, 0px);
   padding-left: var(--exp-pdw-sm-lead, 0px);
   padding-right: var(--exp-pdw-sm-trail, 0px);
-  border: 1px solid red;
 
   @media ${({ theme }) => theme.M} {
     margin-bottom: var(--exp-pdw-md-bot, 40px);
@@ -104,4 +103,11 @@ export const SectionContentWrapper = styled.div`
     padding-right: 80px;
     padding-left: 80px;
   }
+`;
+
+// Main > Host
+export const MainHostSize = styled.div`
+  --exp-pdw-sm-bot: 24px;
+  --exp-pdw-md-bot: 8px;
+  --exp-pdw-lg-bot: 24px;
 `;
