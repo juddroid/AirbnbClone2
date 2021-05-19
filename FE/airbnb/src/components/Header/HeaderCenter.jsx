@@ -1,24 +1,12 @@
 import styled from 'styled-components';
-import Fieldset from './HeaderCenter/Fieldset';
-import FieldPanel from './HeaderCenter/FieldPanel';
-
-const HeaderCenterActive = () => {
-  return <div>active</div>;
-};
-const HeaderCenterDeactive = () => {
-  return (
-    <HeaderCenterDeactiveStyle>
-      <Fieldset />
-      <FieldPanel />
-    </HeaderCenterDeactiveStyle>
-  );
-};
+import HeaderSearch from './HeaderCenter/HeaderSearch/HeaderSearch';
+import HeaderLittleSearch from './HeaderCenter/HeaderLittleSearch/HeaderLittleSearch';
 
 const HeaderCenter = () => {
   return (
     <HeaderCenterStyle>
-      {/* <HeaderCenterActive /> */}
-      <HeaderCenterDeactive />
+      <HeaderLittleSearch />
+      <HeaderSearch />
     </HeaderCenterStyle>
   );
 };
@@ -26,15 +14,11 @@ const HeaderCenter = () => {
 export default HeaderCenter;
 
 const HeaderCenterStyle = styled.div`
-  padding-bottom: 16px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-`;
+  flex: 0 1 auto;
+  min-width: 0px;
+  padding: 0 24px;
 
-const HeaderCenterDeactiveStyle = styled.form`
-  margin: 0 auto;
-  max-width: 850px;
-  position: relative;
-  top: 40px;
+  @media (min-width: 950px) {
+    text-align: center;
+  }
 `;

@@ -21,7 +21,19 @@ export default FieldsetLabel;
 
 const FieldsetLabelStyle = styled.label`
   input {
-    display: none;
+    outline: none;
+    appearance: none;
+    border: 0px;
+    border-radius: 0px;
+    margin: 0px;
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    padding: 0px;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 `;
 

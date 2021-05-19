@@ -15,7 +15,13 @@ const HeaderRight = () => {
 
 export default HeaderRight;
 
-const HeaderRightStyle = styled.div``;
+const HeaderRightStyle = styled.div`
+  flex: 1 0 auto;
+
+  @media (min-width: 950px) {
+    flex: 1 0 140px;
+  }
+`;
 
 const HeaderRightNav = styled.nav`
   display: flex;
