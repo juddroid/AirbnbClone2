@@ -34,12 +34,18 @@ const SloganStyle = styled.div`
 `;
 
 const SloganWrapper = styled(SloganFlexStyle)`
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
   justify-content: var(--ac-sm-justify-content, flex-start);
 
   @media ${({ theme }) => theme.M} {
     justify-content: var(--ac-md-justify-content, flex-start);
+    align-items: center;
   }
   @media ${({ theme }) => theme.L} {
     justify-content: var(--ac-lg-justify-content, flex-start);
+    align-items: center;
   }
 `;

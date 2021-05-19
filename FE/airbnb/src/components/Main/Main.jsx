@@ -23,7 +23,6 @@ export default Main;
 
 const MainStyle = styled.main`
   position: relative;
-  top: -80px;
 `;
 
 const MainWrapper = styled.div`

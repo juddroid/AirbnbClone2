@@ -15,15 +15,16 @@ const BackgroundStyle = styled.div`
   left: 0px;
   background-size: cover;
   background-position: center;
+  background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=320');
 
   @media ${({ theme }) => theme.S} {
-    background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=320');
-  }
-  @media ${({ theme }) => theme.M} {
     background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=720');
   }
+  @media ${({ theme }) => theme.M} {
+    background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=1440');
+  }
   @media ${({ theme }) => theme.L} {
-    background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=960');
+    background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=1920');
   }
   @media ${({ theme }) => theme.XXL} {
     background-image: url('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=2560');
