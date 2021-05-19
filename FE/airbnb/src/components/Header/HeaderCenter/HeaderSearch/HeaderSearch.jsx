@@ -7,7 +7,7 @@ const HeaderSearch = () => {
   return (
     <HeaderSearchStyle>
       <SearchWrapper>
-        <SearchForm method={GET} role={SEARCH} action>
+        <SearchForm method={GET} role={SEARCH}>
           <Fieldset />
           <FieldPanel />
         </SearchForm>

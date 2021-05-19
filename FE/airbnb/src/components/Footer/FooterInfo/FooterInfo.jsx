@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import FooterInfoSection from './FooterInfoSection';
 import { FOOTER_SECTION } from '../../../const';
+import { v4 as uuidv4 } from 'uuid';
 
 const FooterInfo = () => {
   return (
     <FooterInfoStyle>
       {FOOTER_SECTION.map((data) => (
-        <FooterInfoSection {...{ data }} />
+        <FooterInfoSection {...{ data }} key={uuidv4()} />
       ))}
     </FooterInfoStyle>
   );
