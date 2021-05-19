@@ -36,7 +36,6 @@ export default FieldPanelMenu;
 
 const FieldPanelMenuStyle = styled.div`
   display: flex;
-  justify-content: center;
   flex: 1 1 0%;
   height: 100%;
   min-width: 0px;

@@ -20,10 +20,20 @@ function App() {
       <ThemeProvider {...{ theme }}>
         <GlobalStyles />
         <AppStyle className="App">
-          <Aside />
-          <Header />
-          <Main />
-          <Footer />
+          <UpperDiv>
+            <Wrapper>
+              <BeforeAfterDiv>
+                <AsideWrapper>
+                  <Aside />
+                </AsideWrapper>
+                <Header />
+              </BeforeAfterDiv>
+            </Wrapper>
+            <Main />
+          </UpperDiv>
+          <BeforeAfterDiv>
+            <Footer />
+          </BeforeAfterDiv>
         </AppStyle>
       </ThemeProvider>
     </RecoilRoot>
@@ -33,3 +43,32 @@ function App() {
 export default App;
 
 const AppStyle = styled.div``;
+
+const BeforeAfterDiv = styled.div`
+  ::before {
+    display: flex;
+    content: '';
+  }
+  ::after {
+    display: flex;
+    content: '';
+  }
+`;
+
+const AsideWrapper = styled.div`
+  position: relative;
+  z-index: 101;
+`;
+
+const Wrapper = styled.div`
+  display: none;
+
+  @media (min-width: 744px) {
+    display: block;
+  }
+`;
+
+const UpperDiv = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;

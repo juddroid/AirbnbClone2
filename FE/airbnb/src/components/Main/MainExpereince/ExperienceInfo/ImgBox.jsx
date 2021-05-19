@@ -26,6 +26,7 @@ const ImgDiv = styled.div`
   width: 100%;
   position: absolute;
   inset: 0px;
+  ${({ img }) => `background-image: url(${img}?im_w=720)`};
   background-position: 50% 50%;
   background-repeat: no-repeat;
 

@@ -8,11 +8,13 @@ import MainSuburb from './MainSuburb/MainSuburb';
 const Main = () => {
   return (
     <MainStyle>
-      <MainSlogan />
-      <MainSuburb />
-      <MainStay />
-      <MainHost />
-      <MainExperience />
+      <MainWrapper>
+        <MainSlogan />
+        <MainSuburb />
+        <MainStay />
+        <MainHost />
+        <MainExperience />
+      </MainWrapper>
     </MainStyle>
   );
 };
@@ -20,7 +22,9 @@ const Main = () => {
 export default Main;
 
 const MainStyle = styled.main`
-  min-height: 400px;
   position: relative;
-  top: -80px;
+`;
+
+const MainWrapper = styled.div`
+  min-height: 400px;
 `;

@@ -26,7 +26,7 @@ const MainHostImgWrapper = styled.div`
 `;
 
 const ImgBox = styled.div`
-  background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=720');
+  background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=2560');
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -39,10 +39,10 @@ const ImgBox = styled.div`
     background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=720');
   }
   @media (min-width: 950px) {
-    background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=1200');
+    background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=1440');
   }
   @media (min-width: 1128px) {
-    background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=1440');
+    background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=2560');
   }
   @media (min-width: 1440px) {
     background-image: url('https://a0.muscache.com/im/pictures/2595054e-d1d9-4fde-8046-58d51fcb3164.jpg?im_w=2560');
