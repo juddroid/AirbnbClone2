@@ -19,6 +19,7 @@ const MainSuburbSectionContent = () => {
 export default MainSuburbSectionContent;
 
 const MainSuburbSectionContentStyle = styled.div`
+  --column-count: 4;
   overflow-x: auto;
   display: grid;
   gap: 12px;

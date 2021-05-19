@@ -8,6 +8,6 @@ const LanguageText = () => {
 export default LanguageText;
 
 const LanguageTextStyle = styled.span`
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: underline;
 `;

@@ -12,8 +12,18 @@ const SectionTitleSytle = styled.section`
   font-size: 24px;
   font-weight: 700;
   color: #222;
+  display: flex;
 
+  @media ${({ theme }) => theme.S} {
+    font-size: 20px;
+    display: block;
+  }
+  @media ${({ theme }) => theme.M} {
+    font-size: 24px;
+    display: block;
+  }
   @media ${({ theme }) => theme.L} {
     font-size: 30px;
+    display: block;
   }
 `;

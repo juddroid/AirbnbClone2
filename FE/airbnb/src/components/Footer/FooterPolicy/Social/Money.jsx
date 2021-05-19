@@ -26,10 +26,11 @@ const MoneyAnchor = styled(FooterAnchor)`
 `;
 
 const MoneyUnit = styled.span`
+  font-weight: 400;
   margin-right: 8px;
 `;
 
 const MoneyUnitText = styled.span`
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: underline;
 `;
