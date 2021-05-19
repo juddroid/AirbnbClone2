@@ -38,6 +38,6 @@ const SloganBoxStyle = styled(SloganFlexStyle)`
   }
 
   @media (min-width: 1440px) {
-    width: 410px;
+    width: 400px;
   }
 `;
