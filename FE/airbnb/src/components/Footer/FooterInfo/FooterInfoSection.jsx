@@ -17,7 +17,7 @@ const FooterInfoSection = ({ data }) => {
 export default FooterInfoSection;
 
 const FooterInfoSectionStyle = styled.section`
-  :not(last-child) {
+  :not(:last-child) {
     padding-bottom: 24px;
     margin-bottom: 24px;
     border-bottom: 1px solid #ddd;
@@ -28,7 +28,7 @@ const FooterInfoSectionStyle = styled.section`
     padding-left: 12px;
     padding-right: 12px;
 
-    :not(last-child) {
+    :not(:last-child) {
       padding-bottom: 0px;
       margin-bottom: 0px;
       border-bottom: 0px;

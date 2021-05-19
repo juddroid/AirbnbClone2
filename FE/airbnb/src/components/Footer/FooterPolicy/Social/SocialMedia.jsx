@@ -58,7 +58,7 @@ const SocialMediaUl = styled.ul`
 `;
 
 const SocialLogoStyle = styled.li`
-  :not(last-child) {
+  :not(:last-child) {
     margin-right: 24px;
   }
 `;

@@ -17,7 +17,7 @@ const Language = () => {
 export default Language;
 
 const LanguageStyle = styled.span`
-  :not(last-child) {
+  :not(:last-child) {
     margin-right: 24px;
   }
 `;

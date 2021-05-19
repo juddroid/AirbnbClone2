@@ -8,6 +8,8 @@ import {
   LOCATION,
   LOCATION_PLACEHOLDER,
 } from '../../../const';
+import CalendarPopup from './HeaderPanel/CalendarPopup';
+import NearbyPopup from './HeaderPanel/NearbyPopup';
 import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
 
@@ -16,10 +18,12 @@ const FieldPanelMenu = () => {
     <FieldPanelMenuStyle>
       <FieldPanelMenuLeft>
         <PanelMenu name={LOCATION} placeholder={LOCATION_PLACEHOLDER} />
+        <NearbyPopup />
       </FieldPanelMenuLeft>
       <FieldPanelMenuSeparator />
       <FieldPanelMenuCenter>
         <PanelMenu name={CHECK_IN} placeholder={INPUT_DATE_PLACEHOLDER} />
+        <CalendarPopup />
         <FieldPanelMenuSeparator />
         <PanelMenu name={CHECK_OUT} placeholder={INPUT_DATE_PLACEHOLDER} />
       </FieldPanelMenuCenter>

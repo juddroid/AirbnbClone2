@@ -14,4 +14,13 @@ const MainSuburb = () => {
 
 export default MainSuburb;
 
-const MainSuburbStyle = styled.div``;
+const MainSuburbStyle = styled.div`
+  ::before {
+    display: flex;
+    content: '';
+  }
+  ::after {
+    display: flex;
+    content: '';
+  }
+`;

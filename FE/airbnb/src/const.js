@@ -22,6 +22,9 @@ export const GUEST_PLACEHOLDER = '게스트 추가';
 export const GET = 'get';
 export const SEARCH = 'search';
 
+export const CALENDAR = '달력';
+export const FREE = '자유로운 일정';
+
 // Main > Slogan
 export const SLOGAN_HEADING = '슬기로운 자연생활';
 export const SLOGAN_CONTENT = '에어비앤비가 엄선한 위시리스트를 만나보세요.';

@@ -96,7 +96,7 @@ export const SectionContentWrapper = styled.div`
     padding-right: 40px;
   }
 
-  @media ${({ theme }) => theme.L} {
+  @media ${({ theme }) => theme.XL} {
     margin: 0px auto;
     position: relative;
     max-width: 1760px;
@@ -128,4 +128,5 @@ export const FooterAnchor = styled.a`
   color: #222;
   font-size: 14px;
   line-height: 18px;
+  font-weight: 300;
 `;

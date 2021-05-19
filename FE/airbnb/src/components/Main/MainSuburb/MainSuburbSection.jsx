@@ -14,4 +14,12 @@ const MainSuburbSection = () => {
 
 export default MainSuburbSection;
 
-const MainSuburbSectionStyle = styled.div``;
+const MainSuburbSectionStyle = styled.div`
+  margin-left: -24px;
+  margin-right: -24px;
+
+  @media (min-width: 744px) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+`;

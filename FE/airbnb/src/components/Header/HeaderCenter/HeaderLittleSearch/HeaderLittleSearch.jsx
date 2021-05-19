@@ -16,16 +16,13 @@ const HeaderLittleSearchStyle = styled.div`
   vertical-align: middle;
   text-align: left;
   transform-origin: 0% 0%;
-  transform: scale(2.5, 1.375) translate(-60px, 122px);
-  opacity: 0;
-  transition: transform 150ms ease, opacity 50ms ease 20ms, visibility 0ms 150ms;
-  pointer-events: none;
+  transition: transform 150ms ease 0s, opacity 50ms ease 20ms,
+    pointer-events 0ms ease 150ms;
   visibility: hidden;
-  will-change: transform, opacity;
+  opacity: 0;
 
   @media (min-width: 950px) {
     transform-origin: 50% 0%;
-    margin: 0 auto;
-    transform: scale(2.857142857142857, 1.375) translateY(58px);
+    margin: 0px auto;
   }
 `;

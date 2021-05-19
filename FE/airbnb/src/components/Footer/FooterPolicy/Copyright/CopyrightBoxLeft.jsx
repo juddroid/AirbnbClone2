@@ -12,6 +12,7 @@ const CopyrightBoxLeftStyle = styled.div`
   line-height: 18px;
   color: #222;
   display: inline-block;
+  font-weight: 300;
 
   @media (min-width: 1128px) {
     margin-right: 19px;
