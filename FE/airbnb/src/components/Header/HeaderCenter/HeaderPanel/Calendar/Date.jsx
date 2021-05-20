@@ -20,8 +20,9 @@ const DateStyle = styled.div`
   background: rgb(247, 247, 247);
   border: 0px;
   padding: 0px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  /* border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px; */
+  border-radius: 4px;
 
   margin: 1px 0px;
   box-sizing: border-box;
