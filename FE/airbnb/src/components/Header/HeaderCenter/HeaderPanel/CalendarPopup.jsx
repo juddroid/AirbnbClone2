@@ -2,10 +2,42 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { CALENDAR, FREE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
+import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 
 const CalendarPopup = () => {
   const [tabState, setTabState] = useState(true);
 
+  const data = [
+    { data: '1' },
+    { data: '2' },
+    { data: '3' },
+    { data: '4' },
+    { data: '5' },
+    { data: '6' },
+    { data: '7' },
+    { data: '8' },
+    { data: '9' },
+    { data: '10' },
+    { data: '11' },
+    { data: '12' },
+    { data: '13' },
+    { data: '14' },
+    { data: '15' },
+    { data: '16' },
+    { data: '17' },
+    { data: '18' },
+    { data: '19' },
+  ];
+
+  const option = {
+    cardSize: 150,
+    cardMargin: 5,
+    displayCardCount: 3,
+    buttonType: 'default',
+    buttonSize: 24,
+  };
+
+  console.log('rerender');
   return (
     <CalendarPopupStyle>
       <CalendarSection>
@@ -25,6 +57,7 @@ const CalendarPopup = () => {
             </CalendarTabsBox>
           </CalendarTabsWrapper>
         </CalendarTabs>
+        <RaccoonSlider data={data} option={option} />
       </CalendarSection>
     </CalendarPopupStyle>
   );
@@ -43,7 +76,7 @@ const CalendarPopupStyle = styled.div`
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
   margin-top: 12px;
   max-height: calc(100vh - 220px);
-  overflow: hidden auto;
+  /* overflow: hidden auto; */
   padding: 16px 32px;
   right: 0px;
 `;

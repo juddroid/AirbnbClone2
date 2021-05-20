@@ -14,6 +14,7 @@ import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
 
 const FieldPanelMenu = () => {
+  console.log('panel');
   return (
     <FieldPanelMenuStyle>
       <FieldPanelMenuLeft>
