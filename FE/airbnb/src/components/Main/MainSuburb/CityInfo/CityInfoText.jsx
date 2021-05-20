@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { getHourMinute } from '../../../../util.ts';
 
 const CityInfoText = ({ name, hourDrive }) => {
   return (

@@ -25,3 +25,8 @@ export const getHourMinute = (hour: number) => {
     return `${hour.toString().slice(0, hour.toString().indexOf('.'))}시간 30분`;
   return `${hour}시간`;
 };
+
+export const setState = (setCallback: any, state: boolean) =>
+  setCallback(state);
+export const setToggle = (setCallback: any, state: boolean) =>
+  setCallback(!state);
