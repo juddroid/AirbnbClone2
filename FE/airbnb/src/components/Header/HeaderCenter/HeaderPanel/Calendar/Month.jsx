@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { LASTDATE_LIST } from '../../../../../const';
-import { getDateList } from '../../../../../util';
+import { getDateList } from '../../../../../util.ts';
 import MonthHeader from './MonthHeader';
 import MonthTable from './MonthTable';
 
 const Month = ({ today, month }) => {
-  const currentDateList = getDateList(month);
+  const currentDateList = getDateList(today, month);
   const [dateList, setDateList] = useState(currentDateList);
 
   return (
