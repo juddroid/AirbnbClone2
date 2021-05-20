@@ -20,7 +20,6 @@ export default Month;
 
 const MonthStyle = styled.div`
   padding: 0px 27px;
-
   background: rgb(255, 255, 255);
   text-align: center;
   vertical-align: top;

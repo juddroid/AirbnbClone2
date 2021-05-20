@@ -34,7 +34,6 @@ export default CalendarMainView;
 
 const CalendarMainViewStyle = styled.div`
   width: 800px;
-  height: 340px;
   position: relative;
   overflow: hidden;
   border-radius: 3px;
@@ -48,7 +47,7 @@ const CalendarMainViewWrapper = styled.div`
   background: rgb(255, 255, 255);
   text-align: left;
   z-index: 0;
-  position: absolute;
+
   left: 9px;
 `;
 
