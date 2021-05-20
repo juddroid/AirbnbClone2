@@ -45,6 +45,14 @@ export const SECTION_EXPERIENCE_TITLE = '체험 둘러보기';
 export const SECTION_EXPERIENCE_SUBTITLE =
   '현지 전문가와 함께하는 독특한 액티비티에 오프라인이나 온라인으로 참여해 보세요.';
 
+// Calendar
+
+export const LEFT = 'left';
+export const RIGHT = 'right';
+export const SMALL = 'small';
+export const WEEK_LIST = ['일', '월', '화', '수', '목', '금', '토'];
+export const LASTDATE_LIST = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
 // Footer
 export const COPYRIGHT = '© 2021 Airbnb, Inc.';
 export const DOT = '·';
