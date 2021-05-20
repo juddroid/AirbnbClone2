@@ -44,7 +44,7 @@ const ButtonWrapper = styled.div`
 
 const ButtonBox = styled.div`
   position: absolute;
-  top: 7.5px;
+  top: 0px;
   padding: 15px;
 
   ${({ direction }) => (direction === LEFT ? `left: 23px` : 'right: 23px')}
@@ -52,7 +52,7 @@ const ButtonBox = styled.div`
 
 const ButtonStyle = styled.button`
   appearance: none;
-  display: inline-block;
+  display: flex;
   border-radius: 50%;
   border: none;
   outline: none;
@@ -64,6 +64,14 @@ const ButtonStyle = styled.button`
   position: relative;
   background: transparent;
   transition: transform 0.25s ease 0s;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+
+  :hover {
+    background: rgb(247, 247, 247);
+  }
 
   ::before {
     content: '';
@@ -81,8 +89,8 @@ const ButtonStyle = styled.button`
     position: relative;
 
     svg {
-      height: 18px;
-      width: 18px;
+      height: 20px;
+      width: 20px;
       display: block;
       fill: #717171;
     }

@@ -16,7 +16,7 @@ const Month = ({ today, month }) => {
   return (
     <MonthStyle>
       <MonthHeader {...{ today, month }} />
-      <MonthTable {...{ dateList }} />
+      <MonthTable {...{ dateList, today, month }} />
     </MonthStyle>
   );
 };

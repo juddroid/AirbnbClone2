@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { setState, setToggle } from '../../../../../util.ts';
 
-const Date = ({ date }) => {
+const EachDate = ({ today, month, date }) => {
   const [dateHover, setDateHover] = useState(false);
   const [seleted, setSelected] = useState(false);
   const [seletedCount, setSelectedCount] = useState(0);
+  const [isNotPast, setIsNotPast] = useState(true);
+
+  useEffect(() => {
+    const currentDate = new Date(today.year, month, date);
+    const todayDate = new Date(today.year, today.month, today.date);
+
+    setIsNotPast(currentDate < todayDate);
+  }, []);
 
   return (
     <DateStyle>
@@ -15,7 +23,7 @@ const Date = ({ date }) => {
         onMouseLeave={() => setState(setDateHover, false)}
         onMouseDown={() => setToggle(setSelected, seleted)}
       >
-        <DateBoxDiv>
+        <DateBoxDiv {...{ isNotPast }}>
           <DateNum>{date}</DateNum>
         </DateBoxDiv>
       </DateBox>
@@ -23,7 +31,7 @@ const Date = ({ date }) => {
   );
 };
 
-export default Date;
+export default EachDate;
 
 const DateStyle = styled.div`
   width: 48px;
@@ -74,9 +82,11 @@ const DateBoxDiv = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  /* 지나간 날짜 */
-  /* color: rgb(72, 72, 72);
-  opacity: 0.25; */
+  ${({ isNotPast }) =>
+    isNotPast &&
+    `
+    color: rgb(72, 72, 72);
+  opacity: 0.25;`}
 `;
 
 const DateNum = styled.div`

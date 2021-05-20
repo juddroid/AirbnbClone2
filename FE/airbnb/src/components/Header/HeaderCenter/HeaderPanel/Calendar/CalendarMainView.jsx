@@ -7,6 +7,7 @@ const CalendarMainView = () => {
   const initialData = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
+    date: new Date().getDate(),
   };
   const [today, setToday] = useState(initialData);
 
