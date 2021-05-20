@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import EachDate from './EachDate';
 import { v4 as uuidv4 } from 'uuid';
 
-const MonthTable = ({ dateList, today, month }) => {
+const MonthTable = ({ calendar, today, month }) => {
   return (
     <MonthTableStyle>
       <DateBoxWrapper>
-        {dateList.map((date) => (
+        {calendar.map((date) => (
           <EachDate {...{ today, month, date }} key={uuidv4()} />
         ))}
       </DateBoxWrapper>

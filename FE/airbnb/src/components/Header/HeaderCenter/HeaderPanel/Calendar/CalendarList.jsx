@@ -24,9 +24,9 @@ const CalendarListStyle = styled.div`
 
 const CalendarListWrapper = styled.div`
   width: 801px;
-  position: relative !important;
-  text-align: left !important;
-  background: rgb(255, 255, 255) !important;
+  position: relative;
+  text-align: left;
+  background: rgb(255, 255, 255);
 `;
 
 const CalendarListBox = styled.div`

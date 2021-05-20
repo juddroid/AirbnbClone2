@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import useFetch from '../../../customHooks/useFetch';
 import { v4 as uuidv4 } from 'uuid';
 import CityInfo from './CityInfo/CityInfo';
+import { URL_HOME } from '../../../const';
 
 const MainSuburbSectionContent = () => {
-  const data = useFetch('http://travel.airbnb.kro.kr/api', []);
+  const data = useFetch(URL_HOME, []);
   const [nearby, setNearby] = useState(null);
-  console.log(nearby);
 
   useEffect(() => {
     setNearby(data.nearbyDestinations);

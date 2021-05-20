@@ -3,6 +3,7 @@ import { LASTDATE_LIST } from './const';
 interface IToday {
   year: number;
   month: number;
+  date: number;
 }
 
 export const getDateList = (today: IToday, month: number) => {

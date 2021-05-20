@@ -1,11 +1,38 @@
 import styled from 'styled-components';
 import { LEFT, RIGHT } from '../../../../../const';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import {
+  calendar,
+  displayMonth,
+  nextNextMonthBox,
+  prevMonthBox,
+} from '../../../../../Recoil/CalendarState';
 
 const CalendarButton = ({ direction }) => {
+  const setCalendarPosition = useSetRecoilState(calendar);
+  const setPrevMonthBox = useSetRecoilState(prevMonthBox);
+  const setNextMonthBox = useSetRecoilState(nextNextMonthBox);
+  const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
+
+  const handleClickButton = () => {
+    if (direction === LEFT) {
+      setCalendarPosition(391);
+      setThisMonth(thisMonth - 1);
+      setPrevMonthBox(false);
+      return;
+    }
+    if (direction === RIGHT) {
+      setCalendarPosition(-391);
+      setThisMonth(thisMonth + 1);
+      setNextMonthBox(false);
+      return;
+    }
+  };
+
   return (
-    <ButtonWrapper>
+    <ButtonWrapper onClick={handleClickButton}>
       <ButtonBox {...{ direction }}>
         <ButtonStyle>
           <span>

@@ -1,31 +1,71 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-
 import Month from './Month';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import {
+  calendar,
+  todayDate,
+  calendarWrapperSize,
+  calendarList,
+  displayMonth,
+  monthList,
+} from '../../../../../Recoil/CalendarState';
+import { useEffect } from 'react';
+import { getDateList } from '../../../../../util';
+import { v4 as uuidv4 } from 'uuid';
 
 const CalendarMainView = () => {
-  const initialData = {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth(),
-    date: new Date().getDate(),
-  };
-  const [today, setToday] = useState(initialData);
+  const today = useRecoilValue(todayDate);
+  const calendarPosition = useRecoilValue(calendar);
 
+  const [calList, setCalList] = useRecoilState(calendarList);
+  const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
+  const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
+  const [displayMonthList, setDisplayMonthList] = useRecoilState(monthList);
+
+  useEffect(() => {
+    setThisMonth(today.month);
+
+    const newCalendarList = [
+      getDateList(today, thisMonth - 1),
+      getDateList(today, thisMonth),
+      getDateList(today, thisMonth + 1),
+      getDateList(today, thisMonth + 2),
+    ];
+    const newDisplayMonthList = [
+      thisMonth - 1,
+      thisMonth,
+      thisMonth + 1,
+      thisMonth + 2,
+    ];
+    setDisplayMonthList(newDisplayMonthList);
+    setCalList(newCalendarList);
+
+    setBoxHeight(
+      calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 340 : 378
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    setBoxHeight,
+    setCalList,
+    setDisplayMonthList,
+    setThisMonth,
+    thisMonth,
+    today,
+  ]);
+
+  if (!calList) return null;
+
+  console.log(thisMonth);
   return (
-    <CalendarMainViewStyle>
-      <CalendarMainViewWrapper>
-        <FirstMonthStyle>
-          <Month {...{ today }} month={today.month - 1} />
-        </FirstMonthStyle>
-        <SecondMonthStyle>
-          <Month {...{ today }} month={today.month} />
-        </SecondMonthStyle>
-        <SecondMonthStyle>
-          <Month {...{ today }} month={today.month + 1} />
-        </SecondMonthStyle>
-        <ThirdMonthStyle>
-          <Month {...{ today }} month={today.month + 2} />
-        </ThirdMonthStyle>
+    <CalendarMainViewStyle {...{ boxHeight }}>
+      <CalendarMainViewWrapper {...{ calendarPosition }}>
+        {calList.map((calendar, idx) => (
+          <Month
+            {...{ calendar, today }}
+            month={displayMonthList[idx]}
+            key={uuidv4()}
+          />
+        ))}
       </CalendarMainViewWrapper>
     </CalendarMainViewStyle>
   );
@@ -35,7 +75,7 @@ export default CalendarMainView;
 
 const CalendarMainViewStyle = styled.div`
   width: 800px;
-  /* height: 378px; */
+  height: ${({ boxHeight }) => `${boxHeight}px`};
   position: relative;
   overflow: hidden;
   border-radius: 3px;
@@ -43,36 +83,12 @@ const CalendarMainViewStyle = styled.div`
 `;
 
 const CalendarMainViewWrapper = styled.div`
-  transform: translateX(0px);
+  transform: ${({ calendarPosition }) => `translateX(${calendarPosition}px)`};
   width: 1564px;
-  position: relative;
+  position: absolute;
   background: rgb(255, 255, 255);
   text-align: left;
   z-index: 0;
-
   left: 9px;
-`;
-
-const FirstMonthStyle = styled.div`
-  display: inline-block;
-  vertical-align: top;
-  min-height: 100%;
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-`;
-
-const SecondMonthStyle = styled.div`
-  display: inline-block;
-  vertical-align: top;
-  min-height: 100%;
-`;
-
-const ThirdMonthStyle = styled.div`
-  display: inline-block;
-  vertical-align: top;
-  min-height: 100%;
-  visibility: hidden;
+  transition: transrform 200ms ease-in-out 0s;
 `;

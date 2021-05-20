@@ -6,13 +6,7 @@ import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import theme from './components/style/theme';
 import React from 'react';
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (

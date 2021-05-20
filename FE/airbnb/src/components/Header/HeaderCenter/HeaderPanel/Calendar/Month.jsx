@@ -1,32 +1,54 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getDateList } from '../../../../../util.ts';
 import MonthHeader from './MonthHeader';
 import MonthTable from './MonthTable';
+import { useRecoilValue } from 'recoil';
+import {
+  nextNextMonthBox,
+  prevMonthBox,
+} from '../../../../../Recoil/CalendarState';
 
-const Month = ({ today, month }) => {
-  const currentDateList = getDateList(today, month);
-  const [dateList, setDateList] = useState(null);
+const Month = ({ today, calendar, month }) => {
+  const prevState = useRecoilValue(prevMonthBox);
+  const nextState = useRecoilValue(nextNextMonthBox);
 
-  useEffect(() => {
-    setDateList(currentDateList);
-  }, []);
-
-  if (!dateList) return null;
   return (
-    <MonthStyle>
-      <MonthHeader {...{ today, month }} />
-      <MonthTable {...{ dateList, today, month }} />
+    <MonthStyle {...{ prevState, nextState }}>
+      <MonthWrapper>
+        <MonthHeader {...{ today, month }} />
+        <MonthTable {...{ calendar, today, month }} />
+      </MonthWrapper>
     </MonthStyle>
   );
 };
 
 export default Month;
 
-const MonthStyle = styled.div`
+const MonthWrapper = styled.div`
   padding: 0px 27px;
   background: rgb(255, 255, 255);
   text-align: center;
   vertical-align: top;
   user-select: none;
+`;
+
+const MonthStyle = styled.div`
+  display: inline-block;
+  vertical-align: top;
+  min-height: 100%;
+
+  ${({ prevState }) =>
+    prevState &&
+    `:first-child {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }`}
+
+  ${({ nextState }) =>
+    nextState &&
+    `:last-child {
+    visibility: hidden;
+  }`}
 `;

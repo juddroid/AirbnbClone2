@@ -37,6 +37,7 @@ export const SECTION_STAY = '어디에서나, 여행은 살아보는 거야!';
 // Main > Section Nearby
 export const HOUR = '시간';
 export const MINUTE = '분';
+export const URL_HOME = 'http://travel.airbnb.kro.kr/api';
 
 // Main > Section Host
 export const SECTION_HOST_TITLE = '호스트가 되어보세요';
