@@ -11,7 +11,7 @@ const MainSuburbSectionContent = () => {
 
   useEffect(() => {
     setNearby(data.nearbyDestinations);
-  }, [nearby]);
+  }, [data.nearbyDestinations]);
 
   if (!nearby) return <div>no data</div>;
   return (
