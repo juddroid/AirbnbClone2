@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-const CityInfoImg = () => {
-  return <CityInfoImgSpan>Img</CityInfoImgSpan>;
+const CityInfoImg = ({ image }) => {
+  return (
+    <CityInfoImgSpan>
+      <img src={image} alt="img" />
+    </CityInfoImgSpan>
+  );
 };
 
 export default CityInfoImg;
@@ -14,6 +18,11 @@ const CityInfoImgSpan = styled.span`
   flex: 0 0 72px;
   height: 72px;
   margin-right: 12px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
   @media ${({ theme }) => theme.M} {
     margin-right: 16px;

@@ -1,17 +1,24 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useFetch from '../../../customHooks/useFetch';
+import { v4 as uuidv4 } from 'uuid';
 import CityInfo from './CityInfo/CityInfo';
 
 const MainSuburbSectionContent = () => {
+  const data = useFetch('http://travel.airbnb.kro.kr/api', []);
+  const [nearby, setNearby] = useState(null);
+  console.log(nearby);
+
+  useEffect(() => {
+    setNearby(data.nearbyDestinations);
+  }, [nearby]);
+
+  if (!nearby) return <div>no data</div>;
   return (
     <MainSuburbSectionContentStyle>
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
+      {nearby.map((city) => (
+        <CityInfo key={uuidv4()} {...{ city }} />
+      ))}
     </MainSuburbSectionContentStyle>
   );
 };

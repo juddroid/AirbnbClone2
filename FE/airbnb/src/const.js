@@ -34,6 +34,10 @@ export const SLOGAN_TARGET = '여행 아이디어 얻기';
 export const SECTION_SUBURB = '가까운 여행지 둘러보기';
 export const SECTION_STAY = '어디에서나, 여행은 살아보는 거야!';
 
+// Main > Section Nearby
+export const HOUR = '시간';
+export const MINUTE = '분';
+
 // Main > Section Host
 export const SECTION_HOST_TITLE = '호스트가 되어보세요';
 export const SECTION_HOST_MSG =

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import CityInfoContents from './CityInfoContents';
 
-const CityInfo = () => {
+const CityInfo = ({ city }) => {
   return (
     <CityInfoStyle>
-      <CityInfoContents />
+      <CityInfoContents {...{ city }} />
     </CityInfoStyle>
   );
 };

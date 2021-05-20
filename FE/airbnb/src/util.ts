@@ -18,3 +18,10 @@ export const getDateList = (today: IToday, month: number) => {
   }
   return dateList;
 };
+
+export const getHourMinute = (hour: number) => {
+  console.log(hour);
+  if (hour.toString().includes('.'))
+    return `${hour.toString().slice(0, hour.toString().indexOf('.'))}시간 30분`;
+  return `${hour}시간`;
+};
