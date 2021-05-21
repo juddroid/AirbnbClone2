@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import { getDateList } from '../util';
 
 export const calendar = atom({
   key: 'calendar',
@@ -33,16 +32,6 @@ export const monthList = atom({
 export const calendarWrapperSize = atom({
   key: 'calendarWrapperSize',
   default: 0,
-});
-
-export const currentCalendar = atom({
-  key: 'current',
-  default: {
-    prev: 0,
-    current: 0,
-    next: 0,
-    nextNext: 0,
-  },
 });
 
 export const calendarList = atom({

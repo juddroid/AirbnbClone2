@@ -13,7 +13,6 @@ import {
   todayDate,
 } from '../../../../../Recoil/CalendarState';
 import { getDateList } from '../../../../../util';
-import { useEffect } from 'react';
 
 const CalendarButton = ({ direction }) => {
   const today = useRecoilValue(todayDate);
@@ -39,6 +38,13 @@ const CalendarButton = ({ direction }) => {
         setAnimationState(false);
         setCalendarPosition(-391);
       }, 200);
+
+      setBoxHeight(
+        calList && (calList[1].length > 34 || calList[2].length > 34)
+          ? 378
+          : 340
+      );
+      return;
     }
     if (direction === RIGHT) {
       setAnimationState(true);
@@ -54,10 +60,14 @@ const CalendarButton = ({ direction }) => {
         setAnimationState(false);
         setCalendarPosition(-391);
       }, 200);
+
+      setBoxHeight(
+        calList && (calList[1].length > 34 || calList[2].length > 34)
+          ? 378
+          : 340
+      );
+      return;
     }
-    setBoxHeight(
-      calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 378 : 340
-    );
   };
 
   return (
