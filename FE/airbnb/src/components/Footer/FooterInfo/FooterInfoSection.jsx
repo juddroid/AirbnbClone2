@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import FooterInfoSectionList from './FooterInfoSectionList';
+import { v4 as uuidv4 } from 'uuid';
 
 const FooterInfoSection = ({ data }) => {
   return (
@@ -7,7 +8,7 @@ const FooterInfoSection = ({ data }) => {
       <SectionTitle>{data.sectionTitle}</SectionTitle>
       <FooterInfoSectionUl>
         {data.sectionList.map((item) => (
-          <FooterInfoSectionList {...{ item }} />
+          <FooterInfoSectionList {...{ item }} key={uuidv4()} />
         ))}
       </FooterInfoSectionUl>
     </FooterInfoSectionStyle>

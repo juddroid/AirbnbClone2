@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import CityInfoImg from './CityInfoImg';
 import CityInfoText from './CityInfoText';
 
-const CityInfoContents = () => {
+const CityInfoContents = ({ city }) => {
+  const { name, hourDrive, image } = city;
   return (
     <CityInfoContentsAnchor>
-      <CityInfoImg />
-      <CityInfoText />
+      <CityInfoImg {...{ image }} />
+      <CityInfoText {...{ name, hourDrive }} />
     </CityInfoContentsAnchor>
   );
 };

@@ -2,14 +2,46 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { CALENDAR, FREE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
+import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
+import CalendarList from './Calendar/CalendarList';
 
 const CalendarPopup = () => {
   const [tabState, setTabState] = useState(true);
 
+  // const data = [
+  //   { data: '1' },
+  //   { data: '2' },
+  //   { data: '3' },
+  //   { data: '4' },
+  //   { data: '5' },
+  //   { data: '6' },
+  //   { data: '7' },
+  //   { data: '8' },
+  //   { data: '9' },
+  //   { data: '10' },
+  //   { data: '11' },
+  //   { data: '12' },
+  //   { data: '13' },
+  //   { data: '14' },
+  //   { data: '15' },
+  //   { data: '16' },
+  //   { data: '17' },
+  //   { data: '18' },
+  //   { data: '19' },
+  // ];
+
+  // const option = {
+  //   cardSize: 150,
+  //   cardMargin: 5,
+  //   displayCardCount: 3,
+  //   buttonType: 'default',
+  //   buttonSize: 24,
+  // };
+
   return (
     <CalendarPopupStyle>
       <CalendarSection>
-        <CalendarTabs>
+        <CalendarWrapper>
           <CalendarTabsWrapper>
             <CalendarTabsBox>
               <CalendarTabsButton
@@ -24,7 +56,12 @@ const CalendarPopup = () => {
               />
             </CalendarTabsBox>
           </CalendarTabsWrapper>
-        </CalendarTabs>
+
+          <CalendarListWrapper>
+            <CalendarList />
+            {/* <RaccoonSlider data={data} option={option} /> */}
+          </CalendarListWrapper>
+        </CalendarWrapper>
       </CalendarSection>
     </CalendarPopupStyle>
   );
@@ -33,7 +70,6 @@ const CalendarPopup = () => {
 export default CalendarPopup;
 
 const CalendarPopupStyle = styled.div`
-  outline: 1px solid red;
   position: absolute;
   left: 0px;
   top: 100%;
@@ -43,7 +79,7 @@ const CalendarPopupStyle = styled.div`
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
   margin-top: 12px;
   max-height: calc(100vh - 220px);
-  overflow: hidden auto;
+  /* overflow: hidden auto; */
   padding: 16px 32px;
   right: 0px;
 `;
@@ -56,14 +92,13 @@ const CalendarSection = styled.section`
   justify-content: center;
 `;
 
-const CalendarTabs = styled.div`
-  padding-bottom: 32px;
-`;
+const CalendarWrapper = styled.div``;
 
 const CalendarTabsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 32px;
 `;
 
 const CalendarTabsBox = styled.div`
@@ -73,3 +108,5 @@ const CalendarTabsBox = styled.div`
   padding-right: 4px;
   display: flex;
 `;
+
+const CalendarListWrapper = styled.div``;

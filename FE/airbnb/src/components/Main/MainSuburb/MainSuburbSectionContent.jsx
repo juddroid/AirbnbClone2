@@ -1,17 +1,24 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import useFetch from '../../../customHooks/useFetch';
+import { v4 as uuidv4 } from 'uuid';
 import CityInfo from './CityInfo/CityInfo';
+import { URL_HOME } from '../../../const';
 
 const MainSuburbSectionContent = () => {
+  const data = useFetch(URL_HOME, []);
+  const [nearby, setNearby] = useState(null);
+
+  useEffect(() => {
+    setNearby(data.nearbyDestinations);
+  }, [data.nearbyDestinations]);
+
+  if (!nearby) return <div>no data</div>;
   return (
     <MainSuburbSectionContentStyle>
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
-      <CityInfo />
+      {nearby.map((city) => (
+        <CityInfo key={uuidv4()} {...{ city }} />
+      ))}
     </MainSuburbSectionContentStyle>
   );
 };

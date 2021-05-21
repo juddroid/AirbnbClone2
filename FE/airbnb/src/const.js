@@ -34,6 +34,11 @@ export const SLOGAN_TARGET = '여행 아이디어 얻기';
 export const SECTION_SUBURB = '가까운 여행지 둘러보기';
 export const SECTION_STAY = '어디에서나, 여행은 살아보는 거야!';
 
+// Main > Section Nearby
+export const HOUR = '시간';
+export const MINUTE = '분';
+export const URL_HOME = 'http://travel.airbnb.kro.kr/api';
+
 // Main > Section Host
 export const SECTION_HOST_TITLE = '호스트가 되어보세요';
 export const SECTION_HOST_MSG =
@@ -44,6 +49,14 @@ export const SECTION_HOST_DETAIL = '자세히 알아보기';
 export const SECTION_EXPERIENCE_TITLE = '체험 둘러보기';
 export const SECTION_EXPERIENCE_SUBTITLE =
   '현지 전문가와 함께하는 독특한 액티비티에 오프라인이나 온라인으로 참여해 보세요.';
+
+// Calendar
+
+export const LEFT = 'left';
+export const RIGHT = 'right';
+export const SMALL = 'small';
+export const WEEK_LIST = ['일', '월', '화', '수', '목', '금', '토'];
+export const LASTDATE_LIST = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // Footer
 export const COPYRIGHT = '© 2021 Airbnb, Inc.';

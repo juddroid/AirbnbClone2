@@ -4,10 +4,14 @@ import FieldPanel from '../FieldPanel';
 import Fieldset from '../Fieldset';
 
 const HeaderSearch = () => {
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <HeaderSearchStyle>
       <SearchWrapper>
-        <SearchForm method={GET} role={SEARCH} action>
+        <SearchForm method={GET} role={SEARCH} onSubmit={handleSubmitForm}>
           <Fieldset />
           <FieldPanel />
         </SearchForm>
