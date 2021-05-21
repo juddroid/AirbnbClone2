@@ -6,8 +6,8 @@ import {
   todayDate,
   calendarWrapperSize,
   calendarList,
-  displayMonth,
   monthList,
+  animation,
 } from '../../../../../Recoil/CalendarState';
 import { useEffect } from 'react';
 import { getDateList } from '../../../../../util';
@@ -15,43 +15,27 @@ import { v4 as uuidv4 } from 'uuid';
 
 const CalendarMainView = () => {
   const today = useRecoilValue(todayDate);
-  const calendarPosition = useRecoilValue(calendar);
-
+  const displayMonthList = useRecoilValue(monthList);
+  const animationState = useRecoilValue(animation);
+  const [calendarPosition, setCalendarPosition] = useRecoilState(calendar);
   const [calList, setCalList] = useRecoilState(calendarList);
   const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
-  const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
-  const [displayMonthList, setDisplayMonthList] = useRecoilState(monthList);
 
   useEffect(() => {
-    setThisMonth(today.month);
-
-    const newCalendarList = [
-      getDateList(today, thisMonth - 1),
-      getDateList(today, thisMonth),
-      getDateList(today, thisMonth + 1),
-      getDateList(today, thisMonth + 2),
-    ];
-    const newDisplayMonthList = [
-      thisMonth - 1,
-      thisMonth,
-      thisMonth + 1,
-      thisMonth + 2,
-    ];
-    setDisplayMonthList(newDisplayMonthList);
-    setCalList(newCalendarList);
-
-    setBoxHeight(
-      calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 340 : 378
+    const newCalendarList = displayMonthList.map((month) =>
+      getDateList(today, month)
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [thisMonth]);
+    setCalList(newCalendarList);
+    setBoxHeight(
+      calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 378 : 340
+    );
+  }, [setCalendarPosition]);
 
   if (!calList) return null;
 
-  console.log(thisMonth);
   return (
     <CalendarMainViewStyle {...{ boxHeight }}>
-      <CalendarMainViewWrapper {...{ calendarPosition }}>
+      <CalendarMainViewWrapper {...{ calendarPosition, animationState }}>
         {calList.map((calendar, idx) => (
           <Month
             {...{ calendar, today }}
@@ -70,7 +54,7 @@ const CalendarMainViewStyle = styled.div`
   width: 800px;
   height: ${({ boxHeight }) => `${boxHeight}px`};
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
   border-radius: 3px;
   transition: height 0.2s ease-in-out 0s;
 `;
@@ -83,5 +67,9 @@ const CalendarMainViewWrapper = styled.div`
   text-align: left;
   z-index: 0;
   left: 9px;
-  transition: transform 200ms ease-in-out 0s;
+  transition: ${({ animationState }) =>
+    animationState &&
+    `
+  transform 200ms ease-in-out 0s;
+  `};
 `;

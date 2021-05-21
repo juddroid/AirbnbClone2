@@ -1,27 +1,63 @@
 import styled from 'styled-components';
 import { LEFT, RIGHT } from '../../../../../const';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { calendar, displayMonth } from '../../../../../Recoil/CalendarState';
+import {
+  animation,
+  calendar,
+  calendarList,
+  calendarWrapperSize,
+  displayMonth,
+  monthList,
+  todayDate,
+} from '../../../../../Recoil/CalendarState';
+import { getDateList } from '../../../../../util';
+import { useEffect } from 'react';
 
 const CalendarButton = ({ direction }) => {
-  const [calendarPosition, setCalendarPosition] = useRecoilState(calendar);
+  const today = useRecoilValue(todayDate);
   const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
+  const setDisplayMonthList = useSetRecoilState(monthList);
+  const setAnimationState = useSetRecoilState(animation);
+  const setCalendarPosition = useSetRecoilState(calendar);
+  const [calList, setCalendarList] = useRecoilState(calendarList);
+  const setBoxHeight = useSetRecoilState(calendarWrapperSize);
 
   const handleClickButton = () => {
     if (direction === LEFT) {
-      setCalendarPosition(calendarPosition + 391);
-      // setThisMonth(thisMonth - 1);
-
-      return;
+      setAnimationState(true);
+      setCalendarPosition((position) => position + 391);
+      setDisplayMonthList((month) =>
+        month.filter((month) => month !== thisMonth + 2)
+      );
+      setCalendarList((list) => list.filter((_, i) => i !== 3));
+      setThisMonth(thisMonth - 1);
+      setDisplayMonthList((month) => [thisMonth - 2, ...month]);
+      setCalendarList((list) => [getDateList(today, thisMonth - 2), ...list]);
+      setTimeout(() => {
+        setAnimationState(false);
+        setCalendarPosition(-391);
+      }, 200);
     }
     if (direction === RIGHT) {
-      setCalendarPosition(calendarPosition - 391);
-      // setThisMonth(thisMonth + 1);
-
-      return;
+      setAnimationState(true);
+      setCalendarPosition((position) => position - 391);
+      setDisplayMonthList((month) =>
+        month.filter((month) => month !== thisMonth - 1)
+      );
+      setCalendarList((list) => list.filter((_, i) => i !== 0));
+      setThisMonth(thisMonth + 1);
+      setDisplayMonthList((month) => [...month, thisMonth + 3]);
+      setCalendarList((list) => [...list, getDateList(today, thisMonth + 3)]);
+      setTimeout(() => {
+        setAnimationState(false);
+        setCalendarPosition(-391);
+      }, 200);
     }
+    setBoxHeight(
+      calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 378 : 340
+    );
   };
 
   return (

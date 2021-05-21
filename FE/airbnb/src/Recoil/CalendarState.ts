@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { getDateList } from '../util';
 
 export const calendar = atom({
   key: 'calendar',
@@ -12,6 +13,21 @@ export const todayDate = atom({
     month: new Date().getMonth(),
     date: new Date().getDate(),
   },
+});
+
+export const displayMonth = atom({
+  key: 'displayMonth',
+  default: new Date().getMonth(),
+});
+
+export const monthList = atom({
+  key: 'monthList',
+  default: [
+    new Date().getMonth() - 1,
+    new Date().getMonth(),
+    new Date().getMonth() + 1,
+    new Date().getMonth() + 2,
+  ],
 });
 
 export const calendarWrapperSize = atom({
@@ -34,16 +50,6 @@ export const calendarList = atom({
   default: '',
 });
 
-export const displayMonth = atom({
-  key: 'displayMonth',
-  default: 0,
-});
-
-export const monthList = atom({
-  key: 'monthList',
-  default: [],
-});
-
 export const prevMonthBox = atom({
   key: 'prevMontohBox',
   default: true,
@@ -52,4 +58,9 @@ export const prevMonthBox = atom({
 export const nextNextMonthBox = atom({
   key: 'nextNextMonthBox',
   default: true,
+});
+
+export const animation = atom({
+  key: 'animation',
+  default: false,
 });
