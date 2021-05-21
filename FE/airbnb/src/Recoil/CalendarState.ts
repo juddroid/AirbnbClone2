@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 export const calendar = atom({
   key: 'calendar',
-  default: 0,
+  default: -391,
 });
 
 export const todayDate = atom({

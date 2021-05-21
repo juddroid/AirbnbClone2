@@ -35,20 +35,4 @@ const MonthStyle = styled.div`
   display: inline-block;
   vertical-align: top;
   min-height: 100%;
-
-  ${({ prevState }) =>
-    prevState &&
-    `:first-child {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-  }`}
-
-  ${({ nextState }) =>
-    nextState &&
-    `:last-child {
-    visibility: hidden;
-  }`}
 `;

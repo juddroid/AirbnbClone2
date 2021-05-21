@@ -44,14 +44,7 @@ const CalendarMainView = () => {
       calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 340 : 378
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    setBoxHeight,
-    setCalList,
-    setDisplayMonthList,
-    setThisMonth,
-    thisMonth,
-    today,
-  ]);
+  }, [thisMonth]);
 
   if (!calList) return null;
 
@@ -77,7 +70,7 @@ const CalendarMainViewStyle = styled.div`
   width: 800px;
   height: ${({ boxHeight }) => `${boxHeight}px`};
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 3px;
   transition: height 0.2s ease-in-out 0s;
 `;
@@ -90,5 +83,5 @@ const CalendarMainViewWrapper = styled.div`
   text-align: left;
   z-index: 0;
   left: 9px;
-  transition: transrform 200ms ease-in-out 0s;
+  transition: transform 200ms ease-in-out 0s;
 `;
