@@ -29,6 +29,12 @@ export const FREE = '자유로운 일정';
 export const BLOCK = 'block';
 export const NONE = 'none';
 
+export const REGIST = '회원 가입';
+export const LOGIN = '로그인';
+export const TO_BE_HOST = '숙소 호스트 되기';
+export const HOSTING = '체험 호스팅하기';
+export const HELP = '도움말';
+
 // Main > Slogan
 export const SLOGAN_HEADING = '슬기로운 자연생활';
 export const SLOGAN_CONTENT = '에어비앤비가 엄선한 위시리스트를 만나보세요.';

@@ -33,3 +33,8 @@ export const guestPopupState = atom({
   key: 'guestPopupState',
   default: false,
 });
+
+export const registerPopupState = atom({
+  key: 'registerPopupState',
+  default: false,
+});
