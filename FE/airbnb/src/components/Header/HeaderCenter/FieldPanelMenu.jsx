@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   CHECK_IN,
@@ -10,8 +10,13 @@ import {
   LOCATION,
   LOCATION_PLACEHOLDER,
 } from '../../../const';
-import { nearbyPopupState } from '../../../Recoil/HeaderFieldsetState';
+import {
+  calendarPopupState,
+  guestPopupState,
+  nearbyPopupState,
+} from '../../../Recoil/HeaderFieldsetState';
 import CalendarPopup from './HeaderPanel/CalendarPopup';
+import GuestPopup from './HeaderPanel/Guest/GuestPopup';
 import NearbyPopup from './HeaderPanel/NearbyPopup';
 import PanelButton from './HeaderPanel/PanelButton';
 import PanelLast from './HeaderPanel/PanelLast';
@@ -20,18 +25,40 @@ import Search from './Search';
 
 const FieldPanelMenu = () => {
   const nearby = useRef();
+  const calendar = useRef();
+  const guest = useRef();
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
+  const setCalendarPopup = useSetRecoilState(calendarPopupState);
+  const setGuestPopup = useSetRecoilState(guestPopupState);
+
+  const guestState = useRecoilValue(guestPopupState);
+
   const handleClickNearbyPopup = (e) => {
     nearby.current.contains(e.target)
       ? setNearbyPopup(true)
       : setNearbyPopup(false);
   };
 
+  const handleClickCalendarPopup = (e) => {
+    calendar.current.contains(e.target)
+      ? setCalendarPopup(true)
+      : setCalendarPopup(false);
+  };
+  const handleClickGuestPopup = (e) => {
+    guest.current.contains(e.target)
+      ? setGuestPopup(true)
+      : setGuestPopup(false);
+  };
+
   useEffect(() => {
     window.addEventListener('click', handleClickNearbyPopup);
+    window.addEventListener('click', handleClickCalendarPopup);
+    window.addEventListener('click', handleClickGuestPopup);
 
     return () => {
       window.removeEventListener('click', handleClickNearbyPopup);
+      window.addEventListener('click', handleClickCalendarPopup);
+      window.addEventListener('click', handleClickGuestPopup);
     };
   }, []);
 
@@ -42,16 +69,17 @@ const FieldPanelMenu = () => {
         <NearbyPopup />
       </FieldPanelMenuLeft>
       <FieldPanelMenuSeparator />
-      <FieldPanelMenuCenter>
+      <FieldPanelMenuCenter ref={calendar}>
         <PanelButton name={CHECK_IN} placeholder={INPUT_DATE_PLACEHOLDER} />
         <CalendarPopup />
         <FieldPanelMenuSeparator />
         <PanelButton name={CHECK_OUT} placeholder={INPUT_DATE_PLACEHOLDER} />
       </FieldPanelMenuCenter>
       <FieldPanelMenuSeparator />
-      <FieldPanelMenuRight>
+      <FieldPanelMenuRight ref={guest}>
         <PanelLast name={GUEST} placeholder={GUEST_PLACEHOLDER} />
-        <Search />
+        <GuestPopup />
+        <Search {...{ guestState }} />
       </FieldPanelMenuRight>
     </FieldPanelMenuStyle>
   );

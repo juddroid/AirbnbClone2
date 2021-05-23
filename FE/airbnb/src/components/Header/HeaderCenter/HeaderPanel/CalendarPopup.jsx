@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { CALENDAR, FREE } from '../../../../const';
+import { BLOCK, CALENDAR, FREE, NONE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
 import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 import CalendarList from './Calendar/CalendarList';
+import { calendarPopupState } from '../../../../Recoil/HeaderFieldsetState';
+import { useRecoilValue } from 'recoil';
 
 const CalendarPopup = () => {
   const [tabState, setTabState] = useState(true);
+  const calendarState = useRecoilValue(calendarPopupState);
 
   // const data = [
   //   { data: '1' },
@@ -39,7 +42,7 @@ const CalendarPopup = () => {
   // };
 
   return (
-    <CalendarPopupStyle>
+    <CalendarPopupStyle {...{ calendarState }}>
       <CalendarSection>
         <CalendarWrapper>
           <CalendarTabsWrapper>
@@ -83,9 +86,7 @@ const CalendarPopupStyle = styled.div`
   padding: 16px 32px;
   right: 0px;
 
-  // calendar
-  opacity: 0;
-  visibility: hidden;
+  display: ${({ calendarState }) => (calendarState ? BLOCK : NONE)};
 `;
 
 const CalendarSection = styled.section`

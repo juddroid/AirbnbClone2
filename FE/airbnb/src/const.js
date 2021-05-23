@@ -21,6 +21,7 @@ export const GUEST_PLACEHOLDER = '게스트 추가';
 
 export const GET = 'get';
 export const SEARCH = 'search';
+export const SEARCH_TEXT = '검색';
 
 export const CALENDAR = '달력';
 export const FREE = '자유로운 일정';
@@ -54,12 +55,29 @@ export const SECTION_EXPERIENCE_SUBTITLE =
   '현지 전문가와 함께하는 독특한 액티비티에 오프라인이나 온라인으로 참여해 보세요.';
 
 // Calendar
-
 export const LEFT = 'left';
 export const RIGHT = 'right';
 export const SMALL = 'small';
 export const WEEK_LIST = ['일', '월', '화', '수', '목', '금', '토'];
 export const LASTDATE_LIST = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+// Guest
+export const GUEST_INFO = [
+  {
+    header: '성인',
+    info: '만 13세 이상',
+  },
+  {
+    header: '어린이',
+    info: '만 2~12세',
+  },
+  {
+    header: '유아', //
+    info: '만 2세 미만',
+  },
+];
+export const MINUS = 'minus';
+export const PLUS = 'plus';
 
 // Footer
 export const COPYRIGHT = '© 2021 Airbnb, Inc.';

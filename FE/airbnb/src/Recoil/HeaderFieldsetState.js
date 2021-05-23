@@ -23,3 +23,13 @@ export const nearbyPopupState = atom({
   key: 'nearbyPopupState',
   default: false,
 });
+
+export const calendarPopupState = atom({
+  key: 'calendarPopupState',
+  default: false,
+});
+
+export const guestPopupState = atom({
+  key: 'guestPopupState',
+  default: false,
+});
