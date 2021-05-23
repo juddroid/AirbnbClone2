@@ -26,7 +26,6 @@ const CalendarMainView = () => {
       getDateList(today, month)
     );
     setCalList(newCalendarList);
-    console.log(calList);
 
     setBoxHeight(
       calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
@@ -34,8 +33,6 @@ const CalendarMainView = () => {
   }, [displayMonthList]);
 
   if (!calList) return null;
-
-  console.log(boxHeight);
 
   return (
     <CalendarMainViewStyle {...{ boxHeight }}>

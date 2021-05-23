@@ -25,6 +25,9 @@ export const SEARCH = 'search';
 export const CALENDAR = '달력';
 export const FREE = '자유로운 일정';
 
+export const BLOCK = 'block';
+export const NONE = 'none';
+
 // Main > Slogan
 export const SLOGAN_HEADING = '슬기로운 자연생활';
 export const SLOGAN_CONTENT = '에어비앤비가 엄선한 위시리스트를 만나보세요.';

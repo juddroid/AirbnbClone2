@@ -1,9 +1,13 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { SECTION_SUBURB } from '../../../../const';
+import { BLOCK, NONE, SECTION_SUBURB } from '../../../../const';
+import { nearbyPopupState } from '../../../../Recoil/HeaderFieldsetState';
 
 const NearbyPopup = () => {
+  const nearbyPopup = useRecoilValue(nearbyPopupState);
+
   return (
-    <NearbyPopupStyle>
+    <NearbyPopupStyle {...{ nearbyPopup }}>
       <PopupBox>
         <PopupSection>
           <ul>
@@ -32,9 +36,7 @@ const NearbyPopupStyle = styled.div`
   top: 100%;
   z-index: 4;
 
-  // popup visible
-  visibility: hidden;
-  opacity: 0;
+  display: ${({ nearbyPopup }) => (nearbyPopup ? BLOCK : NONE)};
 `;
 
 const PopupBox = styled.div`

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   CHECK_IN,
@@ -8,6 +10,7 @@ import {
   LOCATION,
   LOCATION_PLACEHOLDER,
 } from '../../../const';
+import { nearbyPopupState } from '../../../Recoil/HeaderFieldsetState';
 import CalendarPopup from './HeaderPanel/CalendarPopup';
 import NearbyPopup from './HeaderPanel/NearbyPopup';
 import PanelButton from './HeaderPanel/PanelButton';
@@ -16,9 +19,25 @@ import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
 
 const FieldPanelMenu = () => {
+  const nearby = useRef();
+  const setNearbyPopup = useSetRecoilState(nearbyPopupState);
+  const handleClickNearbyPopup = (e) => {
+    nearby.current.contains(e.target)
+      ? setNearbyPopup(true)
+      : setNearbyPopup(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickNearbyPopup);
+
+    return () => {
+      window.removeEventListener('click', handleClickNearbyPopup);
+    };
+  }, []);
+
   return (
     <FieldPanelMenuStyle>
-      <FieldPanelMenuLeft>
+      <FieldPanelMenuLeft ref={nearby}>
         <PanelMenu name={LOCATION} placeholder={LOCATION_PLACEHOLDER} />
         <NearbyPopup />
       </FieldPanelMenuLeft>

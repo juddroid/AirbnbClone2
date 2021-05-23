@@ -18,3 +18,8 @@ export const headerFieldset = atom({
     },
   },
 });
+
+export const nearbyPopupState = atom({
+  key: 'nearbyPopupState',
+  default: false,
+});
