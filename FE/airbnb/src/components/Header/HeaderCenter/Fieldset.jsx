@@ -2,17 +2,76 @@ import styled from 'styled-components';
 import { EXPERIENCE, ONLINE, STAYS } from '../../../const';
 import FieldsetDiv from './FieldsetDiv';
 import FieldsetLabel from './FieldsetLabel';
+import { useRecoilState } from 'recoil';
+import { headerFieldset } from '../../../Recoil/HeaderFieldsetState';
 
 const Fieldset = () => {
+  const [isSelected, setIsSelected] = useRecoilState(headerFieldset);
+
+  const handleClickLabel = (e) => {
+    const currentID = e.currentTarget.id;
+    switch (currentID) {
+      case isSelected.stays.id:
+        return setIsSelected({
+          ...isSelected,
+          stays: {
+            ...isSelected.stays,
+            state: true,
+          },
+          experience: {
+            ...isSelected.experience,
+            state: false,
+          },
+          online: {
+            ...isSelected.online,
+            state: false,
+          },
+        });
+      case isSelected.experience.id:
+        return setIsSelected({
+          ...isSelected,
+          stays: {
+            ...isSelected.stays,
+            state: false,
+          },
+          experience: {
+            ...isSelected.experience,
+            state: true,
+          },
+          online: {
+            ...isSelected.online,
+            state: false,
+          },
+        });
+      case isSelected.online.id:
+        return console.log('online');
+
+      default:
+        break;
+    }
+  };
+
   return (
     <FieldsetStyle>
       <FieldsetWrapper role="tablist" aria-label="무엇을 찾고 계신가요?">
-        <FieldsetLabel for="search-block-tab-false-STAYS" dataText={STAYS} />
         <FieldsetLabel
-          for="search-block-tab-false-EXPERIENCES"
-          dataText={EXPERIENCE}
+          id={isSelected.stays.id}
+          dataText={STAYS}
+          isSelected={isSelected.stays.state}
+          {...{ handleClickLabel }}
         />
-        <FieldsetDiv dataText={ONLINE} />
+        <FieldsetLabel
+          id={isSelected.experience.id}
+          dataText={EXPERIENCE}
+          isSelected={isSelected.experience.state}
+          {...{ handleClickLabel }}
+        />
+        <FieldsetDiv
+          id={isSelected.online.id}
+          dataText={ONLINE}
+          isSelected={isSelected.online.state}
+          {...{ handleClickLabel }}
+        />
       </FieldsetWrapper>
     </FieldsetStyle>
   );

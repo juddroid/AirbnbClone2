@@ -17,7 +17,7 @@ const CalendarMainView = () => {
   const today = useRecoilValue(todayDate);
   const displayMonthList = useRecoilValue(monthList);
   const animationState = useRecoilValue(animation);
-  const [calendarPosition, setCalendarPosition] = useRecoilState(calendar);
+  const calendarPosition = useRecoilValue(calendar);
   const [calList, setCalList] = useRecoilState(calendarList);
   const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
 
@@ -26,10 +26,11 @@ const CalendarMainView = () => {
       getDateList(today, month)
     );
     setCalList(newCalendarList);
+
     setBoxHeight(
-      calList && (calList[1].legnth > 35 || calList[2].length > 35) ? 378 : 340
+      calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
     );
-  }, [setCalendarPosition]);
+  }, [displayMonthList]);
 
   if (!calList) return null;
 

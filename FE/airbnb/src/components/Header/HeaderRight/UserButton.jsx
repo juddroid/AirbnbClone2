@@ -1,10 +1,30 @@
+import { useEffect, useRef } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { registerPopupState } from '../../../Recoil/HeaderFieldsetState';
 import UserBurgerLogo from '../../../svg/UserBurgerLogo';
 import UserLogo from '../../../svg/UserLogo';
 
 const UserButton = () => {
+  const register = useRef();
+  const setRegisterState = useSetRecoilState(registerPopupState);
+
+  const handleClickUserButton = (e) => {
+    register.current.contains(e.target)
+      ? setRegisterState(true)
+      : setRegisterState(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickUserButton);
+
+    return () => {
+      window.removeEventListener('click', handleClickUserButton);
+    };
+  }, []);
+
   return (
-    <UserButtonStyle>
+    <UserButtonStyle ref={register}>
       <UserBurgerLogo />
       <UserLogo />
     </UserButtonStyle>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PanelMenuLabel = ({ name, placeholder }) => {
+const PanelLastLabel = ({ name, placeholder }) => {
   return (
     <PanelMenuLabelStyle>
       <PanelMenuLabelWrapper>
@@ -11,7 +11,7 @@ const PanelMenuLabel = ({ name, placeholder }) => {
   );
 };
 
-export default PanelMenuLabel;
+export default PanelLastLabel;
 
 const PanelMenuLabelStyle = styled.label`
   cursor: pointer;
@@ -21,43 +21,7 @@ const PanelMenuLabelStyle = styled.label`
   border-radius: 32px;
   flex: 1 0 0%;
   min-width: 0px;
-  padding: 14px 32px;
-
-  ::before {
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #fff;
-    content: '';
-    display: none;
-    height: 32px;
-    margin-top: -16px;
-    position: absolute;
-    right: 0px;
-    top: 50%;
-    z-index: 0;
-    border-left: 0px;
-  }
-
-  :hover::before {
-    display: block;
-  }
-
-  ::after {
-    background-clip: padding-box;
-    border: 1px solid transparent;
-    border-radius: 32px;
-    bottom: 0px;
-    content: '';
-    left: 0px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    z-index: 0;
-  }
-
-  :hover::after {
-    background-color: #ebebeb;
-  }
+  padding: 14px 24px;
 `;
 
 const PanelMenuLabelWrapper = styled.div`

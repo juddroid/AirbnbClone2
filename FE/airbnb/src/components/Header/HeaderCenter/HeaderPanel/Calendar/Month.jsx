@@ -1,18 +1,10 @@
 import styled from 'styled-components';
 import MonthHeader from './MonthHeader';
 import MonthTable from './MonthTable';
-import { useRecoilValue } from 'recoil';
-import {
-  nextNextMonthBox,
-  prevMonthBox,
-} from '../../../../../Recoil/CalendarState';
 
 const Month = ({ today, calendar, month }) => {
-  const prevState = useRecoilValue(prevMonthBox);
-  const nextState = useRecoilValue(nextNextMonthBox);
-
   return (
-    <MonthStyle {...{ prevState, nextState }}>
+    <MonthStyle>
       <MonthWrapper>
         <MonthHeader {...{ today, month }} />
         <MonthTable {...{ calendar, today, month }} />

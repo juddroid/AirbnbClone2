@@ -4,7 +4,9 @@ import { HOST } from '../../../const';
 const Host = () => {
   return (
     <HostStyle>
-      <a href="/">{HOST}</a>
+      <a href="/">
+        <div>{HOST}</div>
+      </a>
     </HostStyle>
   );
 };
@@ -35,5 +37,27 @@ const HostStyle = styled.div`
 
   a {
     color: #222;
+
+    :hover::before {
+      background: #f7f7f7;
+    }
+    ::before {
+      border-radius: 22px;
+      bottom: 0px;
+      content: '';
+      left: -3px;
+      position: absolute;
+      right: -3px;
+      top: 0px;
+      z-index: 0;
+    }
+
+    div {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
   }
 `;

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   CHECK_IN,
@@ -8,29 +10,76 @@ import {
   LOCATION,
   LOCATION_PLACEHOLDER,
 } from '../../../const';
+import {
+  calendarPopupState,
+  guestPopupState,
+  nearbyPopupState,
+} from '../../../Recoil/HeaderFieldsetState';
 import CalendarPopup from './HeaderPanel/CalendarPopup';
+import GuestPopup from './HeaderPanel/Guest/GuestPopup';
 import NearbyPopup from './HeaderPanel/NearbyPopup';
+import PanelButton from './HeaderPanel/PanelButton';
+import PanelLast from './HeaderPanel/PanelLast';
 import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
 
 const FieldPanelMenu = () => {
+  const nearby = useRef();
+  const calendar = useRef();
+  const guest = useRef();
+  const setNearbyPopup = useSetRecoilState(nearbyPopupState);
+  const setCalendarPopup = useSetRecoilState(calendarPopupState);
+  const setGuestPopup = useSetRecoilState(guestPopupState);
+
+  const guestState = useRecoilValue(guestPopupState);
+
+  const handleClickNearbyPopup = (e) => {
+    nearby.current.contains(e.target)
+      ? setNearbyPopup(true)
+      : setNearbyPopup(false);
+  };
+
+  const handleClickCalendarPopup = (e) => {
+    calendar.current.contains(e.target)
+      ? setCalendarPopup(true)
+      : setCalendarPopup(false);
+  };
+  const handleClickGuestPopup = (e) => {
+    guest.current.contains(e.target)
+      ? setGuestPopup(true)
+      : setGuestPopup(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickNearbyPopup);
+    window.addEventListener('click', handleClickCalendarPopup);
+    window.addEventListener('click', handleClickGuestPopup);
+
+    return () => {
+      window.removeEventListener('click', handleClickNearbyPopup);
+      window.addEventListener('click', handleClickCalendarPopup);
+      window.addEventListener('click', handleClickGuestPopup);
+    };
+  }, []);
+
   return (
     <FieldPanelMenuStyle>
-      <FieldPanelMenuLeft>
+      <FieldPanelMenuLeft ref={nearby}>
         <PanelMenu name={LOCATION} placeholder={LOCATION_PLACEHOLDER} />
         <NearbyPopup />
       </FieldPanelMenuLeft>
       <FieldPanelMenuSeparator />
-      <FieldPanelMenuCenter>
-        <PanelMenu name={CHECK_IN} placeholder={INPUT_DATE_PLACEHOLDER} />
+      <FieldPanelMenuCenter ref={calendar}>
+        <PanelButton name={CHECK_IN} placeholder={INPUT_DATE_PLACEHOLDER} />
         <CalendarPopup />
         <FieldPanelMenuSeparator />
-        <PanelMenu name={CHECK_OUT} placeholder={INPUT_DATE_PLACEHOLDER} />
+        <PanelButton name={CHECK_OUT} placeholder={INPUT_DATE_PLACEHOLDER} />
       </FieldPanelMenuCenter>
       <FieldPanelMenuSeparator />
-      <FieldPanelMenuRight>
-        <PanelMenu name={GUEST} placeholder={GUEST_PLACEHOLDER} />
-        <Search />
+      <FieldPanelMenuRight ref={guest}>
+        <PanelLast name={GUEST} placeholder={GUEST_PLACEHOLDER} />
+        <GuestPopup />
+        <Search {...{ guestState }} />
       </FieldPanelMenuRight>
     </FieldPanelMenuStyle>
   );
@@ -67,7 +116,44 @@ const FieldPanelMenuRight = styled.div`
   margin: -1px;
   min-width: 0px;
   position: relative;
-  flex: 0.95 0 10%;
+  flex: 0.95 0 auto;
+
+  ::before {
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #fff;
+    content: '';
+    display: none;
+    height: 32px;
+    margin-top: -16px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 0;
+    border-left: 0px;
+    background: #fff;
+  }
+
+  :hover::before {
+    display: block;
+  }
+
+  ::after {
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 32px;
+    bottom: 0px;
+    content: '';
+    left: 0px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 0;
+  }
+
+  :hover::after {
+    background-color: #ebebeb;
+  }
 `;
 
 const FieldPanelMenuSeparator = styled.div`

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const FieldsetDiv = ({ dataText }) => {
+const FieldsetDiv = ({ id, dataText, isSelected }) => {
   return (
-    <FieldsetDivStyle>
+    <FieldsetDivStyle {...{ id, isSelected }}>
       <span>{dataText}</span>
     </FieldsetDivStyle>
   );
@@ -15,7 +15,6 @@ const FieldsetDivStyle = styled.div`
     font-size: 16px;
     line-height: 20px;
     cursor: pointer;
-    display: inline-block;
     font-weight: 400;
     padding: 10px 12px;
     pointer-events: auto;
@@ -23,6 +22,8 @@ const FieldsetDivStyle = styled.div`
     text-align: center;
     z-index: 0;
     color: #222;
+    display: flex;
+    justify-content: center;
 
     @media ${({ theme }) => theme.L} {
       font-size: 14px;
@@ -34,6 +35,32 @@ const FieldsetDivStyle = styled.div`
       line-height: 20px;
       font-weight: 400;
       padding: 10px 16px;
+    }
+
+    :hover {
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    ::before {
+      background-color: #222;
+      border-radius: 1px;
+      bottom: 0px;
+      content: '';
+      height: 2px;
+      position: absolute;
+      transition: all ease-in-out 0.2s;
+      width: ${({ isSelected }) => (isSelected ? `18px` : `0px`)};
+      opacity: ${({ isSelected }) => (isSelected ? 1 : 0)};
+    }
+
+    :hover::before {
+      ${({ isSelected }) =>
+        !isSelected &&
+        `
+        width: 5px;
+        opacity: 1;
+        `}
     }
   }
 `;

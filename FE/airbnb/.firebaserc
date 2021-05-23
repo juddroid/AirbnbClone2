@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "teamilly-baseball"
+    "airbnb": "raccoon-airbnb",
+    "default": "raccoon-airbnb"
   }
 }
