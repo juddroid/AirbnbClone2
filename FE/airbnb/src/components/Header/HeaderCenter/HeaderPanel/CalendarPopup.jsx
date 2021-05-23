@@ -79,9 +79,13 @@ const CalendarPopupStyle = styled.div`
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
   margin-top: 12px;
   max-height: calc(100vh - 220px);
-  /* overflow: hidden auto; */
+  overflow: hidden auto;
   padding: 16px 32px;
   right: 0px;
+
+  // calendar
+  opacity: 0;
+  visibility: hidden;
 `;
 
 const CalendarSection = styled.section`

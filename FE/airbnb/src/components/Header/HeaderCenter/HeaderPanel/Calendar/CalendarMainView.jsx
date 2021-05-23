@@ -28,11 +28,10 @@ const CalendarMainView = () => {
     setCalList(newCalendarList);
     console.log(calList);
 
-    let kuku =
-      calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340;
-
-    setBoxHeight(kuku);
-  }, []);
+    setBoxHeight(
+      calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
+    );
+  }, [displayMonthList]);
 
   if (!calList) return null;
 

@@ -1,18 +1,18 @@
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-const DataText = ({ dataText }) => {
+const DataText = ({ dataText, isSelected }) => {
   return (
-    <DataTextStyle>
+    <DataTextStyle {...{ isSelected }}>
       <span>{dataText}</span>
     </DataTextStyle>
   );
 };
 
-const FieldsetLabel = ({ dataText }) => {
+const FieldsetLabel = ({ id, dataText, isSelected, handleClickLabel }) => {
   return (
-    <FieldsetLabelStyle>
-      <input />
-      <DataText {...{ dataText }} />
+    <FieldsetLabelStyle id={id} onClick={handleClickLabel}>
+      <DataText {...{ dataText, isSelected }} />
     </FieldsetLabelStyle>
   );
 };
@@ -41,8 +41,7 @@ const DataTextStyle = styled.div`
   span {
     font-size: 16px;
     line-height: 20px;
-    cursor: pointer;
-    display: inline-block;
+    cursor: ${({ isSelected }) => (isSelected ? `default` : `pointer`)};
     font-weight: 400;
     padding: 10px 12px;
     pointer-events: auto;
@@ -50,6 +49,8 @@ const DataTextStyle = styled.div`
     text-align: center;
     z-index: 0;
     color: #222;
+    display: flex;
+    justify-content: center;
 
     @media ${({ theme }) => theme.L} {
       font-size: 14px;
@@ -62,20 +63,31 @@ const DataTextStyle = styled.div`
       font-weight: 400;
       padding: 10px 16px;
     }
+
+    :hover {
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
     ::before {
       background-color: #222;
       border-radius: 1px;
       bottom: 0px;
       content: '';
       height: 2px;
-      left: 50%;
-      margin-left: -9px;
       position: absolute;
+      transition: all ease-in-out 0.2s;
+      width: ${({ isSelected }) => (isSelected ? `18px` : `0px`)};
+      opacity: ${({ isSelected }) => (isSelected ? 1 : 0)};
+    }
 
-      transition: 0.2s -ms-transform cubic-bezier(0, 0, 0.1, 1),
-        0.2s -webkit-transform cubic-bezier(0, 0, 0.1, 1),
-        0.2s transform cubic-bezier(0, 0, 0.1, 1);
-      width: 18px;
+    :hover::before {
+      ${({ isSelected }) =>
+        !isSelected &&
+        `
+        width: 5px;
+        opacity: 1;
+        `}
     }
   }
 `;
