@@ -5,7 +5,7 @@ import { setState, setToggle } from '../../../../../util.ts';
 const EachDate = ({ today, month, date }) => {
   const [dateHover, setDateHover] = useState(false);
   const [selected, setSelected] = useState(false);
-  const [seletedCount, setSelectedCount] = useState(0);
+  // const [seletedCount, setSelectedCount] = useState(0);
   const [isNotPast, setIsNotPast] = useState(true);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ const EachDate = ({ today, month, date }) => {
     const todayDate = new Date(today.year, today.month, today.date);
 
     setIsNotPast(currentDate < todayDate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

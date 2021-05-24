@@ -43,3 +43,8 @@ export const headerScrollState = atom({
   key: 'headerScrollState',
   default: false,
 });
+
+export const reservationState = atom({
+  key: 'reservationState',
+  default: false,
+});

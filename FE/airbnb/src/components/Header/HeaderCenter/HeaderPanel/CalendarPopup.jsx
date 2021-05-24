@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { BLOCK, CALENDAR, FREE, NONE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
-import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
+// import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 import CalendarList from './Calendar/CalendarList';
 import { calendarPopupState } from '../../../../Recoil/HeaderFieldsetState';
 import { useRecoilValue } from 'recoil';

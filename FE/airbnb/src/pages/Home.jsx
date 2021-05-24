@@ -3,17 +3,23 @@ import Header from '../components/Header/Header';
 
 function Home() {
   return (
-    <Wrapper>
+    <HomeStyle>
       <BeforeAfterDiv>
         <Header />
       </BeforeAfterDiv>
-    </Wrapper>
+    </HomeStyle>
   );
 }
 
 export default Home;
 
-const HomeStyle = styled.div``;
+const HomeStyle = styled.div`
+  display: none;
+
+  @media (min-width: 744px) {
+    display: block;
+  }
+`;
 
 const BeforeAfterDiv = styled.div`
   ::before {
@@ -23,13 +29,5 @@ const BeforeAfterDiv = styled.div`
   ::after {
     display: flex;
     content: '';
-  }
-`;
-
-const Wrapper = styled.div`
-  display: none;
-
-  @media (min-width: 744px) {
-    display: block;
   }
 `;

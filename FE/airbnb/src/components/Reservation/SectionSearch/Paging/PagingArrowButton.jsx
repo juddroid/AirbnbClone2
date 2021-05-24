@@ -2,21 +2,13 @@ import styled from 'styled-components';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-const PrevButton = () => {
-  return <NavigateBeforeIcon />;
-};
-
-const NextButton = () => {
-  return <NavigateNextIcon />;
-};
-
 const PagingArrowButton = ({ type }) => {
   return (
     <PagingArrowButtonStyle>
       {
         {
-          prev: <PrevButton />,
-          next: <NextButton />,
+          prev: <NavigateBeforeIcon />,
+          next: <NavigateNextIcon />,
         }[type]
       }
     </PagingArrowButtonStyle>
@@ -57,5 +49,13 @@ const PagingArrowButtonStyle = styled.button`
     width: 32px;
     height: 32px;
     border-radius: 50%;
+  }
+
+  svg {
+    display: block;
+    fill: #222;
+    height: 24px;
+    width: 24px;
+    overflow: visible;
   }
 `;

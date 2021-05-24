@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   CHECK_IN,
@@ -60,6 +60,7 @@ const FieldPanelMenu = () => {
       window.addEventListener('click', handleClickCalendarPopup);
       window.addEventListener('click', handleClickGuestPopup);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

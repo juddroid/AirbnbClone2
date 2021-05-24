@@ -218,6 +218,18 @@ export const FOOTER_SECTION = [
   },
 ];
 
+// Reservation > Section > filter
+export const FILTER = [
+  '유연한 환불 정책',
+  '숙소 유형',
+  '요금',
+  '즉시 예약',
+  '필터 추가하기',
+];
+
 // Reservation > Section > Paging
 export const PREV = 'prev';
 export const NEXT = 'next';
+
+// Reservation > Section > Card
+export const SUPER_HOST = '슈퍼호스트';

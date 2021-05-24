@@ -30,6 +30,7 @@ const CalendarMainView = () => {
     setBoxHeight(
       calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayMonthList]);
 
   if (!calList) return null;

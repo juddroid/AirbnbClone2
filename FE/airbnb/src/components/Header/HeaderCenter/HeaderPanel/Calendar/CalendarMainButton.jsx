@@ -7,7 +7,7 @@ import {
   animation,
   calendar,
   calendarList,
-  calendarWrapperSize,
+  // calendarWrapperSize,
   displayMonth,
   monthList,
   todayDate,
@@ -21,8 +21,8 @@ const CalendarButton = ({ direction }) => {
   const setAnimationState = useSetRecoilState(animation);
   const setCalendarPosition = useSetRecoilState(calendar);
   const setCalendarList = useSetRecoilState(calendarList);
-  const setBoxHeight = useSetRecoilState(calendarWrapperSize);
-  const list = useRecoilValue(calendarList);
+  // const setBoxHeight = useSetRecoilState(calendarWrapperSize);
+  // const list = useRecoilValue(calendarList);
 
   const handleClickButton = () => {
     if (direction === LEFT) {
