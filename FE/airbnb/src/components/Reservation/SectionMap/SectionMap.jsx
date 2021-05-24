@@ -1,7 +1,14 @@
 import styled from 'styled-components';
+import GoogleMap from './GoogleMap';
 
 const SectionMap = () => {
-  return <SectionMapStyle>SectionMap</SectionMapStyle>;
+  return (
+    <SectionMapStyle>
+      <SectionMapAside>
+        <GoogleMap />
+      </SectionMapAside>
+    </SectionMapStyle>
+  );
 };
 
 export default SectionMap;
@@ -19,4 +26,15 @@ const SectionMapStyle = styled.div`
     left: auto;
     width: calc(100% - 58vw);
   }
+`;
+
+const SectionMapAside = styled.aside`
+  height: 100vh;
+  padding-top: 80px;
+  margin-top: -80px;
+  position: sticky;
+  top: 0px;
+
+  width: 100%;
+  contain: content;
 `;
