@@ -21,6 +21,7 @@ const UserButton = () => {
     return () => {
       window.removeEventListener('click', handleClickUserButton);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

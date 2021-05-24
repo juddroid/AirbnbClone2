@@ -1,24 +1,39 @@
 import styled from 'styled-components';
 import { SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
+import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import {
+  headerScrollState,
+  reservationState,
+} from '../../../Recoil/HeaderFieldsetState';
 
 const Search = ({ guestState }) => {
+  const setHeaderState = useSetRecoilState(headerScrollState);
+  const setReservationState = useSetRecoilState(reservationState);
+
+  const handleClickSearchButton = () => {
+    setHeaderState(true);
+    setReservationState(true);
+  };
   return (
-    <SearchStyle>
-      <SearchButton>
-        {/* <UpperSpan>
+    <Link to="/reservation">
+      <SearchStyle onClick={handleClickSearchButton}>
+        <SearchButton>
+          {/* <UpperSpan>
           <InnerSpan />
         </UpperSpan>
         <BottomSpan> */}
-        <SearchButtonBox>
-          <SearchLogoBox>
-            <SearchLogo />
-          </SearchLogoBox>
-          {guestState && <SearchTextBox>{SEARCH_TEXT}</SearchTextBox>}
-        </SearchButtonBox>
-        {/* </BottomSpan> */}
-      </SearchButton>
-    </SearchStyle>
+          <SearchButtonBox>
+            <SearchLogoBox>
+              <SearchLogo />
+            </SearchLogoBox>
+            {guestState && <SearchTextBox>{SEARCH_TEXT}</SearchTextBox>}
+          </SearchButtonBox>
+          {/* </BottomSpan> */}
+        </SearchButton>
+      </SearchStyle>
+    </Link>
   );
 };
 
@@ -89,42 +104,42 @@ const SearchButtonBox = styled.div`
 
 const SearchLogoBox = styled.div``;
 
-const UpperSpan = styled.span`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-`;
+// const UpperSpan = styled.span`
+//   position: absolute;
+//   top: 0px;
+//   left: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   width: 100%;
+//   height: 100%;
+//   overflow: hidden;
+//   border-radius: 8px;
+// `;
 
-const InnerSpan = styled.span`
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 200px;
-  background-size: 200% 200%;
-  opacity: 0;
-  transition: opacity 1.25s ease 0s;
-  background-image: radial-gradient(
-    circle at center center,
-    rgb(255, 56, 92) 0%,
-    rgb(230, 30, 77) 27.5%,
-    rgb(227, 28, 95) 40%,
-    rgb(215, 4, 102) 57.5%,
-    rgb(189, 30, 89) 75%,
-    rgb(189, 30, 89) 100%
-  );
-`;
+// const InnerSpan = styled.span`
+//   display: block;
+//   width: 100%;
+//   height: 100%;
+//   min-width: 200px;
+//   background-size: 200% 200%;
+//   opacity: 0;
+//   transition: opacity 1.25s ease 0s;
+//   background-image: radial-gradient(
+//     circle at center center,
+//     rgb(255, 56, 92) 0%,
+//     rgb(230, 30, 77) 27.5%,
+//     rgb(227, 28, 95) 40%,
+//     rgb(215, 4, 102) 57.5%,
+//     rgb(189, 30, 89) 75%,
+//     rgb(189, 30, 89) 100%
+//   );
+// `;
 
-const BottomSpan = styled.span`
-  display: block;
-  position: relative;
-  pointer-events: none;
-`;
+// const BottomSpan = styled.span`
+//   display: block;
+//   position: relative;
+//   pointer-events: none;
+// `;
 
 const SearchTextBox = styled.div`
   opacity: 0;

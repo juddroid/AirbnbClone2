@@ -2,11 +2,15 @@ import styled from 'styled-components';
 import { EXPERIENCE, ONLINE, STAYS } from '../../../const';
 import FieldsetDiv from './FieldsetDiv';
 import FieldsetLabel from './FieldsetLabel';
-import { useRecoilState } from 'recoil';
-import { headerFieldset } from '../../../Recoil/HeaderFieldsetState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  headerFieldset,
+  headerScrollState,
+} from '../../../Recoil/HeaderFieldsetState';
 
 const Fieldset = () => {
   const [isSelected, setIsSelected] = useRecoilState(headerFieldset);
+  const headerState = useRecoilValue(headerScrollState);
 
   const handleClickLabel = (e) => {
     const currentID = e.currentTarget.id;
@@ -52,7 +56,7 @@ const Fieldset = () => {
   };
 
   return (
-    <FieldsetStyle>
+    <FieldsetStyle {...{ headerState }}>
       <FieldsetWrapper role="tablist" aria-label="무엇을 찾고 계신가요?">
         <FieldsetLabel
           id={isSelected.stays.id}
@@ -83,6 +87,15 @@ const FieldsetStyle = styled.fieldset`
   border: 0;
   margin: 0;
   padding: 0;
+
+  ${({ headerState }) =>
+    headerState
+      ? `
+    visibility: hidden;
+    opacity: 0;`
+      : `
+    visibility: visible;
+    opacity: 1;`}
 `;
 
 const FieldsetWrapper = styled.div`

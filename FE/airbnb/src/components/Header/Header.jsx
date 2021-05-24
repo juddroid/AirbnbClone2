@@ -1,11 +1,39 @@
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import {
+  headerScrollState,
+  reservationState,
+} from '../../Recoil/HeaderFieldsetState';
 import HeaderCenter from './HeaderCenter';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
 
 const Header = () => {
+  const [headerState, setHeaderState] = useRecoilState(headerScrollState);
+  const reservation = useRecoilValue(reservationState);
+
+  const handleScrollHeader = () => {
+    const isPassedHeader = window.scrollY > 58;
+
+    if (isPassedHeader) {
+      return setHeaderState(true);
+    }
+    if (window.scrollY === 0) {
+      return setHeaderState(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollHeader, true);
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollHeader);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
-    <HeaderStyle>
+    <HeaderStyle {...{ headerState }}>
       <HeaderWrapper>
         <HeaderLeft />
         <HeaderCenter />
@@ -59,6 +87,49 @@ const HeaderStyle = styled.header`
       transform: scaleY(2.25) !important;
     }
   }
+
+  ${({ headerState }) =>
+    headerState &&
+    `
+    height: 80px;
+    left: 0px;
+    width: 100%;
+    z-index: 100;
+    --header-brand-color: #FF385C;
+    position: fixed;
+    top: 0px;
+
+    ::before {
+    background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    content: "";
+    height: 140%;
+    left: 0px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 0;
+    transition: opacity 150ms ease 0s;
+    }
+
+    ::after {
+    box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
+    transform-origin: 50% 0%;
+    transition-duration: 150ms;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+    background: rgb(255, 255, 255);
+    content: "";
+    height: 45%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 0;
+    opacity: 1;
+    }
+  `}
 `;
 
 const HeaderWrapper = styled.div`

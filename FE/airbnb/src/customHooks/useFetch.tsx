@@ -11,6 +11,7 @@ const useFetch = (url: string, initial: Array<object> = []) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return response;
