@@ -1,24 +1,27 @@
 import styled from 'styled-components';
 import { SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
+import { Link } from 'react-router-dom';
 
 const Search = ({ guestState }) => {
   return (
-    <SearchStyle>
-      <SearchButton>
-        {/* <UpperSpan>
+    <Link to="/reservation">
+      <SearchStyle>
+        <SearchButton>
+          {/* <UpperSpan>
           <InnerSpan />
         </UpperSpan>
         <BottomSpan> */}
-        <SearchButtonBox>
-          <SearchLogoBox>
-            <SearchLogo />
-          </SearchLogoBox>
-          {guestState && <SearchTextBox>{SEARCH_TEXT}</SearchTextBox>}
-        </SearchButtonBox>
-        {/* </BottomSpan> */}
-      </SearchButton>
-    </SearchStyle>
+          <SearchButtonBox>
+            <SearchLogoBox>
+              <SearchLogo />
+            </SearchLogoBox>
+            {guestState && <SearchTextBox>{SEARCH_TEXT}</SearchTextBox>}
+          </SearchButtonBox>
+          {/* </BottomSpan> */}
+        </SearchButton>
+      </SearchStyle>
+    </Link>
   );
 };
 

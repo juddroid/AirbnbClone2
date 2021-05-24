@@ -217,3 +217,7 @@ export const FOOTER_SECTION = [
     ],
   },
 ];
+
+// Reservation > Section > Paging
+export const PREV = 'prev';
+export const NEXT = 'next';
