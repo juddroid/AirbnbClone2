@@ -38,3 +38,8 @@ export const registerPopupState = atom({
   key: 'registerPopupState',
   default: false,
 });
+
+export const headerScrollState = atom({
+  key: 'headerScrollState',
+  default: false,
+});

@@ -4,7 +4,7 @@ import { setState, setToggle } from '../../../../../util.ts';
 
 const EachDate = ({ today, month, date }) => {
   const [dateHover, setDateHover] = useState(false);
-  const [seleted, setSelected] = useState(false);
+  const [selected, setSelected] = useState(false);
   const [seletedCount, setSelectedCount] = useState(0);
   const [isNotPast, setIsNotPast] = useState(true);
 
@@ -18,10 +18,10 @@ const EachDate = ({ today, month, date }) => {
   return (
     <DateStyle>
       <DateBox
-        {...{ dateHover, seleted }}
+        {...{ dateHover, selected }}
         onMouseEnter={() => setState(setDateHover, true)}
         onMouseLeave={() => setState(setDateHover, false)}
-        onMouseDown={() => setToggle(setSelected, seleted)}
+        onMouseDown={() => setToggle(setSelected, selected)}
       >
         <DateBoxDiv {...{ isNotPast }}>
           <DateNum>{date}</DateNum>
@@ -65,8 +65,8 @@ const DateBox = styled.button`
     border: 1px solid #222;
     border-radius: 50%;
   `}
-  ${({ seleted }) =>
-    seleted &&
+  ${({ selected }) =>
+    selected &&
     `
   background: #222;
   color: #fff;

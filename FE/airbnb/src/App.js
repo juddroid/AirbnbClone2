@@ -5,8 +5,13 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import theme from './components/style/theme';
+import { useRecoilValue } from 'recoil';
+import { headerScrollState } from './Recoil/HeaderFieldsetState';
+import { BLOCK, NONE } from './const';
 
 function App() {
+  const headerState = useRecoilValue(headerScrollState);
+
   return (
     <ThemeProvider {...{ theme }}>
       <GlobalStyles />
@@ -14,7 +19,7 @@ function App() {
         <UpperDiv>
           <Wrapper>
             <BeforeAfterDiv>
-              <AsideWrapper>
+              <AsideWrapper {...{ headerState }}>
                 <Aside />
               </AsideWrapper>
               <Header />
@@ -48,6 +53,7 @@ const BeforeAfterDiv = styled.div`
 const AsideWrapper = styled.div`
   position: relative;
   z-index: 101;
+  display: ${({ headerState }) => (headerState ? NONE : BLOCK)};
 `;
 
 const Wrapper = styled.div`

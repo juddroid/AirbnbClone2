@@ -1,9 +1,13 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { headerScrollState } from '../../../../Recoil/HeaderFieldsetState';
 import LittleSearchBox from './LittleSearchBox';
 
 const HeaderLittleSearch = () => {
+  const headerState = useRecoilValue(headerScrollState);
+
   return (
-    <HeaderLittleSearchStyle>
+    <HeaderLittleSearchStyle {...{ headerState }}>
       <LittleSearchBox />
     </HeaderLittleSearchStyle>
   );
@@ -18,8 +22,15 @@ const HeaderLittleSearchStyle = styled.div`
   transform-origin: 0% 0%;
   transition: transform 150ms ease 0s, opacity 50ms ease 20ms,
     pointer-events 0ms ease 150ms;
-  visibility: hidden;
-  opacity: 0;
+
+  ${({ headerState }) =>
+    headerState
+      ? `
+    visibility: visible;
+    opacity: 1;`
+      : `
+    visibility: hidden;
+    opacity: 0;`}
 
   @media (min-width: 950px) {
     transform-origin: 50% 0%;
