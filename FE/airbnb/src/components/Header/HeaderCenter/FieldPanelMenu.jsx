@@ -34,18 +34,18 @@ const FieldPanelMenu = () => {
   const guestState = useRecoilValue(guestPopupState);
 
   const handleClickNearbyPopup = (e) => {
-    nearby.current.contains(e.target)
+    nearby?.current?.contains(e.target)
       ? setNearbyPopup(true)
       : setNearbyPopup(false);
   };
 
   const handleClickCalendarPopup = (e) => {
-    calendar.current.contains(e.target)
+    calendar?.current?.contains(e.target)
       ? setCalendarPopup(true)
       : setCalendarPopup(false);
   };
   const handleClickGuestPopup = (e) => {
-    guest.current.contains(e.target)
+    guest?.current?.contains(e.target)
       ? setGuestPopup(true)
       : setGuestPopup(false);
   };

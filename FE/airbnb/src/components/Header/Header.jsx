@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   headerScrollState,
@@ -11,10 +11,12 @@ import HeaderRight from './HeaderRight';
 
 const Header = () => {
   const [headerState, setHeaderState] = useRecoilState(headerScrollState);
-  const reservation = useRecoilValue(reservationState);
+  const [reservation, setReservationState] = useRecoilState(reservationState);
 
   const handleScrollHeader = () => {
     const isPassedHeader = window.scrollY > 58;
+
+    if (reservation) return;
 
     if (isPassedHeader) {
       return setHeaderState(true);
@@ -25,13 +27,20 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScrollHeader, true);
+    setHeaderState(false);
+  }, []);
 
+  useEffect(() => {
+    if (window?.location?.pathname === '/reservation') {
+      setHeaderState(true);
+      setReservationState(true);
+    }
+    window.addEventListener('scroll', handleScrollHeader, true);
     return () => {
-      window.removeEventListener('scroll', handleScrollHeader);
+      window.removeEventListener('scroll', handleScrollHeader, true);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [reservation]);
   return (
     <HeaderStyle {...{ headerState }}>
       <HeaderWrapper>

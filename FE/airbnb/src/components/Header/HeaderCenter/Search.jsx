@@ -13,8 +13,8 @@ const Search = ({ guestState }) => {
   const setReservationState = useSetRecoilState(reservationState);
 
   const handleClickSearchButton = () => {
-    setHeaderState(true);
     setReservationState(true);
+    setHeaderState(true);
   };
   return (
     <Link to="/reservation">

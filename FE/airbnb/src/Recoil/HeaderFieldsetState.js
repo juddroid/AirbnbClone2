@@ -41,7 +41,7 @@ export const registerPopupState = atom({
 
 export const headerScrollState = atom({
   key: 'headerScrollState',
-  default: false,
+  default: true,
 });
 
 export const reservationState = atom({

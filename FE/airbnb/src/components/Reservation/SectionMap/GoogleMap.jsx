@@ -6,7 +6,6 @@ const GoogleMap = ({ google }) => {
     width: `100%`,
     height: `100%`,
   };
-  console.log(google);
 
   return (
     <div>
