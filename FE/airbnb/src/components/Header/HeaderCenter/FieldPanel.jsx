@@ -1,12 +1,17 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { headerScrollState } from '../../../Recoil/HeaderFieldsetState';
+import {
+  headerScrollState,
+  panelState,
+} from '../../../Recoil/HeaderFieldsetState';
 import FieldPanelMenu from './FieldPanelMenu';
 
 const FieldPanel = () => {
   const headerState = useRecoilValue(headerScrollState);
+  const panelBackgroundState = useRecoilValue(panelState);
+
   return (
-    <FieldPanelStyle {...{ headerState }}>
+    <FieldPanelStyle {...{ headerState, panelBackgroundState }}>
       <FieldPanelMenu />
     </FieldPanelStyle>
   );
@@ -32,4 +37,11 @@ const FieldPanelStyle = styled.div`
       : `
     visibility: visible;
     opacity: 1;`}
+
+  ${({ panelBackgroundState }) =>
+    panelBackgroundState &&
+    `
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(247, 247, 247);
+    `}
 `;

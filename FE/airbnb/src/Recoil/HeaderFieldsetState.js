@@ -48,3 +48,23 @@ export const reservationState = atom({
   key: 'reservationState',
   default: false,
 });
+
+export const searchButtonState = atom({
+  key: 'searchButtonState',
+  default: false,
+});
+
+export const panelState = atom({
+  key: 'panelState',
+  default: false,
+});
+
+export const checkButtonState = atom({
+  key: 'checkButtonState',
+  default: false,
+});
+
+export const searchTextState = atom({
+  key: 'searchTextState',
+  default: false,
+});

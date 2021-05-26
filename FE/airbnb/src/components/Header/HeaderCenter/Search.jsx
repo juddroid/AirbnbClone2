@@ -2,35 +2,40 @@ import styled from 'styled-components';
 import { SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
 import { Link } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   headerScrollState,
   reservationState,
+  searchTextState,
 } from '../../../Recoil/HeaderFieldsetState';
 
-const Search = ({ guestState }) => {
+const Search = () => {
   const setHeaderState = useSetRecoilState(headerScrollState);
   const setReservationState = useSetRecoilState(reservationState);
+  const searchText = useRecoilValue(searchTextState);
 
   const handleClickSearchButton = () => {
     setReservationState(true);
     setHeaderState(true);
   };
+
+  console.log(searchText, `searchText`);
+
   return (
     <Link to="/reservation">
       <SearchStyle onClick={handleClickSearchButton}>
-        <SearchButton>
-          {/* <UpperSpan>
-          <InnerSpan />
-        </UpperSpan>
-        <BottomSpan> */}
-          <SearchButtonBox>
-            <SearchLogoBox>
-              <SearchLogo />
-            </SearchLogoBox>
-            {guestState && <SearchTextBox>{SEARCH_TEXT}</SearchTextBox>}
-          </SearchButtonBox>
-          {/* </BottomSpan> */}
+        <SearchButton {...{ searchText }}>
+          <UpperSpan>
+            <InnerSpan />
+          </UpperSpan>
+          <BottomSpan>
+            <SearchButtonBox>
+              <SearchLogoBox>
+                <SearchLogo />
+              </SearchLogoBox>
+              <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
+            </SearchButtonBox>
+          </BottomSpan>
         </SearchButton>
       </SearchStyle>
     </Link>
@@ -49,7 +54,6 @@ const SearchStyle = styled.div`
 
 const SearchButton = styled.button`
   appearance: none;
-  background: transparent;
   border: 0px;
   color: #fff;
   cursor: pointer;
@@ -74,6 +78,9 @@ const SearchButton = styled.button`
   vertical-align: middle;
   z-index: 0;
 
+  ${({ searchText }) =>
+    searchText
+      ? `
   @media (min-width: 950px) {
     max-width: 200px;
     transition: none 0s ease 0s;
@@ -93,6 +100,29 @@ const SearchButton = styled.button`
     will-change: opacity;
     z-index: 0;
   }
+      `
+      : `
+    background-color:  #FF385C;
+
+    ::before {
+    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    bottom: 0px;
+    content: "";
+    left: 0px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transition: 0.2s opacity cubic-bezier(0.35, 0, 0.65, 1);
+    will-change: opacity;
+    z-index: 0;
+    opacity: 0;
+    }
+
+    :hover::before {
+    opacity: 1;
+    }
+
+  `};
 `;
 
 const SearchButtonBox = styled.div`
@@ -104,51 +134,57 @@ const SearchButtonBox = styled.div`
 
 const SearchLogoBox = styled.div``;
 
-// const UpperSpan = styled.span`
-//   position: absolute;
-//   top: 0px;
-//   left: 0px;
-//   right: 0px;
-//   bottom: 0px;
-//   width: 100%;
-//   height: 100%;
-//   overflow: hidden;
-//   border-radius: 8px;
-// `;
+const UpperSpan = styled.span`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+`;
 
-// const InnerSpan = styled.span`
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   min-width: 200px;
-//   background-size: 200% 200%;
-//   opacity: 0;
-//   transition: opacity 1.25s ease 0s;
-//   background-image: radial-gradient(
-//     circle at center center,
-//     rgb(255, 56, 92) 0%,
-//     rgb(230, 30, 77) 27.5%,
-//     rgb(227, 28, 95) 40%,
-//     rgb(215, 4, 102) 57.5%,
-//     rgb(189, 30, 89) 75%,
-//     rgb(189, 30, 89) 100%
-//   );
-// `;
+const InnerSpan = styled.span`
+  background-position: calc((100 - var(--mouse-x, 0)) * 1%)
+    calc((100 - var(--mouse-y, 0)) * 1%);
+  --mouse-x: 43.0938;
+  --mouse-y: 22.9167;
 
-// const BottomSpan = styled.span`
-//   display: block;
-//   position: relative;
-//   pointer-events: none;
-// `;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 200px;
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 1.25s ease 0s;
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+`;
+
+const BottomSpan = styled.span`
+  display: block;
+  position: relative;
+  pointer-events: none;
+`;
 
 const SearchTextBox = styled.div`
-  opacity: 0;
+  opacity: ${({ searchText }) => (searchText ? 0 : 1)};
   padding-left: 8px;
   padding-right: 4px;
   transition: opacity 0.1s cubic-bezier(0.35, 0, 0.65, 1) 0s;
+  font-weight: 400;
 
   @media (min-width: 950px) {
-    opacity: 1;
+    opacity: ${({ searchText }) => (searchText ? 1 : 0)};
     transition: none 0s ease 0s;
   }
 `;

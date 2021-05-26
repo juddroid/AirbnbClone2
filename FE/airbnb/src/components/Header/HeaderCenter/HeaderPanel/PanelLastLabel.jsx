@@ -3,32 +3,22 @@ import styled from 'styled-components';
 const PanelLastLabel = ({ name, placeholder }) => {
   return (
     <PanelMenuLabelStyle>
-      <PanelMenuLabelWrapper>
-        <PanelMenuDiv>{name}</PanelMenuDiv>
-        <PanelMenuInput placeholder={placeholder} />
-      </PanelMenuLabelWrapper>
+      <PanelMenuDiv>{name}</PanelMenuDiv>
+      <PanelMenuInput>{placeholder}</PanelMenuInput>
     </PanelMenuLabelStyle>
   );
 };
 
 export default PanelLastLabel;
 
-const PanelMenuLabelStyle = styled.label`
-  cursor: pointer;
-  display: block;
-  background-clip: padding-box;
-  border: 1px solid transparent;
-  border-radius: 32px;
-  flex: 1 0 0%;
-  min-width: 0px;
+const PanelMenuLabelStyle = styled.div`
   padding: 14px 24px;
-`;
-
-const PanelMenuLabelWrapper = styled.div`
+  overflow: hidden;
   position: relative;
+  white-space: nowrap;
+  width: 100%;
   z-index: 1;
 `;
-
 const PanelMenuDiv = styled.div`
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -37,18 +27,12 @@ const PanelMenuDiv = styled.div`
   padding-bottom: 2px;
 `;
 
-const PanelMenuInput = styled.input`
-  display: block;
-  border: 0px;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  background: none;
+const PanelMenuInput = styled.div`
   font-size: 14px;
   line-height: 18px;
-  font-weight: 600;
-  color: #222;
+  color: #717171;
+  font-weight: 400;
+  overflow: hidden;
   text-overflow: ellipsis;
-  outline: none;
-  cursor: default;
+  width: 100%;
 `;
