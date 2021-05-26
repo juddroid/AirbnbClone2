@@ -1,18 +1,18 @@
 import { useEffect, useRef } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
-  CHECK_IN,
-  CHECK_OUT,
+  BLOCK,
   GUEST,
   GUEST_PLACEHOLDER,
-  INPUT_DATE_PLACEHOLDER,
   LOCATION,
   LOCATION_PLACEHOLDER,
+  NONE,
 } from '../../../const';
 import {
   calendarPopupState,
-  checkButtonState,
+  checkInButtonState,
+  checkOutButtonState,
   guestPopupState,
   nearbyPopupState,
   panelState,
@@ -22,7 +22,8 @@ import {
 import CalendarPopup from './HeaderPanel/CalendarPopup';
 import GuestPopup from './HeaderPanel/Guest/GuestPopup';
 import NearbyPopup from './HeaderPanel/NearbyPopup';
-import PanelButton from './HeaderPanel/PanelButton';
+import CheckInPanelButton from './HeaderPanel/CheckInPanelButton';
+import CheckOutPanelButton from './HeaderPanel/CheckOutPanelButton';
 import PanelLast from './HeaderPanel/PanelLast';
 import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
@@ -30,6 +31,8 @@ import Search from './Search';
 const FieldPanelMenu = () => {
   const nearby = useRef();
   const calendar = useRef();
+  const checkIn = useRef();
+  const checkOut = useRef();
   const guest = useRef();
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
   const setCalendarPopup = useSetRecoilState(calendarPopupState);
@@ -37,7 +40,9 @@ const FieldPanelMenu = () => {
   const setSearchState = useSetRecoilState(searchButtonState);
   const setSearchTextState = useSetRecoilState(searchTextState);
   const setPanelState = useSetRecoilState(panelState);
-  const setCheckButton = useSetRecoilState(checkButtonState);
+  const setCheckInButton = useSetRecoilState(checkInButtonState);
+  const setCheckOutButton = useSetRecoilState(checkOutButtonState);
+  const calendarState = useRecoilValue(calendarPopupState);
 
   const handleClickNearbyPopup = () => {
     setNearbyPopup(true);
@@ -45,14 +50,25 @@ const FieldPanelMenu = () => {
     setPanelState(true);
     setCalendarPopup(false);
     setGuestPopup(false);
-    setCheckButton(false);
+    setCheckInButton(false);
     setSearchState(false);
   };
 
-  const handleClickCalendarPopup = () => {
+  const handleClickCheckInPopup = () => {
     setCalendarPopup(true);
     setSearchTextState(true);
-    setCheckButton(true);
+    setCheckInButton(true);
+    setCheckOutButton(false);
+    setNearbyPopup(false);
+    setGuestPopup(false);
+    setSearchState(false);
+  };
+
+  const handleClickCheckOutPopup = () => {
+    setCalendarPopup(true);
+    setSearchTextState(true);
+    setCheckOutButton(true);
+    setCheckInButton(false);
     setNearbyPopup(false);
     setGuestPopup(false);
     setSearchState(false);
@@ -65,22 +81,32 @@ const FieldPanelMenu = () => {
     setPanelState(true);
     setNearbyPopup(false);
     setCalendarPopup(false);
-    setCheckButton(false);
+    setCheckInButton(false);
+    setCheckOutButton(false);
+  };
+
+  const handleClickClose = () => {
+    setNearbyPopup(false);
+    setCalendarPopup(false);
+    setGuestPopup(false);
+    setSearchState(false);
+    setSearchTextState(false);
+    setPanelState(false);
+    setCheckInButton(false);
+    setCheckOutButton(false);
   };
 
   const handleClickPopup = (e) => {
+    if (calendar?.current?.contains(e.target)) return;
     if (nearby?.current?.contains(e.target)) handleClickNearbyPopup();
-    else if (calendar?.current?.contains(e.target)) handleClickCalendarPopup();
+    else if (checkIn?.current?.contains(e.target)) handleClickCheckInPopup();
+    else if (checkOut?.current?.contains(e.target)) handleClickCheckOutPopup();
     else if (guest?.current?.contains(e.target)) handleClickGuestPopup();
-    else {
-      setNearbyPopup(false);
-      setCalendarPopup(false);
-      setGuestPopup(false);
-      setSearchState(false);
-      setSearchTextState(false);
-      setPanelState(false);
-      setCheckButton(false);
-    }
+    else handleClickClose();
+  };
+
+  const handleMouseDownNearby = () => {
+    setNearbyPopup(false);
   };
 
   useEffect(() => {
@@ -92,16 +118,22 @@ const FieldPanelMenu = () => {
 
   return (
     <FieldPanelMenuStyle>
-      <FieldPanelMenuLeft ref={nearby}>
+      <FieldPanelMenuLeft ref={nearby} onMouseDown={handleMouseDownNearby}>
         <PanelMenu name={LOCATION} placeholder={LOCATION_PLACEHOLDER} />
         <NearbyPopup />
       </FieldPanelMenuLeft>
       <FieldPanelMenuSeparator />
-      <FieldPanelMenuCenter ref={calendar}>
-        <PanelButton name={CHECK_IN} placeholder={INPUT_DATE_PLACEHOLDER} />
-        <CalendarPopup />
+      <FieldPanelMenuCenter>
+        <CheckInPanelButtonStyle ref={checkIn}>
+          <CheckInPanelButton />
+        </CheckInPanelButtonStyle>
+        <CalendarPopupStyle {...{ calendarState }} ref={calendar}>
+          <CalendarPopup />
+        </CalendarPopupStyle>
         <FieldPanelMenuSeparator />
-        <PanelButton name={CHECK_OUT} placeholder={INPUT_DATE_PLACEHOLDER} />
+        <CheckOutPanelButtonStyle ref={checkOut}>
+          <CheckOutPanelButton />
+        </CheckOutPanelButtonStyle>
       </FieldPanelMenuCenter>
       <FieldPanelMenuSeparator />
       <FieldPanelMenuRight ref={guest}>
@@ -152,4 +184,39 @@ const FieldPanelMenuSeparator = styled.div`
   border-right: 1px solid #ddd;
   flex: 0 0 0px;
   height: 32px;
+`;
+
+const CheckInPanelButtonStyle = styled.div`
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex: 1 0 0%;
+  margin: -1px;
+  min-width: 0px;
+`;
+
+const CheckOutPanelButtonStyle = styled.div`
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex: 1 0 0%;
+  margin: -1px;
+  min-width: 0px;
+`;
+
+const CalendarPopupStyle = styled.div`
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: 1;
+  background: rgb(255, 255, 255);
+  border-radius: 32px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
+  margin-top: 12px;
+  max-height: calc(100vh - 220px);
+  overflow: hidden auto;
+  padding: 16px 32px;
+  right: 0px;
+
+  display: ${({ calendarState }) => (calendarState ? BLOCK : NONE)};
 `;

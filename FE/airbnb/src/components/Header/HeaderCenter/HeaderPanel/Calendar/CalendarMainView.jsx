@@ -3,7 +3,7 @@ import Month from './Month';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   calendar,
-  todayDate,
+  todayData,
   calendarWrapperSize,
   calendarList,
   monthList,
@@ -14,16 +14,16 @@ import { getDateList } from '../../../../../util';
 import { v4 as uuidv4 } from 'uuid';
 
 const CalendarMainView = () => {
-  const today = useRecoilValue(todayDate);
+  const calendarData = useRecoilValue(todayData);
   const displayMonthList = useRecoilValue(monthList);
   const animationState = useRecoilValue(animation);
   const calendarPosition = useRecoilValue(calendar);
   const [calList, setCalList] = useRecoilState(calendarList);
   const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
-
+  console.log(calList);
   useEffect(() => {
     const newCalendarList = displayMonthList.map((month) =>
-      getDateList(today, month)
+      getDateList(calendarData, month)
     );
     setCalList(newCalendarList);
 
@@ -31,7 +31,7 @@ const CalendarMainView = () => {
       calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayMonthList]);
+  }, [displayMonthList, boxHeight]);
 
   if (!calList) return null;
 
@@ -40,7 +40,7 @@ const CalendarMainView = () => {
       <CalendarMainViewWrapper {...{ calendarPosition, animationState }}>
         {calList.map((calendar, idx) => (
           <Month
-            {...{ calendar, today }}
+            {...{ calendar, calendarData }}
             month={displayMonthList[idx]}
             key={uuidv4()}
           />

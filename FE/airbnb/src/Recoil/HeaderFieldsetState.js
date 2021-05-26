@@ -59,8 +59,12 @@ export const panelState = atom({
   default: false,
 });
 
-export const checkButtonState = atom({
-  key: 'checkButtonState',
+export const checkInButtonState = atom({
+  key: 'checkInButtonState',
+  default: false,
+});
+export const checkOutButtonState = atom({
+  key: 'checkOutButtonState',
   default: false,
 });
 

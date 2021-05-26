@@ -26,6 +26,7 @@ const PanelMenuLabelStyle = styled.label`
   flex: 1 0 0%;
   min-width: 0px;
   padding: 14px 32px;
+  z-index: 2;
 
   :hover::before {
     display: block;

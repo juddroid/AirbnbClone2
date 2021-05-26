@@ -19,8 +19,6 @@ const Search = () => {
     setHeaderState(true);
   };
 
-  console.log(searchText, `searchText`);
-
   return (
     <Link to="/reservation">
       <SearchStyle onClick={handleClickSearchButton}>

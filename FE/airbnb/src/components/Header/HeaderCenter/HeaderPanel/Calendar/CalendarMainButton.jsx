@@ -10,12 +10,12 @@ import {
   // calendarWrapperSize,
   displayMonth,
   monthList,
-  todayDate,
+  todayData,
 } from '../../../../../Recoil/CalendarState';
 import { getDateList } from '../../../../../util';
 
 const CalendarButton = ({ direction }) => {
-  const today = useRecoilValue(todayDate);
+  const calendarData = useRecoilValue(todayData);
   const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
   const setDisplayMonthList = useSetRecoilState(monthList);
   const setAnimationState = useSetRecoilState(animation);
@@ -34,7 +34,10 @@ const CalendarButton = ({ direction }) => {
       setCalendarList((list) => list.filter((_, i) => i !== 3));
       setThisMonth(thisMonth - 1);
       setDisplayMonthList((month) => [thisMonth - 2, ...month]);
-      setCalendarList((list) => [getDateList(today, thisMonth - 2), ...list]);
+      setCalendarList((list) => [
+        getDateList(calendarData, thisMonth - 2),
+        ...list,
+      ]);
       setTimeout(() => {
         setAnimationState(false);
         setCalendarPosition(-391);
@@ -51,7 +54,10 @@ const CalendarButton = ({ direction }) => {
       setCalendarList((list) => list.filter((_, i) => i !== 0));
       setThisMonth(thisMonth + 1);
       setDisplayMonthList((month) => [...month, thisMonth + 3]);
-      setCalendarList((list) => [...list, getDateList(today, thisMonth + 3)]);
+      setCalendarList((list) => [
+        ...list,
+        getDateList(calendarData, thisMonth + 3),
+      ]);
       setTimeout(() => {
         setAnimationState(false);
         setCalendarPosition(-391);

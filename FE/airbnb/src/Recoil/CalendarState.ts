@@ -5,12 +5,38 @@ export const calendar = atom({
   default: -391,
 });
 
-export const todayDate = atom({
+export const todayData = atom({
   key: 'todayDate',
   default: {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
     date: new Date().getDate(),
+  },
+});
+
+export const calendarListSet = atom({
+  key: 'calendarListSet',
+  default: {
+    prev: {
+      year: 0,
+      month: 0,
+      dateList: 0,
+    },
+    current: {
+      year: 0,
+      month: 0,
+      dateList: 0,
+    },
+    next: {
+      year: 0,
+      month: 0,
+      dateList: 0,
+    },
+    nextNext: {
+      year: 0,
+      month: 0,
+      dateList: 0,
+    },
   },
 });
 

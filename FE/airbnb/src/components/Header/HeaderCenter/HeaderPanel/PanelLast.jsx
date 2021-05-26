@@ -1,12 +1,17 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { searchButtonState } from '../../../../Recoil/HeaderFieldsetState';
+import {
+  panelState,
+  searchButtonState,
+} from '../../../../Recoil/HeaderFieldsetState';
 import PanelLastLabel from './PanelLastLabel';
 
 const PanelLast = ({ name, placeholder }) => {
   const searchState = useRecoilValue(searchButtonState);
+  const panelBackgroundState = useRecoilValue(panelState);
+
   return (
-    <PanelLastStyle {...{ searchState }}>
+    <PanelLastStyle {...{ searchState, panelBackgroundState }}>
       <PanelLastLabel {...{ name, placeholder }} />
     </PanelLastStyle>
   );
@@ -15,7 +20,7 @@ const PanelLast = ({ name, placeholder }) => {
 export default PanelLast;
 
 const PanelLastStyle = styled.div`
-  ${({ searchState }) =>
+  ${({ searchState, panelBackgroundState }) =>
     searchState
       ? `
   appearance: none;
@@ -92,7 +97,7 @@ const PanelLastStyle = styled.div`
   ::before {
     border-width: 0 1px;
     border-style: solid;
-    border-color: #fff;
+    border-color: ${panelBackgroundState ? `#f7f7f7` : `#fff`};
     content: '';
     display: none;
     height: 32px;
@@ -102,7 +107,7 @@ const PanelLastStyle = styled.div`
     top: 50%;
     z-index: 0;
     border-left: 0px;
-    background: #fff;
+    
   }
 
   :hover::before {

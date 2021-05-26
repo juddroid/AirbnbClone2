@@ -1,27 +1,28 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { CHECK_OUT, INPUT_DATE_PLACEHOLDER } from '../../../../const';
 import {
-  checkButtonState,
+  checkOutButtonState,
   panelState,
 } from '../../../../Recoil/HeaderFieldsetState';
 
-const PanelButtonLabel = ({ name, placeholder }) => {
+const PanelCheckOutButtonBox = () => {
   const panelBackgroundState = useRecoilValue(panelState);
-  const checkButton = useRecoilValue(checkButtonState);
+  const checkOutButton = useRecoilValue(checkOutButtonState);
 
   return (
-    <PanelMenuLabelStyle {...{ panelBackgroundState, checkButton }}>
+    <PanelCheckOutButtonBoxStyle {...{ panelBackgroundState, checkOutButton }}>
       <PanelMenuLabelWrapper>
-        <PanelMenuDiv>{name}</PanelMenuDiv>
-        <PanelMenuInput>{placeholder}</PanelMenuInput>
+        <PanelMenuDiv>{CHECK_OUT}</PanelMenuDiv>
+        <PanelMenuInput>{INPUT_DATE_PLACEHOLDER}</PanelMenuInput>
       </PanelMenuLabelWrapper>
-    </PanelMenuLabelStyle>
+    </PanelCheckOutButtonBoxStyle>
   );
 };
 
-export default PanelButtonLabel;
+export default PanelCheckOutButtonBox;
 
-const PanelMenuLabelStyle = styled.div`
+const PanelCheckOutButtonBoxStyle = styled.div`
   appearance: none;
   background: transparent;
   border: 0px;
@@ -43,8 +44,8 @@ const PanelMenuLabelStyle = styled.div`
   width: 0px;
   z-index: 3;
 
-  ${({ checkButton, panelBackgroundState }) =>
-    checkButton
+  ${({ checkOutButton, panelBackgroundState }) =>
+    checkOutButton
       ? `z-index: 3;
       ::before {
     border-width: 0px 1px;
@@ -83,7 +84,7 @@ const PanelMenuLabelStyle = styled.div`
     content: '';
     display: none;
     height: 32px;
-    ${!panelBackgroundState && `left: 0;`};
+    left: 0px;
     margin-top: -16px;
     position: absolute;
     right: 0px;

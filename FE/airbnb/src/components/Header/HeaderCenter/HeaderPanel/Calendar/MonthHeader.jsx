@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-const MonthHeader = ({ today, month }) => {
+const MonthHeader = ({ calendarData, month }) => {
+  console.log(calendarData.year);
   return (
     <MonthHeaderStyle>
       <MonthTitle>
-        {today.year}년 {month + 1}월
+        {calendarData.year}년 {month + 1}월
       </MonthTitle>
     </MonthHeaderStyle>
   );
