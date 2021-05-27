@@ -1,4 +1,5 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
+import { Calendar } from '../calendar';
 
 export const calendar = atom({
   key: 'calendar',
@@ -11,6 +12,18 @@ export const todayData = atom({
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
     date: new Date().getDate(),
+  },
+});
+
+export const getCalendar = selector({
+  key: 'getCalendar',
+  get: ({ get }) => {
+    const calendar = get(todayData);
+    const currentCalendar = new Calendar(
+      calendar.year,
+      calendar.month
+    ).getCalendarList();
+    return currentCalendar;
   },
 });
 

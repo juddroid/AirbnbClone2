@@ -15,7 +15,7 @@ import {
 import { getDateList } from '../../../../../util';
 
 const CalendarButton = ({ direction }) => {
-  const calendarData = useRecoilValue(todayData);
+  const [calendarData, setCalendarData] = useRecoilState(todayData);
   const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
   const setDisplayMonthList = useSetRecoilState(monthList);
   const setAnimationState = useSetRecoilState(animation);
@@ -26,18 +26,23 @@ const CalendarButton = ({ direction }) => {
 
   const handleClickButton = () => {
     if (direction === LEFT) {
+      setCalendarData({
+        ...calendarData,
+        month: calendarData.month - 1,
+      });
+
       setAnimationState(true);
       setCalendarPosition((position) => position + 391);
-      setDisplayMonthList((month) =>
-        month.filter((month) => month !== thisMonth + 2)
-      );
-      setCalendarList((list) => list.filter((_, i) => i !== 3));
-      setThisMonth(thisMonth - 1);
-      setDisplayMonthList((month) => [thisMonth - 2, ...month]);
-      setCalendarList((list) => [
-        getDateList(calendarData, thisMonth - 2),
-        ...list,
-      ]);
+      // setDisplayMonthList((month) =>
+      //   month.filter((month) => month !== thisMonth + 2)
+      // );
+      // setCalendarList((list) => list.filter((_, i) => i !== 3));
+      // setThisMonth(thisMonth - 1);
+      // setDisplayMonthList((month) => [thisMonth - 2, ...month]);
+      // setCalendarList((list) => [
+      //   getDateList(calendarData, thisMonth - 2),
+      //   ...list,
+      // ]);
       setTimeout(() => {
         setAnimationState(false);
         setCalendarPosition(-391);
@@ -46,18 +51,23 @@ const CalendarButton = ({ direction }) => {
       return;
     }
     if (direction === RIGHT) {
+      setCalendarData({
+        ...calendarData,
+        month: calendarData.month + 1,
+      });
+
       setAnimationState(true);
       setCalendarPosition((position) => position - 391);
-      setDisplayMonthList((month) =>
-        month.filter((month) => month !== thisMonth - 1)
-      );
-      setCalendarList((list) => list.filter((_, i) => i !== 0));
-      setThisMonth(thisMonth + 1);
-      setDisplayMonthList((month) => [...month, thisMonth + 3]);
-      setCalendarList((list) => [
-        ...list,
-        getDateList(calendarData, thisMonth + 3),
-      ]);
+      // setDisplayMonthList((month) =>
+      //   month.filter((month) => month !== thisMonth - 1)
+      // );
+      // setCalendarList((list) => list.filter((_, i) => i !== 0));
+      // setThisMonth(thisMonth + 1);
+      // setDisplayMonthList((month) => [...month, thisMonth + 3]);
+      // setCalendarList((list) => [
+      //   ...list,
+      //   getDateList(calendarData, thisMonth + 3),
+      // ]);
       setTimeout(() => {
         setAnimationState(false);
         setCalendarPosition(-391);

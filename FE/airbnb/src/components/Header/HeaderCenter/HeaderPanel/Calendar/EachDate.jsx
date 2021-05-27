@@ -2,21 +2,20 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { setState, setToggle } from '../../../../../util.ts';
 
-const EachDate = ({ calendarData, month, date }) => {
+const EachDate = ({ calendarBox, date }) => {
   const [dateHover, setDateHover] = useState(false);
   const [selected, setSelected] = useState(false);
   // const [seletedCount, setSelectedCount] = useState(0);
   const [isNotPast, setIsNotPast] = useState(true);
 
   useEffect(() => {
-    const currentDate = new Date(calendarData.year, month, date);
-    const todayDate = new Date(
-      calendarData.year,
-      calendarData.month,
-      calendarData.date
-    );
-
-    setIsNotPast(currentDate < todayDate);
+    // const currentDate = new Date(calendarData.year, month, date);
+    // const todayDate = new Date(
+    //   calendarData.year,
+    //   calendarData.month,
+    //   calendarData.date
+    // );
+    // setIsNotPast(currentDate < todayDate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

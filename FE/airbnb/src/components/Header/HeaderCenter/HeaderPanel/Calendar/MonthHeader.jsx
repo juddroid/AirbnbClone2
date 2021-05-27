@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-const MonthHeader = ({ calendarData, month }) => {
-  console.log(calendarData.year);
+const MonthHeader = ({ calendarBox }) => {
+  console.log(calendarBox.year, calendarBox.month + 1);
+  const month = calendarBox.month + 1 === 13 ? 1 : calendarBox.month + 1;
   return (
     <MonthHeaderStyle>
       <MonthTitle>
-        {calendarData.year}년 {month + 1}월
+        {calendarBox.year}년 {month}월
       </MonthTitle>
     </MonthHeaderStyle>
   );

@@ -8,20 +8,27 @@ import {
   calendarList,
   monthList,
   animation,
+  getCalendar,
 } from '../../../../../Recoil/CalendarState';
 import { useEffect } from 'react';
 import { getDateList } from '../../../../../util';
 import { v4 as uuidv4 } from 'uuid';
 
 const CalendarMainView = () => {
+  // standard date (current)
   const calendarData = useRecoilValue(todayData);
+  const calendarBoxList = useRecoilValue(getCalendar);
   const displayMonthList = useRecoilValue(monthList);
   const animationState = useRecoilValue(animation);
   const calendarPosition = useRecoilValue(calendar);
   const [calList, setCalList] = useRecoilState(calendarList);
   const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
-  console.log(calList);
+
   useEffect(() => {
+    console.log(calendarData.year);
+    console.log(calendarData.month);
+    console.log(calendarBoxList);
+
     const newCalendarList = displayMonthList.map((month) =>
       getDateList(calendarData, month)
     );
@@ -31,19 +38,15 @@ const CalendarMainView = () => {
       calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayMonthList, boxHeight]);
+  }, [calendarBoxList, boxHeight]);
 
   if (!calList) return null;
 
   return (
     <CalendarMainViewStyle {...{ boxHeight }}>
       <CalendarMainViewWrapper {...{ calendarPosition, animationState }}>
-        {calList.map((calendar, idx) => (
-          <Month
-            {...{ calendar, calendarData }}
-            month={displayMonthList[idx]}
-            key={uuidv4()}
-          />
+        {calendarBoxList.map((calendarBox) => (
+          <Month {...{ calendarBox }} key={uuidv4()} />
         ))}
       </CalendarMainViewWrapper>
     </CalendarMainViewStyle>
