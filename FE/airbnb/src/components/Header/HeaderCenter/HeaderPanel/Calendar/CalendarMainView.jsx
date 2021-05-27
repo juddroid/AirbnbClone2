@@ -3,44 +3,30 @@ import Month from './Month';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   calendar,
-  todayData,
   calendarWrapperSize,
-  calendarList,
-  monthList,
   animation,
   getCalendar,
 } from '../../../../../Recoil/CalendarState';
 import { useEffect } from 'react';
-import { getDateList } from '../../../../../util';
 import { v4 as uuidv4 } from 'uuid';
 
 const CalendarMainView = () => {
   // standard date (current)
-  const calendarData = useRecoilValue(todayData);
   const calendarBoxList = useRecoilValue(getCalendar);
-  const displayMonthList = useRecoilValue(monthList);
   const animationState = useRecoilValue(animation);
   const calendarPosition = useRecoilValue(calendar);
-  const [calList, setCalList] = useRecoilState(calendarList);
   const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
 
   useEffect(() => {
-    console.log(calendarData.year);
-    console.log(calendarData.month);
-    console.log(calendarBoxList);
-
-    const newCalendarList = displayMonthList.map((month) =>
-      getDateList(calendarData, month)
-    );
-    setCalList(newCalendarList);
-
     setBoxHeight(
-      calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
+      calendarBoxList &&
+        (calendarBoxList[1].dateList.length > 34 ||
+          calendarBoxList[2].dateList.length > 34)
+        ? 378
+        : 340
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calendarBoxList, boxHeight]);
-
-  if (!calList) return null;
 
   return (
     <CalendarMainViewStyle {...{ boxHeight }}>
