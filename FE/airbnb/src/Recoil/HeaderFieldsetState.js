@@ -1,5 +1,6 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
+import { INPUT_DATE_PLACEHOLDER } from '../const';
 
 export const headerFieldset = atom({
   key: 'headerFieldset',
@@ -70,5 +71,26 @@ export const checkOutButtonState = atom({
 
 export const searchTextState = atom({
   key: 'searchTextState',
+  default: false,
+});
+
+export const checkInField = atom({
+  key: 'checkInField',
+  default: INPUT_DATE_PLACEHOLDER,
+});
+export const checkOutField = atom({
+  key: 'checkOutField',
+  default: INPUT_DATE_PLACEHOLDER,
+});
+
+export const setCheckInField = selector({
+  key: 'setCheckInField',
+  get: ({ get }) => {
+    const field = get(checkInField);
+  },
+});
+
+export const checkInFieldStyle = atom({
+  key: 'checkInFieldStyle',
   default: false,
 });

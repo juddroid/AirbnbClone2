@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const MonthHeader = ({ calendarBox }) => {
-  console.log(calendarBox.year, calendarBox.month + 1);
   const month = calendarBox.month + 1 === 13 ? 1 : calendarBox.month + 1;
   return (
     <MonthHeaderStyle>

@@ -1,20 +1,22 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { CHECK_OUT, INPUT_DATE_PLACEHOLDER } from '../../../../const';
+import { CHECK_OUT } from '../../../../const';
 import {
   checkOutButtonState,
+  checkOutField,
   panelState,
 } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelCheckOutButtonBox = () => {
   const panelBackgroundState = useRecoilValue(panelState);
   const checkOutButton = useRecoilValue(checkOutButtonState);
+  const checkOutDate = useRecoilValue(checkOutField);
 
   return (
     <PanelCheckOutButtonBoxStyle {...{ panelBackgroundState, checkOutButton }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{CHECK_OUT}</PanelMenuDiv>
-        <PanelMenuInput>{INPUT_DATE_PLACEHOLDER}</PanelMenuInput>
+        <PanelMenuInput>{checkOutDate}</PanelMenuInput>
       </PanelMenuLabelWrapper>
     </PanelCheckOutButtonBoxStyle>
   );

@@ -9,7 +9,6 @@ export class Calendar {
 
   getDateList(year, month) {
     const day = new Date(year, month).getDay();
-
     const dateList = [];
 
     for (let i = 0; i < day; i++) {

@@ -1,8 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { CHECK_IN, INPUT_DATE_PLACEHOLDER } from '../../../../const';
 import {
   checkInButtonState,
+  checkInField,
+  checkInFieldStyle,
   guestPopupState,
   nearbyPopupState,
   panelState,
@@ -13,6 +16,14 @@ const PanelCheckInButtonBox = () => {
   const checkInButton = useRecoilValue(checkInButtonState);
   const guestPopup = useRecoilValue(guestPopupState);
   const nearbyPopup = useRecoilValue(nearbyPopupState);
+  const checkInDate = useRecoilValue(checkInField);
+  const [fieldStyle, setFieldStyle] = useRecoilState(checkInFieldStyle);
+
+  const checkInFeild = `${checkInDate.month + 1}월 ${checkInDate.date}일`;
+
+  useEffect(() => {
+    checkInDate.date && setFieldStyle(true);
+  }, [checkInDate]);
 
   return (
     <PanelCheckInButtonBoxStyle
@@ -20,12 +31,13 @@ const PanelCheckInButtonBox = () => {
     >
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{CHECK_IN}</PanelMenuDiv>
-        <PanelMenuInput>{INPUT_DATE_PLACEHOLDER}</PanelMenuInput>
+        <PanelMenuInput {...{ fieldStyle }}>
+          {checkInDate.date ? checkInFeild : INPUT_DATE_PLACEHOLDER}
+        </PanelMenuInput>
       </PanelMenuLabelWrapper>
     </PanelCheckInButtonBoxStyle>
   );
 };
-
 export default PanelCheckInButtonBox;
 
 const PanelCheckInButtonBoxStyle = styled.div`
@@ -142,7 +154,7 @@ const PanelMenuDiv = styled.div`
 const PanelMenuInput = styled.div`
   font-size: 14px;
   line-height: 18px;
-  color: #717171;
+  color: ${({ fieldStyle }) => (fieldStyle ? `#222` : ` #717171`)};
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;

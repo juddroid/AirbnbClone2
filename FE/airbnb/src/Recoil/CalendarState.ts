@@ -6,6 +6,15 @@ export const calendar = atom({
   default: -391,
 });
 
+export const current = atom({
+  key: 'current',
+  default: {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    date: new Date().getDate(),
+  },
+});
+
 export const todayData = atom({
   key: 'todayDate',
   default: {
@@ -45,4 +54,13 @@ export const nextNextMonthBox = atom({
 export const animation = atom({
   key: 'animation',
   default: false,
+});
+
+export const selectedCheckInDate = atom({
+  key: 'selectedCheckInDate',
+  default: null,
+});
+export const selectedCheckOutDate = atom({
+  key: 'selectedCheckOutDate',
+  default: null,
 });
