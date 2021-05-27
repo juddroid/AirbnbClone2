@@ -1,10 +1,33 @@
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { guestField } from '../../../../Recoil/HeaderFieldsetState';
 
-const PanelLastLabel = ({ name, placeholder }) => {
+const PanelLastLabel = ({ name }) => {
+  const guestFieldData = useRecoilValue(guestField);
+  const [fieldState, setFieldState] = useState(false);
+
+  const guestInfo = `게스트 ${
+    guestFieldData.value[0].count + guestFieldData.value[1].count
+  }명`;
+  const infantInfo =
+    guestFieldData.value[2].count !== 0
+      ? `, 유아 ${guestFieldData.value[2].count}명`
+      : ``;
+  const field = guestInfo + infantInfo;
+
+  useEffect(() => {
+    guestFieldData.value.filter((guest) => guest.count !== 0).length !== 0
+      ? setFieldState(true)
+      : setFieldState(false);
+  }, [guestFieldData]);
+
   return (
     <PanelMenuLabelStyle>
       <PanelMenuDiv>{name}</PanelMenuDiv>
-      <PanelMenuInput>{placeholder}</PanelMenuInput>
+      <PanelMenuInput {...{ fieldState }}>
+        {guestFieldData.value[0].count === 0 ? guestFieldData.initValue : field}
+      </PanelMenuInput>
     </PanelMenuLabelStyle>
   );
 };
@@ -30,7 +53,7 @@ const PanelMenuDiv = styled.div`
 const PanelMenuInput = styled.div`
   font-size: 14px;
   line-height: 18px;
-  color: #717171;
+  color: ${({ fieldState }) => (fieldState ? `#222` : `#717171`)};
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;

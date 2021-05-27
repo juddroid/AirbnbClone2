@@ -3,38 +3,44 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { guestCount } from '../../../../../Recoil/GuestCountState';
+import { guestField } from '../../../../../Recoil/HeaderFieldsetState';
 
 const MinusButton = ({ count, id }) => {
+  const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
-  const [currentCount, setCurrentCount] = useRecoilState(guestCount);
 
-  const handleClickPlusButton = (e, id) => {
+  const handleClickMinusButton = (e, id) => {
     e.stopPropagation();
-    for (const guest in currentCount) {
-      if (currentCount[guest].id === id) {
-        setCurrentCount({
-          ...currentCount,
-          [guest]: {
-            ...currentCount[guest],
-            count: currentCount[guest].count - 1,
-          },
-        });
-      }
-    }
+
+    if (
+      id === 0 &&
+      guestCount.value[0].count === 1 &&
+      (guestCount.value[1].count !== 0 || guestCount.value[2].count !== 0)
+    )
+      return;
+
+    setGuestCount({
+      ...guestCount,
+      value: guestCount.value.map((guest) =>
+        guest.id === id ? { ...guest, count: guest.count - 1 } : guest
+      ),
+    });
   };
 
   const checkCount = (count) => {
-    count === 0 && setDisabled(true);
+    guestCount.value.map(
+      (guest) => guest.id === id && count === 0 && setDisabled(true)
+    );
   };
   useEffect(() => {
     checkCount(count);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   return (
     <CounterButtonStyle
       disabled={disabled}
-      onClick={(e) => handleClickPlusButton(e, id)}
+      onClick={(e) => handleClickMinusButton(e, id)}
     >
       <CounterIcon>
         <RemoveIcon />
@@ -42,26 +48,50 @@ const MinusButton = ({ count, id }) => {
     </CounterButtonStyle>
   );
 };
-const PlusButton = ({ id }) => {
-  const [currentCount, setCurrentCount] = useRecoilState(guestCount);
+const PlusButton = ({ count, id }) => {
+  const [guestCount, setGuestCount] = useRecoilState(guestField);
+  const [disabled, setDisabled] = useState(false);
 
   const handleClickPlusButton = (e, id) => {
     e.stopPropagation();
-    for (const guest in currentCount) {
-      if (currentCount[guest].id === id) {
-        setCurrentCount({
-          ...currentCount,
-          [guest]: {
-            ...currentCount[guest],
-            count: currentCount[guest].count + 1,
-          },
-        });
-      }
+
+    setGuestCount({
+      ...guestCount,
+      value: guestCount.value.map((guest) =>
+        guest.id === id ? { ...guest, count: guest.count + 1 } : guest
+      ),
+    });
+
+    if ((id === 1 || id === 2) && guestCount.value[0].count === 0) {
+      setGuestCount({
+        ...guestCount,
+        value: guestCount.value.map((guest) =>
+          guest.id === id
+            ? { ...guest, count: guest.count + 1 }
+            : guest && guest.id === 0
+            ? { ...guest, count: guest.count + 1 }
+            : guest
+        ),
+      });
     }
   };
 
+  const checkCount = () => {
+    guestCount.value.map(
+      (guest) => guest.id === id && guest.max === count && setDisabled(true)
+    );
+  };
+
+  useEffect(() => {
+    checkCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count]);
+
   return (
-    <CounterButtonStyle onClick={(e) => handleClickPlusButton(e, id)}>
+    <CounterButtonStyle
+      disabled={disabled}
+      onClick={(e) => handleClickPlusButton(e, id)}
+    >
       <CounterIcon>
         <AddIcon />
       </CounterIcon>

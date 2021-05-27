@@ -12,7 +12,7 @@ const PanelLast = ({ name, placeholder }) => {
 
   return (
     <PanelLastStyle {...{ searchState, panelBackgroundState }}>
-      <PanelLastLabel {...{ name, placeholder }} />
+      <PanelLastLabel {...{ name }} />
     </PanelLastStyle>
   );
 };

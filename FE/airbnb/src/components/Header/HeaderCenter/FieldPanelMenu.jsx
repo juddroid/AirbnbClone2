@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import {
   BLOCK,
   GUEST,
-  GUEST_PLACEHOLDER,
   LOCATION,
   LOCATION_PLACEHOLDER,
   NONE,
@@ -40,8 +39,9 @@ const FieldPanelMenu = () => {
   const setSearchState = useSetRecoilState(searchButtonState);
   const setSearchTextState = useSetRecoilState(searchTextState);
   const setPanelState = useSetRecoilState(panelState);
-  const setCheckInButton = useSetRecoilState(checkInButtonState);
-  const setCheckOutButton = useSetRecoilState(checkOutButtonState);
+  const [checkInButton, setCheckInButton] = useRecoilState(checkInButtonState);
+  const [checkOutButton, setCheckOutButton] =
+    useRecoilState(checkOutButtonState);
   const calendarState = useRecoilValue(calendarPopupState);
 
   const handleClickNearbyPopup = () => {
@@ -55,6 +55,12 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckInPopup = () => {
+    if (!checkInButton && checkOutButton && calendarPopup) {
+      setCheckInButton(true);
+      setCheckOutButton(false);
+      return;
+    }
+
     if (calendarPopup) {
       setCalendarPopup(false);
       setCheckInButton(false);
@@ -70,6 +76,12 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckOutPopup = () => {
+    if (checkInButton && !checkOutButton && calendarPopup) {
+      setCheckInButton(false);
+      setCheckOutButton(true);
+      return;
+    }
+
     if (calendarPopup) {
       setCalendarPopup(false);
       setCheckOutButton(false);
@@ -124,7 +136,7 @@ const FieldPanelMenu = () => {
     return () => {
       window.removeEventListener('click', handleClickPopup, true);
     };
-  }, [calendarPopup]);
+  }, [checkInButton, checkOutButton, calendarPopup]);
 
   return (
     <FieldPanelMenuStyle>
@@ -147,7 +159,7 @@ const FieldPanelMenu = () => {
       </FieldPanelMenuCenter>
       <FieldPanelMenuSeparator />
       <FieldPanelMenuRight ref={guest}>
-        <PanelLast name={GUEST} placeholder={GUEST_PLACEHOLDER} />
+        <PanelLast name={GUEST} />
         <GuestPopup />
         <Search />
       </FieldPanelMenuRight>

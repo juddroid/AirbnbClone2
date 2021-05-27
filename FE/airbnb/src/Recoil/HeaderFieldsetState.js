@@ -1,6 +1,6 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
-import { INPUT_DATE_PLACEHOLDER } from '../const';
+import { GUEST_PLACEHOLDER, INPUT_DATE_PLACEHOLDER } from '../const';
 
 export const headerFieldset = atom({
   key: 'headerFieldset',
@@ -96,4 +96,35 @@ export const checkInFieldStyle = atom({
 export const checkOutFieldStyle = atom({
   key: 'checkOutFieldStyle',
   default: false,
+});
+
+export const guestField = atom({
+  key: 'guestField',
+  default: {
+    initValue: GUEST_PLACEHOLDER,
+    value: [
+      {
+        id: 0,
+        header: '성인',
+        info: '만 13세 이상',
+        count: 0,
+        max: 16,
+      },
+      {
+        id: 1,
+        header: '어린이',
+        info: '만 2~12세',
+        count: 0,
+        max: 5,
+      },
+      {
+        id: 2,
+        header: '유아', //
+        info: '만 2세 미만',
+        count: 0,
+        max: 5,
+      },
+    ],
+    state: false,
+  },
 });

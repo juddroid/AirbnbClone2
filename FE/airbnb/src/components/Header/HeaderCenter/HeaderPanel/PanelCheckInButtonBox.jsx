@@ -25,6 +25,7 @@ const PanelCheckInButtonBox = () => {
 
   useEffect(() => {
     checkInDate.state && setFieldStyle(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkInDate]);
 
   return (

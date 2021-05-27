@@ -1,30 +1,22 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { BLOCK, NONE, GUEST_INFO } from '../../../../../const';
-import { guestPopupState } from '../../../../../Recoil/HeaderFieldsetState';
+import { BLOCK, NONE } from '../../../../../const';
+import {
+  guestField,
+  guestPopupState,
+} from '../../../../../Recoil/HeaderFieldsetState';
 import GuestSection from './GuestSection';
 import { v4 as uuidv4 } from 'uuid';
-import { guestCount } from '../../../../../Recoil/GuestCountState';
 
 const GuestPopup = () => {
   const guestState = useRecoilValue(guestPopupState);
-  const guestCountState = useRecoilValue(guestCount);
-  const count = [
-    guestCountState.adult,
-    guestCountState.child,
-    guestCountState.infant,
-  ];
+  const guestData = useRecoilValue(guestField);
 
   return (
     <GuestPopupStyle {...{ guestState }}>
       <GuestPopupWrapper>
-        {GUEST_INFO.map(({ header, info }, idx) => (
-          <GuestSection
-            {...{ header, info }}
-            count={count[idx].count}
-            id={count[idx].id}
-            key={uuidv4()}
-          />
+        {guestData.value.map(({ header, info, count, id }) => (
+          <GuestSection {...{ header, info, count, id }} key={uuidv4()} />
         ))}
       </GuestPopupWrapper>
     </GuestPopupStyle>
