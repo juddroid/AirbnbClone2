@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   BLOCK,
@@ -35,7 +35,7 @@ const FieldPanelMenu = () => {
   const checkOut = useRef();
   const guest = useRef();
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
-  const setCalendarPopup = useSetRecoilState(calendarPopupState);
+  const [calendarPopup, setCalendarPopup] = useRecoilState(calendarPopupState);
   const setGuestPopup = useSetRecoilState(guestPopupState);
   const setSearchState = useSetRecoilState(searchButtonState);
   const setSearchTextState = useSetRecoilState(searchTextState);
@@ -55,6 +55,11 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckInPopup = () => {
+    if (calendarPopup) {
+      setCalendarPopup(false);
+      setCheckInButton(false);
+      return;
+    }
     setCalendarPopup(true);
     setSearchTextState(true);
     setCheckInButton(true);
@@ -65,6 +70,11 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckOutPopup = () => {
+    if (calendarPopup) {
+      setCalendarPopup(false);
+      setCheckOutButton(false);
+      return;
+    }
     setCalendarPopup(true);
     setSearchTextState(true);
     setCheckOutButton(true);
@@ -114,7 +124,7 @@ const FieldPanelMenu = () => {
     return () => {
       window.removeEventListener('click', handleClickPopup, true);
     };
-  }, []);
+  }, [calendarPopup]);
 
   return (
     <FieldPanelMenuStyle>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { CHECK_IN, INPUT_DATE_PLACEHOLDER } from '../../../../const';
+import { CHECK_IN } from '../../../../const';
 import {
   checkInButtonState,
   checkInField,
@@ -19,10 +19,12 @@ const PanelCheckInButtonBox = () => {
   const checkInDate = useRecoilValue(checkInField);
   const [fieldStyle, setFieldStyle] = useRecoilState(checkInFieldStyle);
 
-  const checkInFeild = `${checkInDate.month + 1}월 ${checkInDate.date}일`;
+  const checkInFieldValue = `${checkInDate.value.month + 1}월 ${
+    checkInDate.value.date
+  }일`;
 
   useEffect(() => {
-    checkInDate.date && setFieldStyle(true);
+    checkInDate.state && setFieldStyle(true);
   }, [checkInDate]);
 
   return (
@@ -32,7 +34,7 @@ const PanelCheckInButtonBox = () => {
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{CHECK_IN}</PanelMenuDiv>
         <PanelMenuInput {...{ fieldStyle }}>
-          {checkInDate.date ? checkInFeild : INPUT_DATE_PLACEHOLDER}
+          {checkInDate.state ? checkInFieldValue : checkInDate.value}
         </PanelMenuInput>
       </PanelMenuLabelWrapper>
     </PanelCheckInButtonBoxStyle>
@@ -62,7 +64,7 @@ const PanelCheckInButtonBoxStyle = styled.div`
   width: 0px;
   z-index: 3;
 
-  ${({ checkInButton, panelBackgroundState, guestPopup, nearbyPopup }) =>
+  ${({ checkInButton, panelBackgroundState, guestPopup }) =>
     checkInButton
       ? `z-index: 3;
       ::before {

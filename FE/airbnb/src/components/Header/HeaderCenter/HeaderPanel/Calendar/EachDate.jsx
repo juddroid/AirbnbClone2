@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { CHECK_IN, CHECK_OUT } from '../../../../../const';
+import { current } from '../../../../../Recoil/CalendarState';
 import {
-  current,
-  selectedCheckInDate,
-  selectedCheckOutDate,
-  todayData,
-} from '../../../../../Recoil/CalendarState';
-import {
+  checkInButtonState,
   checkInField,
+  checkOutButtonState,
   checkOutField,
 } from '../../../../../Recoil/HeaderFieldsetState';
 import { setState, setToggle } from '../../../../../util.ts';
@@ -19,23 +17,50 @@ const EachDate = ({ calendarBox, date }) => {
   // const [seletedCount, setSelectedCount] = useState(0);
   const [isPast, setIsPast] = useState(true);
   const [disable, setDisable] = useState(false);
-  const setCheckInDate = useSetRecoilState(checkInField);
-  const setCheckOutDate = useSetRecoilState(selectedCheckOutDate);
-  const setCheckInDateField = useSetRecoilState(checkInField);
-  const setCheckOutDateField = useSetRecoilState(checkOutField);
+  const [checkInDate, setCheckInDate] = useRecoilState(checkInField);
+  const [checkOutDate, setCheckOutDate] = useRecoilState(checkOutField);
+
   const now = useRecoilValue(current);
+  const setCheckInButton = useSetRecoilState(checkInButtonState);
+  const setCheckOutButton = useSetRecoilState(checkOutButtonState);
 
   const selectCheckIn = () => {
+    if (checkInDate.state) return;
     setCheckInDate({
-      year: calendarBox.year,
-      month: calendarBox.month,
-      date: date,
+      value: {
+        year: calendarBox.year,
+        month: calendarBox.month,
+        date: date,
+      },
+      state: true,
     });
+    setCheckInButton(false);
+    setCheckOutButton(true);
+  };
+
+  const selectCheckOut = () => {
+    if (checkOutDate.state) return;
+    setCheckOutDate({
+      value: {
+        year: calendarBox.year,
+        month: calendarBox.month,
+        date: date,
+      },
+      state: true,
+    });
+  };
+
+  const checkPanelTab = () => {
+    if (!checkInDate.state && !checkOutDate.state) return CHECK_IN;
+    if (checkInDate.state && !checkOutDate.state) return CHECK_OUT;
+    if (checkInDate.state && checkOutDate.state) return CHECK_IN;
+    if (!checkInDate.state && checkOutDate.state) return CHECK_IN;
   };
 
   const handleClickDate = () => {
     setToggle(setSelected, selected);
-    selectCheckIn();
+    if (checkPanelTab() === CHECK_IN) return selectCheckIn();
+    if (checkPanelTab() === CHECK_OUT) return selectCheckOut();
   };
 
   // 1. 체크인 상태

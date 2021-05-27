@@ -67,6 +67,9 @@ export const SMALL = 'small';
 export const WEEK_LIST = ['일', '월', '화', '수', '목', '금', '토'];
 export const LASTDATE_LIST = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+export const FLAG_CHECK_IN = 'checkIn';
+export const FLAG_CHECK_OUT = 'checkOut';
+
 // Guest
 export const GUEST_INFO = [
   {

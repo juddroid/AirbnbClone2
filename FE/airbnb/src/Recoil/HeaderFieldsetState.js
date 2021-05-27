@@ -76,21 +76,24 @@ export const searchTextState = atom({
 
 export const checkInField = atom({
   key: 'checkInField',
-  default: INPUT_DATE_PLACEHOLDER,
+  default: {
+    value: INPUT_DATE_PLACEHOLDER,
+    state: false,
+  },
 });
 export const checkOutField = atom({
   key: 'checkOutField',
-  default: INPUT_DATE_PLACEHOLDER,
-});
-
-export const setCheckInField = selector({
-  key: 'setCheckInField',
-  get: ({ get }) => {
-    const field = get(checkInField);
+  default: {
+    value: INPUT_DATE_PLACEHOLDER,
+    state: false,
   },
 });
 
 export const checkInFieldStyle = atom({
   key: 'checkInFieldStyle',
+  default: false,
+});
+export const checkOutFieldStyle = atom({
+  key: 'checkOutFieldStyle',
   default: false,
 });

@@ -1,9 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { CHECK_OUT } from '../../../../const';
 import {
   checkOutButtonState,
   checkOutField,
+  checkOutFieldStyle,
   panelState,
 } from '../../../../Recoil/HeaderFieldsetState';
 
@@ -11,12 +13,23 @@ const PanelCheckOutButtonBox = () => {
   const panelBackgroundState = useRecoilValue(panelState);
   const checkOutButton = useRecoilValue(checkOutButtonState);
   const checkOutDate = useRecoilValue(checkOutField);
+  const [fieldStyle, setFieldStyle] = useRecoilState(checkOutFieldStyle);
+
+  const checkOutFieldValue = `${checkOutDate.value.month + 1}월 ${
+    checkOutDate.value.date
+  }일`;
+
+  useEffect(() => {
+    checkOutDate.state && setFieldStyle(true);
+  }, [checkOutDate]);
 
   return (
     <PanelCheckOutButtonBoxStyle {...{ panelBackgroundState, checkOutButton }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{CHECK_OUT}</PanelMenuDiv>
-        <PanelMenuInput>{checkOutDate}</PanelMenuInput>
+        <PanelMenuInput {...{ fieldStyle }}>
+          {checkOutDate.state ? checkOutFieldValue : checkOutDate.value}
+        </PanelMenuInput>
       </PanelMenuLabelWrapper>
     </PanelCheckOutButtonBoxStyle>
   );
@@ -136,7 +149,7 @@ const PanelMenuDiv = styled.div`
 const PanelMenuInput = styled.div`
   font-size: 14px;
   line-height: 18px;
-  color: #717171;
+  color: ${({ fieldStyle }) => (fieldStyle ? `#222` : ` #717171`)};
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
