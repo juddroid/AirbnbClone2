@@ -12,6 +12,7 @@ import {
   calendarPopupState,
   checkInButtonState,
   checkOutButtonState,
+  checkOutDeleteButton,
   guestPopupState,
   nearbyPopupState,
   panelState,
@@ -26,6 +27,7 @@ import CheckOutPanelButton from './HeaderPanel/CheckOutPanelButton';
 import PanelLast from './HeaderPanel/PanelLast';
 import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
+import DeleteButton from './HeaderPanel/DeleteButton';
 
 const FieldPanelMenu = () => {
   const nearby = useRef();
@@ -43,6 +45,7 @@ const FieldPanelMenu = () => {
   const [checkOutButton, setCheckOutButton] =
     useRecoilState(checkOutButtonState);
   const calendarState = useRecoilValue(calendarPopupState);
+  const checkOutDelete = useRecoilValue(checkOutDeleteButton);
 
   const handleClickNearbyPopup = () => {
     setNearbyPopup(true);
@@ -51,6 +54,7 @@ const FieldPanelMenu = () => {
     setCalendarPopup(false);
     setGuestPopup(false);
     setCheckInButton(false);
+    setCheckOutButton(false);
     setSearchState(false);
   };
 
@@ -155,6 +159,7 @@ const FieldPanelMenu = () => {
         <FieldPanelMenuSeparator />
         <CheckOutPanelButtonStyle ref={checkOut}>
           <CheckOutPanelButton />
+          {checkOutDelete && <DeleteButton />}
         </CheckOutPanelButtonStyle>
       </FieldPanelMenuCenter>
       <FieldPanelMenuSeparator />

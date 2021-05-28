@@ -128,3 +128,8 @@ export const guestField = atom({
     state: false,
   },
 });
+
+export const checkOutDeleteButton = atom({
+  key: 'checkOutDeleteButton',
+  value: false,
+});

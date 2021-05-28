@@ -175,7 +175,7 @@ const BottomSpan = styled.span`
 `;
 
 const SearchTextBox = styled.div`
-  opacity: ${({ searchText }) => (searchText ? 0 : 1)};
+  opacity: 0;
   padding-left: 8px;
   padding-right: 4px;
   transition: opacity 0.1s cubic-bezier(0.35, 0, 0.65, 1) 0s;

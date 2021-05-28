@@ -1,5 +1,3 @@
-import { LASTDATE_LIST } from './const';
-
 export class Calendar {
   constructor(year, month) {
     this.current = new Date(year, month);
@@ -12,11 +10,19 @@ export class Calendar {
     const dateList = [];
 
     for (let i = 0; i < day; i++) {
-      dateList.push(null);
+      dateList.push({
+        date: null,
+        range: false,
+      });
     }
     for (let i = 0; i < new Date(year, month + 1, 0).getDate(); i++) {
-      dateList.push(i + 1);
+      dateList.push({
+        date: i + 1,
+        range: false,
+        hover: false,
+      });
     }
+
     return dateList;
   }
 
