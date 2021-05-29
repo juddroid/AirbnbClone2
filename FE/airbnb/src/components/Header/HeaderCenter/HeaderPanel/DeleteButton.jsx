@@ -13,7 +13,8 @@ const DeleteButton = () => {
   const [checkOutFieldState, setCheckOutField] = useRecoilState(checkOutField);
   const [checkInFieldState, setCheckInField] = useRecoilState(checkInField);
 
-  const handleClickDeleteButton = () => {
+  const handleClickDeleteButton = (e) => {
+    e.stopPropagation();
     setCheckOutDelete(false);
     if (checkOutFieldState.state && checkInFieldState.state) {
       setCheckInField({
@@ -85,6 +86,10 @@ const DelButton = styled.button`
 
   :hover {
     color: rgb(0, 0, 0);
+  }
+
+  :hover::before {
+    background: rgb(221, 221, 221);
   }
 `;
 

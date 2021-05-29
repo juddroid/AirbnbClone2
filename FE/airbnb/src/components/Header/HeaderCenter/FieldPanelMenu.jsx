@@ -136,9 +136,9 @@ const FieldPanelMenu = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('click', handleClickPopup, true);
+    window.addEventListener('click', handleClickPopup);
     return () => {
-      window.removeEventListener('click', handleClickPopup, true);
+      window.removeEventListener('click', handleClickPopup);
     };
   }, [checkInButton, checkOutButton, calendarPopup]);
 
