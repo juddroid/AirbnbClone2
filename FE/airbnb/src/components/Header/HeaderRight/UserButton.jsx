@@ -1,18 +1,23 @@
 import { useEffect, useRef } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { registerPopupState } from '../../../Recoil/HeaderFieldsetState';
+import {
+  gitHubLogin,
+  registerPopupState,
+} from '../../../Recoil/HeaderFieldsetState';
 import UserBurgerLogo from '../../../svg/UserBurgerLogo';
 import UserLogo from '../../../svg/UserLogo';
 
 const UserButton = () => {
   const register = useRef();
   const setRegisterState = useSetRecoilState(registerPopupState);
+  const [gitHubLoginState, setGitHubLoginState] = useRecoilState(gitHubLogin);
 
   const handleClickUserButton = (e) => {
     register.current.contains(e.target)
       ? setRegisterState(true)
       : setRegisterState(false);
+    if (gitHubLoginState) setGitHubLoginState(false);
   };
 
   useEffect(() => {
@@ -22,7 +27,7 @@ const UserButton = () => {
       window.removeEventListener('click', handleClickUserButton);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [gitHubLoginState]);
 
   return (
     <UserButtonStyle ref={register}>

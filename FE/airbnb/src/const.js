@@ -236,3 +236,6 @@ export const NEXT = 'next';
 
 // Reservation > Section > Card
 export const SUPER_HOST = '슈퍼호스트';
+
+// GitHub OAuth
+export const GITHUB_LOGIN = 'https://github.com/login/oauth/authorize';

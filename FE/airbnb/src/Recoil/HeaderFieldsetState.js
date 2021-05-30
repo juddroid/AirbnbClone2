@@ -131,9 +131,14 @@ export const guestField = atom({
 
 export const checkInDeleteButton = atom({
   key: 'checkInDeleteButton',
-  value: false,
+  default: false,
 });
 export const checkOutDeleteButton = atom({
   key: 'checkOutDeleteButton',
-  value: false,
+  default: false,
+});
+
+export const gitHubLogin = atom({
+  key: 'gitHubLogin',
+  default: false,
 });
