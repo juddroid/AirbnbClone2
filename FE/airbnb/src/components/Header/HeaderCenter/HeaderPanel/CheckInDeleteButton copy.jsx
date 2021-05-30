@@ -2,61 +2,56 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { INPUT_DATE_PLACEHOLDER } from '../../../../const';
 import {
+  checkInDeleteButton,
   checkInField,
-  checkOutDeleteButton,
   checkOutField,
 } from '../../../../Recoil/HeaderFieldsetState';
 import DeleteButtonIcon from '../../../../svg/DeleteButtonIcon';
 
-const DeleteButton = () => {
-  const setCheckOutDelete = useSetRecoilState(checkOutDeleteButton);
+const CheckInDeleteButton = () => {
+  const setCheckInDelete = useSetRecoilState(checkInDeleteButton);
   const [checkOutFieldState, setCheckOutField] = useRecoilState(checkOutField);
   const [checkInFieldState, setCheckInField] = useRecoilState(checkInField);
 
   const handleClickDeleteButton = (e) => {
     e.stopPropagation();
-    setCheckOutDelete(false);
-    if (checkOutFieldState.state && checkInFieldState.state) {
-      setCheckInField({
-        value: INPUT_DATE_PLACEHOLDER,
-        state: false,
-      });
-      setCheckOutField({
-        value: INPUT_DATE_PLACEHOLDER,
-        state: false,
-      });
-    }
+    setCheckInDelete(false);
+
+    setCheckInField({
+      value: INPUT_DATE_PLACEHOLDER,
+      state: false,
+    });
   };
 
   return (
-    <DeleteButtonStyle onClick={handleClickDeleteButton}>
-      <DeleteButtonBox>
-        <DelButton>
-          <DelButtonIconSpan>
+    <CheckInDeleteButtonStyle onClick={handleClickDeleteButton}>
+      <CheckInDeleteButtonBox>
+        <CheckInDelButton>
+          <CheckInDelButtonIconSpan>
             <DeleteButtonIcon />
-          </DelButtonIconSpan>
-        </DelButton>
-      </DeleteButtonBox>
-    </DeleteButtonStyle>
+          </CheckInDelButtonIconSpan>
+        </CheckInDelButton>
+      </CheckInDeleteButtonBox>
+    </CheckInDeleteButtonStyle>
   );
 };
 
-export default DeleteButton;
+export default CheckInDeleteButton;
 
-const DeleteButtonStyle = styled.div`
+const CheckInDeleteButtonStyle = styled.div`
   flex: 0 0 0%;
   position: relative;
   z-index: 5;
 `;
 
-const DeleteButtonBox = styled.div`
+const CheckInDeleteButtonBox = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 24px;
 `;
 
-const DelButton = styled.button`
+const CheckInDelButton = styled.button`
   appearance: none;
   display: inline-block;
   border-radius: 50%;
@@ -93,6 +88,6 @@ const DelButton = styled.button`
   }
 `;
 
-const DelButtonIconSpan = styled.span`
-  position: relative !important;
+const CheckInDelButtonIconSpan = styled.span`
+  position: relative;
 `;

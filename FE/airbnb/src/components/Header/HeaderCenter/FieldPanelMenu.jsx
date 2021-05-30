@@ -11,8 +11,11 @@ import {
 import {
   calendarPopupState,
   checkInButtonState,
+  checkInDeleteButton,
+  checkInField,
   checkOutButtonState,
   checkOutDeleteButton,
+  checkOutField,
   guestPopupState,
   nearbyPopupState,
   panelState,
@@ -27,7 +30,8 @@ import CheckOutPanelButton from './HeaderPanel/CheckOutPanelButton';
 import PanelLast from './HeaderPanel/PanelLast';
 import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
-import DeleteButton from './HeaderPanel/DeleteButton';
+import CheckOutDeleteButton from './HeaderPanel/CheckOutDeleteButton';
+import CheckInDeleteButton from './HeaderPanel/CheckInDeleteButton copy';
 
 const FieldPanelMenu = () => {
   const nearby = useRef();
@@ -45,7 +49,11 @@ const FieldPanelMenu = () => {
   const [checkOutButton, setCheckOutButton] =
     useRecoilState(checkOutButtonState);
   const calendarState = useRecoilValue(calendarPopupState);
-  const checkOutDelete = useRecoilValue(checkOutDeleteButton);
+  const [checkInDelete, setCheckInDelete] = useRecoilState(checkInDeleteButton);
+  const [checkOutDelete, setCheckOutDelete] =
+    useRecoilState(checkOutDeleteButton);
+  const checkInButtonFeild = useRecoilValue(checkInField);
+  const checkOutButtonFeild = useRecoilValue(checkOutField);
 
   const handleClickNearbyPopup = () => {
     setNearbyPopup(true);
@@ -59,15 +67,21 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckInPopup = () => {
-    if (!checkInButton && checkOutButton && calendarPopup) {
+    if (
+      !checkInButton &&
+      checkOutButton &&
+      calendarPopup &&
+      checkInButtonFeild.state
+    ) {
       setCheckInButton(true);
       setCheckOutButton(false);
+      setCheckInDelete(true);
       return;
     }
 
-    if (calendarPopup) {
-      setCalendarPopup(false);
-      setCheckInButton(false);
+    if (!checkInButton && checkOutButton && calendarPopup) {
+      setCheckInButton(true);
+      setCheckOutButton(false);
       return;
     }
     setCalendarPopup(true);
@@ -80,6 +94,18 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckOutPopup = () => {
+    if (
+      checkInButton &&
+      !checkOutButton &&
+      calendarPopup &&
+      checkOutButtonFeild.state
+    ) {
+      setCheckInButton(false);
+      setCheckOutButton(true);
+      setCheckOutDelete(true);
+      return;
+    }
+
     if (checkInButton && !checkOutButton && calendarPopup) {
       setCheckInButton(false);
       setCheckOutButton(true);
@@ -152,6 +178,7 @@ const FieldPanelMenu = () => {
       <FieldPanelMenuCenter>
         <CheckInPanelButtonStyle ref={checkIn}>
           <CheckInPanelButton />
+          {checkInDelete && <CheckInDeleteButton />}
         </CheckInPanelButtonStyle>
         <CalendarPopupStyle {...{ calendarState }} ref={calendar}>
           <CalendarPopup />
@@ -159,7 +186,7 @@ const FieldPanelMenu = () => {
         <FieldPanelMenuSeparator />
         <CheckOutPanelButtonStyle ref={checkOut}>
           <CheckOutPanelButton />
-          {checkOutDelete && <DeleteButton />}
+          {checkOutDelete && <CheckOutDeleteButton />}
         </CheckOutPanelButtonStyle>
       </FieldPanelMenuCenter>
       <FieldPanelMenuSeparator />
