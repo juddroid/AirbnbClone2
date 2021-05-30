@@ -1,13 +1,23 @@
 import styled from 'styled-components';
 import EachDate from './EachDate';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
 
-const MonthTable = ({ calendar, today, month }) => {
+const MonthTable = ({ calendarBox }) => {
+  const [eachMonth, setEachMonth] = useState(null);
+
+  useEffect(() => {
+    setEachMonth(calendarBox);
+  }, []);
+
   return (
     <MonthTableStyle>
       <DateBoxWrapper>
-        {calendar.map((date) => (
-          <EachDate {...{ today, month, date }} key={uuidv4()} />
+        {eachMonth?.dateList.map((dateState) => (
+          <EachDate
+            {...{ eachMonth, setEachMonth, dateState }}
+            key={uuidv4()}
+          />
         ))}
       </DateBoxWrapper>
     </MonthTableStyle>

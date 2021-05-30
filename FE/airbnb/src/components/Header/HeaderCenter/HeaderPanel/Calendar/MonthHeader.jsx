@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-const MonthHeader = ({ today, month }) => {
+const MonthHeader = ({ calendarBox }) => {
+  const month = calendarBox.month + 1 === 13 ? 1 : calendarBox.month + 1;
   return (
     <MonthHeaderStyle>
       <MonthTitle>
-        {today.year}년 {month + 1}월
+        {calendarBox.year}년 {month}월
       </MonthTitle>
     </MonthHeaderStyle>
   );

@@ -1,11 +1,21 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
+import { Calendar } from '../calendar';
 
 export const calendar = atom({
   key: 'calendar',
   default: -391,
 });
 
-export const todayDate = atom({
+export const current = atom({
+  key: 'current',
+  default: {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    date: new Date().getDate(),
+  },
+});
+
+export const todayData = atom({
   key: 'todayDate',
   default: {
     year: new Date().getFullYear(),
@@ -14,29 +24,21 @@ export const todayDate = atom({
   },
 });
 
-export const displayMonth = atom({
-  key: 'displayMonth',
-  default: new Date().getMonth(),
-});
-
-export const monthList = atom({
-  key: 'monthList',
-  default: [
-    new Date().getMonth() - 1,
-    new Date().getMonth(),
-    new Date().getMonth() + 1,
-    new Date().getMonth() + 2,
-  ],
+export const getCalendar = selector({
+  key: 'getCalendar',
+  get: ({ get }) => {
+    const calendar = get(todayData);
+    const currentCalendar = new Calendar(
+      calendar.year,
+      calendar.month
+    ).getCalendarList();
+    return currentCalendar;
+  },
 });
 
 export const calendarWrapperSize = atom({
   key: 'calendarWrapperSize',
   default: 0,
-});
-
-export const calendarList = atom({
-  key: 'calendarList',
-  default: '',
 });
 
 export const prevMonthBox = atom({
@@ -52,4 +54,13 @@ export const nextNextMonthBox = atom({
 export const animation = atom({
   key: 'animation',
   default: false,
+});
+
+export const selectedCheckInDate = atom({
+  key: 'selectedCheckInDate',
+  default: null,
+});
+export const selectedCheckOutDate = atom({
+  key: 'selectedCheckOutDate',
+  default: null,
 });

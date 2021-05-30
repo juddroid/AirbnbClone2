@@ -1,8 +1,12 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { panelState } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelMenuLabel = ({ name, placeholder }) => {
+  const panelBackgroundState = useRecoilValue(panelState);
+
   return (
-    <PanelMenuLabelStyle>
+    <PanelMenuLabelStyle {...{ panelBackgroundState }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{name}</PanelMenuDiv>
         <PanelMenuInput placeholder={placeholder} />
@@ -22,11 +26,15 @@ const PanelMenuLabelStyle = styled.label`
   flex: 1 0 0%;
   min-width: 0px;
   padding: 14px 32px;
+  z-index: 2;
+
+  :hover::before {
+    display: block;
+  }
 
   ::before {
     border-width: 0 1px;
     border-style: solid;
-    border-color: #fff;
     content: '';
     display: none;
     height: 32px;
@@ -36,10 +44,8 @@ const PanelMenuLabelStyle = styled.label`
     top: 50%;
     z-index: 0;
     border-left: 0px;
-  }
-
-  :hover::before {
-    display: block;
+    border-color: ${({ panelBackgroundState }) =>
+      panelBackgroundState ? `#f7f7f7` : `#fff`};
   }
 
   ::after {
@@ -57,6 +63,18 @@ const PanelMenuLabelStyle = styled.label`
 
   :hover::after {
     background-color: #ebebeb;
+  }
+
+  :focus-within::before {
+    display: block;
+  }
+
+  :focus-within::after {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: 0px 6px 20px rgb(0 0 0 / 20%);
+    left: 0px;
+    right: 0px;
   }
 `;
 

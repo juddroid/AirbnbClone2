@@ -1,12 +1,12 @@
 import { LASTDATE_LIST } from './const';
 
-interface IToday {
+interface IDate {
   year: number;
   month: number;
   date: number;
 }
 
-export const getDateList = (today: IToday, month: number) => {
+export const getDateList = (today: IDate, month: number) => {
   const day = new Date(today.year, month).getDay();
 
   const dateList = [];
@@ -31,3 +31,7 @@ export const setState = (setCallback: any, state: boolean) =>
   setCallback(state);
 export const setToggle = (setCallback: any, state: boolean) =>
   setCallback(!state);
+
+export const getDate = (dateObj: IDate) => {
+  return new Date(dateObj.year, dateObj.month, dateObj.date);
+};

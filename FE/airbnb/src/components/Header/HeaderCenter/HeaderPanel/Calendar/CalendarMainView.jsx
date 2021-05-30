@@ -3,47 +3,36 @@ import Month from './Month';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   calendar,
-  todayDate,
   calendarWrapperSize,
-  calendarList,
-  monthList,
   animation,
+  getCalendar,
 } from '../../../../../Recoil/CalendarState';
 import { useEffect } from 'react';
-import { getDateList } from '../../../../../util';
 import { v4 as uuidv4 } from 'uuid';
 
 const CalendarMainView = () => {
-  const today = useRecoilValue(todayDate);
-  const displayMonthList = useRecoilValue(monthList);
+  // standard date (current)
+  const calendarBoxList = useRecoilValue(getCalendar);
   const animationState = useRecoilValue(animation);
   const calendarPosition = useRecoilValue(calendar);
-  const [calList, setCalList] = useRecoilState(calendarList);
   const [boxHeight, setBoxHeight] = useRecoilState(calendarWrapperSize);
 
   useEffect(() => {
-    const newCalendarList = displayMonthList.map((month) =>
-      getDateList(today, month)
-    );
-    setCalList(newCalendarList);
-
     setBoxHeight(
-      calList && (calList[1].length > 34 || calList[2].length > 34) ? 378 : 340
+      calendarBoxList &&
+        (calendarBoxList[1].dateList.length > 34 ||
+          calendarBoxList[2].dateList.length > 34)
+        ? 378
+        : 340
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayMonthList]);
-
-  if (!calList) return null;
+  }, [calendarBoxList, boxHeight]);
 
   return (
     <CalendarMainViewStyle {...{ boxHeight }}>
       <CalendarMainViewWrapper {...{ calendarPosition, animationState }}>
-        {calList.map((calendar, idx) => (
-          <Month
-            {...{ calendar, today }}
-            month={displayMonthList[idx]}
-            key={uuidv4()}
-          />
+        {calendarBoxList.map((calendarBox) => (
+          <Month {...{ calendarBox }} key={uuidv4()} />
         ))}
       </CalendarMainViewWrapper>
     </CalendarMainViewStyle>

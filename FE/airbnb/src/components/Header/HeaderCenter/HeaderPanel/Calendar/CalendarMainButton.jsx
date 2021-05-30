@@ -1,40 +1,30 @@
 import styled from 'styled-components';
 import { LEFT, RIGHT } from '../../../../../const';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   animation,
   calendar,
-  calendarList,
   // calendarWrapperSize,
-  displayMonth,
-  monthList,
-  todayDate,
+  todayData,
 } from '../../../../../Recoil/CalendarState';
-import { getDateList } from '../../../../../util';
 
 const CalendarButton = ({ direction }) => {
-  const today = useRecoilValue(todayDate);
-  const [thisMonth, setThisMonth] = useRecoilState(displayMonth);
-  const setDisplayMonthList = useSetRecoilState(monthList);
+  const [calendarData, setCalendarData] = useRecoilState(todayData);
   const setAnimationState = useSetRecoilState(animation);
   const setCalendarPosition = useSetRecoilState(calendar);
-  const setCalendarList = useSetRecoilState(calendarList);
-  // const setBoxHeight = useSetRecoilState(calendarWrapperSize);
-  // const list = useRecoilValue(calendarList);
 
   const handleClickButton = () => {
     if (direction === LEFT) {
+      setCalendarData({
+        ...calendarData,
+        month: calendarData.month - 1,
+      });
+
       setAnimationState(true);
       setCalendarPosition((position) => position + 391);
-      setDisplayMonthList((month) =>
-        month.filter((month) => month !== thisMonth + 2)
-      );
-      setCalendarList((list) => list.filter((_, i) => i !== 3));
-      setThisMonth(thisMonth - 1);
-      setDisplayMonthList((month) => [thisMonth - 2, ...month]);
-      setCalendarList((list) => [getDateList(today, thisMonth - 2), ...list]);
+
       setTimeout(() => {
         setAnimationState(false);
         setCalendarPosition(-391);
@@ -43,15 +33,14 @@ const CalendarButton = ({ direction }) => {
       return;
     }
     if (direction === RIGHT) {
+      setCalendarData({
+        ...calendarData,
+        month: calendarData.month + 1,
+      });
+
       setAnimationState(true);
       setCalendarPosition((position) => position - 391);
-      setDisplayMonthList((month) =>
-        month.filter((month) => month !== thisMonth - 1)
-      );
-      setCalendarList((list) => list.filter((_, i) => i !== 0));
-      setThisMonth(thisMonth + 1);
-      setDisplayMonthList((month) => [...month, thisMonth + 3]);
-      setCalendarList((list) => [...list, getDateList(today, thisMonth + 3)]);
+
       setTimeout(() => {
         setAnimationState(false);
         setCalendarPosition(-391);

@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import MonthHeader from './MonthHeader';
 import MonthTable from './MonthTable';
 
-const Month = ({ today, calendar, month }) => {
+const Month = ({ calendarBox }) => {
   return (
     <MonthStyle>
       <MonthWrapper>
-        <MonthHeader {...{ today, month }} />
-        <MonthTable {...{ calendar, today, month }} />
+        <MonthHeader {...{ calendarBox }} />
+        <MonthTable {...{ calendarBox }} />
       </MonthWrapper>
     </MonthStyle>
   );

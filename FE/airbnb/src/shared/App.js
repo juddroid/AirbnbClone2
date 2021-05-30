@@ -12,7 +12,7 @@ function App() {
       <AppStyle className="App">
         <UpperDiv>
           <Route exact path="/" component={Aside} />
-          <Route path="/" component={Home} />
+          <Home />
           <Route exact path="/" component={Main} />
           <Route path="/reservation" component={Reservation} />
         </UpperDiv>
