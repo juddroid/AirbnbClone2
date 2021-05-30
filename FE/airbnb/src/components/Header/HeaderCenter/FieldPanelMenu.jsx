@@ -31,7 +31,7 @@ import PanelLast from './HeaderPanel/PanelLast';
 import PanelMenu from './HeaderPanel/PanelMenu';
 import Search from './Search';
 import CheckOutDeleteButton from './HeaderPanel/CheckOutDeleteButton';
-import CheckInDeleteButton from './HeaderPanel/CheckInDeleteButton copy';
+import CheckInDeleteButton from './HeaderPanel/CheckInDeleteButton';
 
 const FieldPanelMenu = () => {
   const nearby = useRef();
@@ -67,6 +67,10 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckInPopup = () => {
+    if (checkInButtonFeild.state && checkOutButtonFeild.state)
+      setCheckInDelete(true);
+    setCheckOutDelete(false);
+
     if (
       !checkInButton &&
       checkOutButton &&
@@ -94,6 +98,10 @@ const FieldPanelMenu = () => {
   };
 
   const handleClickCheckOutPopup = () => {
+    if (checkInButtonFeild.state && checkOutButtonFeild.state)
+      setCheckOutDelete(true);
+    setCheckInDelete(false);
+
     if (
       checkInButton &&
       !checkOutButton &&
@@ -146,6 +154,8 @@ const FieldPanelMenu = () => {
     setPanelState(false);
     setCheckInButton(false);
     setCheckOutButton(false);
+    setCheckInDelete(false);
+    setCheckOutDelete(false);
   };
 
   const handleClickPopup = (e) => {
@@ -166,7 +176,13 @@ const FieldPanelMenu = () => {
     return () => {
       window.removeEventListener('click', handleClickPopup);
     };
-  }, [checkInButton, checkOutButton, calendarPopup]);
+  }, [
+    checkInButton,
+    checkOutButton,
+    calendarPopup,
+    checkInButtonFeild,
+    checkOutButtonFeild,
+  ]);
 
   return (
     <FieldPanelMenuStyle>

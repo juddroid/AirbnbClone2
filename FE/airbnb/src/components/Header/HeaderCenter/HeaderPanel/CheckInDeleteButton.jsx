@@ -17,6 +17,18 @@ const CheckInDeleteButton = () => {
     e.stopPropagation();
     setCheckInDelete(false);
 
+    if (checkInFieldState.state && checkOutFieldState.state) {
+      setCheckInField({
+        value: INPUT_DATE_PLACEHOLDER,
+        state: false,
+      });
+      setCheckOutField({
+        value: INPUT_DATE_PLACEHOLDER,
+        state: false,
+      });
+      return;
+    }
+
     setCheckInField({
       value: INPUT_DATE_PLACEHOLDER,
       state: false,
