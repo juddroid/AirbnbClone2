@@ -8,11 +8,11 @@ import {
   checkInFieldStyle,
   guestPopupState,
   nearbyPopupState,
-  panelState,
+  guestButtonState,
 } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelCheckInButtonBox = () => {
-  const panelBackgroundState = useRecoilValue(panelState);
+  const panelBackgroundState = useRecoilValue(guestButtonState);
   const checkInButton = useRecoilValue(checkInButtonState);
   const guestPopup = useRecoilValue(guestPopupState);
   const nearbyPopup = useRecoilValue(nearbyPopupState);

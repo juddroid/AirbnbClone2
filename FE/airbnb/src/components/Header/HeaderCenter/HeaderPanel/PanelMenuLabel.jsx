@@ -1,12 +1,12 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { panelState } from '../../../../Recoil/HeaderFieldsetState';
+import { nearbyButtonState } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelMenuLabel = ({ name, placeholder }) => {
-  const panelBackgroundState = useRecoilValue(panelState);
+  const nearbyButton = useRecoilValue(nearbyButtonState);
 
   return (
-    <PanelMenuLabelStyle {...{ panelBackgroundState }}>
+    <PanelMenuLabelStyle {...{ nearbyButton }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{name}</PanelMenuDiv>
         <PanelMenuInput placeholder={placeholder} />
@@ -44,8 +44,7 @@ const PanelMenuLabelStyle = styled.label`
     top: 50%;
     z-index: 0;
     border-left: 0px;
-    border-color: ${({ panelBackgroundState }) =>
-      panelBackgroundState ? `#f7f7f7` : `#fff`};
+    border-color: ${({ nearbyButton }) => (nearbyButton ? `#f7f7f7` : `#fff`)};
   }
 
   ::after {

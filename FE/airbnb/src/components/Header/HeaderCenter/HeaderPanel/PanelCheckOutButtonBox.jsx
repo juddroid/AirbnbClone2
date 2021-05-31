@@ -6,11 +6,11 @@ import {
   checkOutButtonState,
   checkOutField,
   checkOutFieldStyle,
-  panelState,
+  guestButtonState,
 } from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelCheckOutButtonBox = () => {
-  const panelBackgroundState = useRecoilValue(panelState);
+  const panelBackgroundState = useRecoilValue(guestButtonState);
   const checkOutButton = useRecoilValue(checkOutButtonState);
   const checkOutDate = useRecoilValue(checkOutField);
   const [fieldStyle, setFieldStyle] = useRecoilState(checkOutFieldStyle);

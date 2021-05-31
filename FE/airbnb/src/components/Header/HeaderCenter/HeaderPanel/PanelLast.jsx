@@ -1,17 +1,17 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import {
-  panelState,
+  guestButtonState,
   searchButtonState,
 } from '../../../../Recoil/HeaderFieldsetState';
 import PanelLastLabel from './PanelLastLabel';
 
 const PanelLast = ({ name }) => {
   const searchState = useRecoilValue(searchButtonState);
-  const panelBackgroundState = useRecoilValue(panelState);
+  const guestButton = useRecoilValue(guestButtonState);
 
   return (
-    <PanelLastStyle {...{ searchState, panelBackgroundState }}>
+    <PanelLastStyle {...{ searchState, guestButton }}>
       <PanelLastLabel {...{ name }} />
     </PanelLastStyle>
   );
@@ -20,7 +20,7 @@ const PanelLast = ({ name }) => {
 export default PanelLast;
 
 const PanelLastStyle = styled.div`
-  ${({ searchState, panelBackgroundState }) =>
+  ${({ searchState, guestButton }) =>
     searchState
       ? `
   appearance: none;
@@ -97,7 +97,7 @@ const PanelLastStyle = styled.div`
   ::before {
     border-width: 0 1px;
     border-style: solid;
-    border-color: ${panelBackgroundState ? `#f7f7f7` : `#fff`};
+    border-color: ${guestButton ? `#f7f7f7` : `#fff`};
     content: '';
     display: none;
     height: 32px;

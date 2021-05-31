@@ -239,4 +239,4 @@ export const SUPER_HOST = '슈퍼호스트';
 
 // GitHub OAuth
 export const GITHUB_LOGIN =
-  'https://github.com/login/oauth/authorize?client_id=ed8a0865599051dad9da';
+  'https://github.com/login/oauth/authorize?client_id=ad0b522cb30d79a09f79';

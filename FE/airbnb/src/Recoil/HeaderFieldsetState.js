@@ -55,8 +55,13 @@ export const searchButtonState = atom({
   default: false,
 });
 
-export const panelState = atom({
-  key: 'panelState',
+export const nearbyButtonState = atom({
+  key: 'nearbyButtonState',
+  default: false,
+});
+
+export const guestButtonState = atom({
+  key: 'guestButtonState',
   default: false,
 });
 

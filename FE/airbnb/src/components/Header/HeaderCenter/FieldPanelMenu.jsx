@@ -20,9 +20,10 @@ import {
   guestField,
   guestPopupState,
   nearbyPopupState,
-  panelState,
+  guestButtonState,
   searchButtonState,
   searchTextState,
+  nearbyButtonState,
 } from '../../../Recoil/HeaderFieldsetState';
 import CalendarPopup from './HeaderPanel/CalendarPopup';
 import GuestPopup from './HeaderPanel/Guest/GuestPopup';
@@ -47,10 +48,11 @@ const FieldPanelMenu = () => {
   const setGuestPopup = useSetRecoilState(guestPopupState);
   const setSearchState = useSetRecoilState(searchButtonState);
   const setSearchTextState = useSetRecoilState(searchTextState);
-  const [nearbyButton, setNearbyButton] = useRecoilState(panelState);
+  const [nearbyButton, setNearbyButton] = useRecoilState(nearbyButtonState);
   const [checkInButton, setCheckInButton] = useRecoilState(checkInButtonState);
   const [checkOutButton, setCheckOutButton] =
     useRecoilState(checkOutButtonState);
+  const [guestButton, setGuestButton] = useRecoilState(guestButtonState);
   const calendarState = useRecoilValue(calendarPopupState);
   const [checkInDelete, setCheckInDelete] = useRecoilState(checkInDeleteButton);
   const [checkOutDelete, setCheckOutDelete] =
@@ -67,6 +69,7 @@ const FieldPanelMenu = () => {
     setNearbyButton(true);
     setCalendarPopup(false);
     setGuestPopup(false);
+    setGuestButton(false);
     setCheckInButton(false);
     setCheckOutButton(false);
     setSearchState(false);
@@ -106,6 +109,7 @@ const FieldPanelMenu = () => {
     setCheckInButton(true);
     setCheckOutButton(false);
     setNearbyPopup(false);
+    setGuestButton(false);
     setGuestPopup(false);
     setSearchState(false);
   };
@@ -144,19 +148,22 @@ const FieldPanelMenu = () => {
     setCheckInButton(false);
     setNearbyPopup(false);
     setGuestPopup(false);
+    setGuestButton(false);
     setSearchState(false);
   };
 
   const handleClickGuestPopup = () => {
-    setGuestPopup(true);
-    setSearchState(true);
+    setGuestButton((prev) => !prev);
+    setGuestPopup((prev) => !prev);
+    setSearchState((prev) => !prev);
     setSearchTextState(true);
-    setNearbyButton(true);
     setNearbyPopup(false);
     setCalendarPopup(false);
     setCheckInButton(false);
     setCheckOutButton(false);
-    guestFeildState && setGuestDeleteButton(true);
+    setCheckInDelete(false);
+    setCheckOutDelete(false);
+    guestFeildState.state && setGuestDeleteButton(true);
   };
 
   const handleClickClose = () => {
@@ -168,6 +175,7 @@ const FieldPanelMenu = () => {
     setNearbyButton(false);
     setCheckInButton(false);
     setCheckOutButton(false);
+    setGuestButton(false);
     setCheckInDelete(false);
     setCheckOutDelete(false);
     setGuestDeleteButton(false);
@@ -185,12 +193,16 @@ const FieldPanelMenu = () => {
   const handleMouseDownNearby = () => {
     setNearbyPopup(false);
   };
-
+  const handleMouseUpNearby = () => {
+    setNearbyPopup(true);
+  };
+  console.log(guestButton);
   useEffect(() => {
     window.addEventListener('click', handleClickPopup);
     return () => {
       window.removeEventListener('click', handleClickPopup);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     guestFeildState,
     nearbyButton,
@@ -199,11 +211,16 @@ const FieldPanelMenu = () => {
     calendarPopup,
     checkInButtonFeild,
     checkOutButtonFeild,
+    guestButton,
   ]);
 
   return (
     <FieldPanelMenuStyle>
-      <FieldPanelMenuLeft ref={nearby} onMouseDown={handleMouseDownNearby}>
+      <FieldPanelMenuLeft
+        ref={nearby}
+        // onMouseDown={handleMouseDownNearby}
+        // onMouseUp={handleMouseUpNearby}
+      >
         <PanelMenu name={LOCATION} placeholder={LOCATION_PLACEHOLDER} />
         <NearbyPopup />
       </FieldPanelMenuLeft>

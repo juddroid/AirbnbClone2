@@ -4,12 +4,14 @@ import SearchLogo from '../../../svg/SearchLogo';
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
+  guestPopupState,
   headerScrollState,
   nearbyPopupState,
-  panelState,
+  guestButtonState,
   reservationState,
   searchData,
   searchTextState,
+  nearbyButtonState,
 } from '../../../Recoil/HeaderFieldsetState';
 
 const Search = () => {
@@ -17,15 +19,20 @@ const Search = () => {
   const setReservationState = useSetRecoilState(reservationState);
   const searchText = useRecoilValue(searchTextState);
   const search = useRecoilValue(searchData);
+  const setNearbyButton = useSetRecoilState(nearbyButtonState);
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
-  const setNearbyButton = useSetRecoilState(panelState);
+  const setGuestButton = useSetRecoilState(guestButtonState);
+  const setGuestPopup = useSetRecoilState(guestPopupState);
 
   const handleClickSearchButton = (e) => {
     e.stopPropagation();
 
     if (!search.location) {
-      setNearbyPopup(true);
+      console.log(searchText);
       setNearbyButton(true);
+      setNearbyPopup(true);
+      setGuestButton(false);
+      setGuestPopup(false);
       return;
     }
     setReservationState(true);
