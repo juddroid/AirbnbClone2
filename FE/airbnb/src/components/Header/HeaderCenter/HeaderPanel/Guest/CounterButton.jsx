@@ -2,12 +2,17 @@ import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { guestField } from '../../../../../Recoil/HeaderFieldsetState';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  guestDeleteButton,
+  guestField,
+} from '../../../../../Recoil/HeaderFieldsetState';
 
 const MinusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
+  const [deleteButton, setGuestDeleteButton] =
+    useRecoilState(guestDeleteButton);
 
   const handleClickMinusButton = (e, id) => {
     e.stopPropagation();
@@ -25,6 +30,16 @@ const MinusButton = ({ count, id }) => {
         guest.id === id ? { ...guest, count: guest.count - 1 } : guest
       ),
     });
+
+    guestCount.value.map(
+      (guest) =>
+        guest.id === id &&
+        guest.count === 0 &&
+        setGuestCount({
+          ...guestCount,
+          state: false,
+        })
+    );
   };
 
   const checkCount = (count) => {
@@ -32,8 +47,15 @@ const MinusButton = ({ count, id }) => {
       (guest) => guest.id === id && count === 0 && setDisabled(true)
     );
   };
+
+  const checkDeleteButton = () => {
+    guestCount.value.filter((guest) => guest.count === 0).length === 3 &&
+      setGuestDeleteButton(false);
+  };
+
   useEffect(() => {
     checkCount(count);
+    checkDeleteButton();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
@@ -51,15 +73,19 @@ const MinusButton = ({ count, id }) => {
 const PlusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
+  const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
 
   const handleClickPlusButton = (e, id) => {
     e.stopPropagation();
+
+    setGuestDeleteButton(true);
 
     setGuestCount({
       ...guestCount,
       value: guestCount.value.map((guest) =>
         guest.id === id ? { ...guest, count: guest.count + 1 } : guest
       ),
+      state: true,
     });
 
     if ((id === 1 || id === 2) && guestCount.value[0].count === 0) {
@@ -72,6 +98,7 @@ const PlusButton = ({ count, id }) => {
             ? { ...guest, count: guest.count + 1 }
             : guest
         ),
+        state: true,
       });
     }
   };

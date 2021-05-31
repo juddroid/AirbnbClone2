@@ -6,7 +6,7 @@ import {
 } from '../../../../Recoil/HeaderFieldsetState';
 import PanelLastLabel from './PanelLastLabel';
 
-const PanelLast = ({ name, placeholder }) => {
+const PanelLast = ({ name }) => {
   const searchState = useRecoilValue(searchButtonState);
   const panelBackgroundState = useRecoilValue(panelState);
 

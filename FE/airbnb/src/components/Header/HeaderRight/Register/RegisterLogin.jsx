@@ -4,45 +4,41 @@ import { BLANK, GITHUB_LOGIN, LOGIN } from '../../../../const';
 import { gitHubLogin } from '../../../../Recoil/HeaderFieldsetState';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
+import dotenv from 'dotenv';
 
-const RegisterLogin = () => {
+const RegisterLogin = ({ location, history }) => {
   const [gitHubLoginState, setGitHubLoginState] = useRecoilState(gitHubLogin);
 
   const handleClickLoginButton = (e) => {
     e.stopPropagation();
-    if (gitHubLoginState) return;
+    if (gitHubLoginState) {
+      return (window.location.href = `${GITHUB_LOGIN}`);
+    }
     setGitHubLoginState(true);
   };
-
-  // const getToken = () => {
-  //   fetch(GITHUB_LOGIN, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     redirect: 'follow', // manual, *follow, error
-  //     referrer: 'no-referrer', // no-referrer, *client
-  //     body: JSON.stringify(data), // body data type must match "Content-Type" header
-  //   }).then((response) => response.json()); // parses JSON response into native JavaScript objects
-  // };
 
   return (
     <>
       {gitHubLoginState ? (
-        <Link to="/login" target={BLANK}>
-          <RegisterLoginStyle
-            {...{ gitHubLoginState }}
-            onClick={handleClickLoginButton}
-          >
-            <GitHubLoginStyle>
-              <div>
-                <GitHubIcon />
-              </div>
-              <div>{`Sign in with GitHub`}</div>
-            </GitHubLoginStyle>
-          </RegisterLoginStyle>
-        </Link>
+        // <Link
+        //   to={
+        //     'https://github.com/login/oauth/authorize?client_id=ad0b522cb30d79a09f79'
+        //   }
+        //   target={BLANK}
+        // >
+        <RegisterLoginStyle
+          {...{ gitHubLoginState }}
+          onClick={handleClickLoginButton}
+        >
+          <GitHubLoginStyle>
+            <div>
+              <GitHubIcon />
+            </div>
+            <div>{`Sign in with GitHub`}</div>
+          </GitHubLoginStyle>
+        </RegisterLoginStyle>
       ) : (
+        // </Link>
         <RegisterLoginStyle
           {...{ gitHubLoginState }}
           onClick={handleClickLoginButton}

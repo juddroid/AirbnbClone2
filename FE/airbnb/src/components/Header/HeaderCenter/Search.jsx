@@ -1,11 +1,14 @@
 import styled from 'styled-components';
-import { SEARCH_TEXT } from '../../../const';
+import { GITHUB_LOGIN, SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   headerScrollState,
+  nearbyPopupState,
+  panelState,
   reservationState,
+  searchData,
   searchTextState,
 } from '../../../Recoil/HeaderFieldsetState';
 
@@ -13,30 +16,38 @@ const Search = () => {
   const setHeaderState = useSetRecoilState(headerScrollState);
   const setReservationState = useSetRecoilState(reservationState);
   const searchText = useRecoilValue(searchTextState);
+  const search = useRecoilValue(searchData);
+  const setNearbyPopup = useSetRecoilState(nearbyPopupState);
+  const setNearbyButton = useSetRecoilState(panelState);
 
-  const handleClickSearchButton = () => {
+  const handleClickSearchButton = (e) => {
+    e.stopPropagation();
+
+    if (!search.location) {
+      setNearbyPopup(true);
+      setNearbyButton(true);
+      return;
+    }
     setReservationState(true);
     setHeaderState(true);
   };
 
   return (
-    <Link to="/reservation">
-      <SearchStyle onClick={handleClickSearchButton}>
-        <SearchButton {...{ searchText }}>
-          <UpperSpan>
-            <InnerSpan />
-          </UpperSpan>
-          <BottomSpan>
-            <SearchButtonBox>
-              <SearchLogoBox>
-                <SearchLogo />
-              </SearchLogoBox>
-              <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
-            </SearchButtonBox>
-          </BottomSpan>
-        </SearchButton>
-      </SearchStyle>
-    </Link>
+    <SearchStyle onClick={handleClickSearchButton}>
+      <SearchButton {...{ searchText }}>
+        <UpperSpan>
+          <InnerSpan />
+        </UpperSpan>
+        <BottomSpan>
+          <SearchButtonBox>
+            <SearchLogoBox>
+              <SearchLogo />
+            </SearchLogoBox>
+            <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
+          </SearchButtonBox>
+        </BottomSpan>
+      </SearchButton>
+    </SearchStyle>
   );
 };
 

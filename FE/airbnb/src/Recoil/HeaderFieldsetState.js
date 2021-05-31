@@ -142,3 +142,22 @@ export const gitHubLogin = atom({
   key: 'gitHubLogin',
   default: false,
 });
+
+export const searchData = atom({
+  key: 'searchData',
+  default: {
+    location: null,
+    checkIn: null,
+    checkOut: null,
+    guest: {
+      adult: 0,
+      child: 0,
+      infant: 0,
+    },
+  },
+});
+
+export const guestDeleteButton = atom({
+  key: 'guestDeleteButton',
+  default: false,
+});
