@@ -14,10 +14,10 @@ const Callback = ({ location, history }) => {
     };
 
     getToken();
+    console.log('callback');
 
     const homePage = 'http://localhost:3000';
-    history.push('/');
-    // window.history.pushState(null, null, homePage);
+    window.history.pushState(null, null, homePage);
   }, [location, history]);
 
   return <div>Callback</div>;
