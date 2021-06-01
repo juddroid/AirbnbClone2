@@ -16,7 +16,7 @@ function App() {
           <Home />
           <Route exact path="/" component={Main} />
           <Route path="/reservation" component={Reservation} />
-          <Route path="/auth/login" component={Callback} />
+          <Route path="/" component={Callback} />
         </UpperDiv>
         <BeforeAfterDiv>
           <Footer />

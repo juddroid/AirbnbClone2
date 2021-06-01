@@ -16,8 +16,8 @@ const Callback = ({ location, history }) => {
     getToken();
 
     const homePage = 'http://localhost:3000';
-    window.history.pushState(null, null, homePage);
-    window.location.href = `${homePage}`;
+    history.push('/');
+    // window.history.pushState(null, null, homePage);
   }, [location, history]);
 
   return <div>Callback</div>;
