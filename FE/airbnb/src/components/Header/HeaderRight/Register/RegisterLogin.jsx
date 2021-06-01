@@ -1,13 +1,16 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { BLANK, GITHUB_LOGIN, LOGIN } from '../../../../const';
+import { GITHUB_LOGIN, LOGIN } from '../../../../const';
 import { gitHubLogin } from '../../../../Recoil/HeaderFieldsetState';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { Link } from 'react-router-dom';
-import dotenv from 'dotenv';
+import { isLoggedIn, userData } from '../../../../Recoil/LogInState';
+import { useEffect, useState } from 'react';
 
-const RegisterLogin = ({ location, history }) => {
+const RegisterLogin = () => {
   const [gitHubLoginState, setGitHubLoginState] = useRecoilState(gitHubLogin);
+  const isLogIn = useRecoilValue(isLoggedIn);
+  const user = useRecoilValue(userData);
+  const [logInText, setLogInText] = useState(LOGIN);
 
   const handleClickLoginButton = (e) => {
     e.stopPropagation();
@@ -17,15 +20,15 @@ const RegisterLogin = ({ location, history }) => {
     setGitHubLoginState(true);
   };
 
+  useEffect(() => {
+    console.log(isLogIn);
+    console.log(user.id);
+    isLogIn && setLogInText(user.id);
+  }, [isLogIn]);
+
   return (
     <>
       {gitHubLoginState ? (
-        // <Link
-        //   to={
-        //     'https://github.com/login/oauth/authorize?client_id=ad0b522cb30d79a09f79'
-        //   }
-        //   target={BLANK}
-        // >
         <RegisterLoginStyle
           {...{ gitHubLoginState }}
           onClick={handleClickLoginButton}
@@ -38,12 +41,11 @@ const RegisterLogin = ({ location, history }) => {
           </GitHubLoginStyle>
         </RegisterLoginStyle>
       ) : (
-        // </Link>
         <RegisterLoginStyle
-          {...{ gitHubLoginState }}
+          {...{ gitHubLoginState, isLogIn }}
           onClick={handleClickLoginButton}
         >
-          <LoginStyle>{LOGIN}</LoginStyle>
+          <LoginStyle>{logInText}</LoginStyle>
         </RegisterLoginStyle>
       )}
     </>
@@ -78,16 +80,16 @@ const RegisterLoginStyle = styled.div`
     background-color: #f7f7f7;
   }
 
-  ${({ gitHubLoginState }) =>
+  ${({ gitHubLoginState, isLogIn }) =>
     gitHubLoginState &&
-    `
+    !isLogIn`
     background: #222;
     padding: 9px 16px;
 
     :hover:not(:active) {
       background-color: #333;
     }
-    `};
+  `};
 `;
 
 const LoginStyle = styled.div`

@@ -31,6 +31,7 @@ export const NONE = 'none';
 
 export const REGIST = '회원 가입';
 export const LOGIN = '로그인';
+export const LOGOUT = '로그아웃';
 export const TO_BE_HOST = '숙소 호스트 되기';
 export const HOSTING = '체험 호스팅하기';
 export const HELP = '도움말';

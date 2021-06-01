@@ -1,17 +1,21 @@
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   headerScrollState,
   reservationState,
 } from '../../Recoil/HeaderFieldsetState';
+import { isLoggedIn, userData } from '../../Recoil/LogInState';
 import HeaderCenter from './HeaderCenter';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
+import jwt_decode from 'jwt-decode';
 
 const Header = () => {
   const [headerState, setHeaderState] = useRecoilState(headerScrollState);
   const [reservation, setReservationState] = useRecoilState(reservationState);
+  const setUser = useSetRecoilState(userData);
+  const setLogIn = useSetRecoilState(isLoggedIn);
 
   const handleScrollHeader = () => {
     const isPassedHeader = window.scrollY > 58;
@@ -26,8 +30,23 @@ const Header = () => {
     }
   };
 
+  const checkLogIn = () => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      const profile_url = localStorage.getItem('profile_url');
+      const decoded = jwt_decode(jwt);
+      console.log(jwt);
+      setUser({
+        id: decoded.githubId,
+        image: profile_url,
+      });
+      setLogIn(true);
+    }
+  };
+
   useEffect(() => {
     setHeaderState(false);
+    checkLogIn();
   }, []);
 
   useEffect(() => {

@@ -1,43 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import qs from 'qs';
+import { useSetRecoilState } from 'recoil';
+import { isLoggedIn } from '../Recoil/LogInState';
 
 const Callback = ({ location, history }) => {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
-  const [USER_ID, setUSER_ID] = useState(null);
-  const [isShowModal, setIsShowModal] = useState(false);
-  console.log(window);
+  const setLogIn = useSetRecoilState(isLoggedIn);
+
   useEffect(() => {
     const getToken = async () => {
-      const { code } = qs.parse(window.location.search, {
+      const { jwt, profile_url } = qs.parse(window.location.search, {
         ignoreQueryPrefix: true,
       });
-      if (!code) return;
-      console.log(code);
-      try {
-        const res = await fetch(
-          `http://travel.airbnb.kro.kr/api/auth/social/callback/github`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ data: code }),
-          }
-        );
-        console.log(res);
-        const { access_token, login } = await res.json();
-        localStorage.setItem('access_token', access_token);
+      if (!jwt) return;
 
-        setUSER_ID(login);
-        setIsLoggedIn(true);
-      } catch (error) {
-        console.error(error);
-      }
+      localStorage.setItem('jwt', jwt);
+      localStorage.setItem('profile_url', profile_url);
+
+      setLogIn(true);
     };
+
     getToken();
 
     const homePage = 'http://localhost:3000';
     window.history.pushState(null, null, homePage);
+    window.location.href = `${homePage}`;
   }, [location, history]);
 
   return <div>Callback</div>;

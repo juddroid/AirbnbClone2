@@ -1,10 +1,14 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { REGIST } from '../../../../const';
+import { REGIST, LOGOUT } from '../../../../const';
+import { isLoggedIn } from '../../../../Recoil/LogInState';
 
 const RegisterForm = () => {
+  const isLogIn = useRecoilValue(isLoggedIn);
+
   return (
     <RegisterFormStyle>
-      <div>{REGIST}</div>
+      <div>{isLogIn ? `${LOGOUT}` : `${REGIST}`}</div>
     </RegisterFormStyle>
   );
 };
