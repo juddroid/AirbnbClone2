@@ -5,8 +5,12 @@ import theme from '../components/style/theme';
 import { Route } from 'react-router-dom';
 import { Aside, Home, Main, Reservation } from '../pages';
 import Callback from '../components/Callback';
+import { useRecoilValue } from 'recoil';
+import { isLoggedIn } from '../Recoil/LogInState';
 
 function App() {
+  const isLogIn = useRecoilValue(isLoggedIn);
+  console.log(isLogIn);
   return (
     <ThemeProvider {...{ theme }}>
       <GlobalStyles />
@@ -16,7 +20,7 @@ function App() {
           <Home />
           <Route exact path="/" component={Main} />
           <Route path="/reservation" component={Reservation} />
-          <Route exact path="/" component={Callback} />
+          {!isLogIn && <Route exact path="/" component={Callback} />}
         </UpperDiv>
         <BeforeAfterDiv>
           <Footer />
