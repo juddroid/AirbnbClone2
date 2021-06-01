@@ -114,6 +114,7 @@ const PlusButton = ({ count, id }) => {
     setSearch({
       ...search,
       guest: {
+        ...search.guest,
         adult: guestCount.value[0].count,
         child: guestCount.value[1].count,
         infant: guestCount.value[2].count,
