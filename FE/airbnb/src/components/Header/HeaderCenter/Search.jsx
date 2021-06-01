@@ -1,42 +1,104 @@
 import styled from 'styled-components';
-import { SEARCH_TEXT } from '../../../const';
+import { GITHUB_LOGIN, SEARCH_TEXT } from '../../../const';
 import SearchLogo from '../../../svg/SearchLogo';
-import { Link } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Redirect, Link } from 'react-router-dom';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
+  guestPopupState,
   headerScrollState,
+  nearbyPopupState,
+  guestButtonState,
   reservationState,
+  searchData,
   searchTextState,
+  nearbyButtonState,
+  checkInFieldStyle,
+  checkOutField,
 } from '../../../Recoil/HeaderFieldsetState';
 
 const Search = () => {
   const setHeaderState = useSetRecoilState(headerScrollState);
-  const setReservationState = useSetRecoilState(reservationState);
+  const [reservation, setReservation] = useRecoilState(reservationState);
   const searchText = useRecoilValue(searchTextState);
+  const [search, setSearch] = useRecoilState(searchData);
+  const setNearbyButton = useSetRecoilState(nearbyButtonState);
+  const setNearbyPopup = useSetRecoilState(nearbyPopupState);
+  const setGuestButton = useSetRecoilState(guestButtonState);
+  const setGuestPopup = useSetRecoilState(guestPopupState);
+  const checkIn = useRecoilValue(checkInFieldStyle);
+  const checkOut = useRecoilValue(checkOutField);
 
-  const handleClickSearchButton = () => {
-    setReservationState(true);
+  const handleClickSearchButton = (e) => {
+    e.stopPropagation();
+
+    if (!search.location) {
+      setNearbyButton(true);
+      setNearbyPopup(true);
+      setGuestButton(false);
+      setGuestPopup(false);
+      return;
+    }
+    setReservation(true);
     setHeaderState(true);
+    setSearch({
+      location: search.location,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      guest: {
+        adult: 0,
+        child: 0,
+        infant: 0,
+      },
+    });
+    console.log(search);
   };
 
   return (
-    <Link to="/reservation">
-      <SearchStyle onClick={handleClickSearchButton}>
-        <SearchButton {...{ searchText }}>
-          <UpperSpan>
-            <InnerSpan />
-          </UpperSpan>
-          <BottomSpan>
-            <SearchButtonBox>
-              <SearchLogoBox>
-                <SearchLogo />
-              </SearchLogoBox>
-              <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
-            </SearchButtonBox>
-          </BottomSpan>
-        </SearchButton>
-      </SearchStyle>
-    </Link>
+    <>
+      {reservation ? (
+        <Redirect
+          to={{
+            pathname: '/reservation',
+            search: '?',
+            state: { data: search },
+          }}
+        >
+          <SearchStyle onClick={handleClickSearchButton}>
+            <SearchButton {...{ searchText }}>
+              <UpperSpan>
+                <InnerSpan />
+              </UpperSpan>
+              <BottomSpan>
+                <SearchButtonBox>
+                  <SearchLogoBox>
+                    <SearchLogo />
+                  </SearchLogoBox>
+                  <SearchTextBox {...{ searchText }}>
+                    {SEARCH_TEXT}
+                  </SearchTextBox>
+                </SearchButtonBox>
+              </BottomSpan>
+            </SearchButton>
+          </SearchStyle>
+        </Redirect>
+      ) : (
+        <SearchStyle onClick={handleClickSearchButton}>
+          <SearchButton {...{ searchText }}>
+            <UpperSpan>
+              <InnerSpan />
+            </UpperSpan>
+            <BottomSpan>
+              <SearchButtonBox>
+                <SearchLogoBox>
+                  <SearchLogo />
+                </SearchLogoBox>
+                <SearchTextBox {...{ searchText }}>{SEARCH_TEXT}</SearchTextBox>
+              </SearchButtonBox>
+            </BottomSpan>
+          </SearchButton>
+        </SearchStyle>
+      )}
+    </>
   );
 };
 

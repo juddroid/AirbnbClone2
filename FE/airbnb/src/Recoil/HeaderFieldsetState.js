@@ -55,8 +55,13 @@ export const searchButtonState = atom({
   default: false,
 });
 
-export const panelState = atom({
-  key: 'panelState',
+export const nearbyButtonState = atom({
+  key: 'nearbyButtonState',
+  default: false,
+});
+
+export const guestButtonState = atom({
+  key: 'guestButtonState',
   default: false,
 });
 
@@ -131,9 +136,38 @@ export const guestField = atom({
 
 export const checkInDeleteButton = atom({
   key: 'checkInDeleteButton',
-  value: false,
+  default: false,
 });
 export const checkOutDeleteButton = atom({
   key: 'checkOutDeleteButton',
-  value: false,
+  default: false,
+});
+
+export const gitHubLogin = atom({
+  key: 'gitHubLogin',
+  default: false,
+});
+
+export const searchData = atom({
+  key: 'searchData',
+  default: {
+    location: undefined,
+    checkIn: null,
+    checkOut: null,
+    guest: {
+      adult: 0,
+      child: 0,
+      infant: 0,
+    },
+  },
+});
+
+export const guestDeleteButton = atom({
+  key: 'guestDeleteButton',
+  default: false,
+});
+
+export const nearbyField = atom({
+  key: 'nearbyField',
+  default: ``,
 });

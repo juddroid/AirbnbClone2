@@ -2,16 +2,30 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import {
   headerScrollState,
-  panelState,
+  guestButtonState,
+  nearbyButtonState,
+  checkInButtonState,
+  checkOutButtonState,
 } from '../../../Recoil/HeaderFieldsetState';
 import FieldPanelMenu from './FieldPanelMenu';
 
 const FieldPanel = () => {
   const headerState = useRecoilValue(headerScrollState);
-  const panelBackgroundState = useRecoilValue(panelState);
+  const guestButton = useRecoilValue(guestButtonState);
+  const nearbyButton = useRecoilValue(nearbyButtonState);
+  const checkInButton = useRecoilValue(checkInButtonState);
+  const checkOutButton = useRecoilValue(checkOutButtonState);
 
   return (
-    <FieldPanelStyle {...{ headerState, panelBackgroundState }}>
+    <FieldPanelStyle
+      {...{
+        headerState,
+        guestButton,
+        nearbyButton,
+        checkInButton,
+        checkOutButton,
+      }}
+    >
       <FieldPanelMenu />
     </FieldPanelStyle>
   );
@@ -28,18 +42,22 @@ const FieldPanelStyle = styled.div`
   position: relative;
   width: 100%;
   background-color: #fff;
+  transition: all ease 0.4s;
 
   ${({ headerState }) =>
     headerState
       ? `
     visibility: hidden;
-    opacity: 0;`
+    opacity: 0;
+    top: 0;
+    scale(0, 0);
+    `
       : `
     visibility: visible;
     opacity: 1;`}
 
-  ${({ panelBackgroundState }) =>
-    panelBackgroundState &&
+  ${({ guestButton, checkInButton, checkOutButton, nearbyButton }) =>
+    (guestButton || checkInButton || checkOutButton || nearbyButton) &&
     `
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(247, 247, 247);

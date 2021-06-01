@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
 
-const Reservation = () => {
+const Reservation = ({ location, match, history }) => {
+  console.log(location, match, history);
+
   return (
     <ReservationStyle>
       <SectionSearch />

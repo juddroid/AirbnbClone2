@@ -4,6 +4,7 @@ import Footer from '../components/Footer/Footer';
 import theme from '../components/style/theme';
 import { Route } from 'react-router-dom';
 import { Aside, Home, Main, Reservation } from '../pages';
+import Callback from '../components/Callback';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Home />
           <Route exact path="/" component={Main} />
           <Route path="/reservation" component={Reservation} />
+          {/* <Route path="/callback" component={Callback} /> */}
         </UpperDiv>
         <BeforeAfterDiv>
           <Footer />
