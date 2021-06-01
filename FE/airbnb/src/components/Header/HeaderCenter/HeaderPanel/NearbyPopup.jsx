@@ -1,28 +1,35 @@
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { BLOCK, NONE, SECTION_SUBURB } from '../../../../const';
 import {
   calendarPopupState,
   checkInButtonState,
   nearbyPopupState,
-  guestButtonState,
   searchData,
+  nearbyButtonState,
+  nearbyField,
 } from '../../../../Recoil/HeaderFieldsetState';
 
 const NearbyPopup = () => {
   const [nearbyPopup, setNearbyPopup] = useRecoilState(nearbyPopupState);
   const [userSearchData, setUserSearchData] = useRecoilState(searchData);
-  const setNearbyButton = useSetRecoilState(guestButtonState);
+  const setNearbyButton = useSetRecoilState(nearbyButtonState);
   const setCheckInButton = useSetRecoilState(checkInButtonState);
   const setCalendarPopup = useSetRecoilState(calendarPopupState);
+  const nearbyValue = useRecoilValue(nearbyField);
 
   const handleClickNearbyPopup = (e) => {
     e.stopPropagation();
-    console.log(e);
-    setUserSearchData({
-      ...userSearchData,
-      location: '서울',
-    });
+
+    nearbyValue === ''
+      ? setUserSearchData({
+          ...userSearchData,
+          location: '서울',
+        })
+      : setUserSearchData({
+          ...userSearchData,
+          location: nearbyValue,
+        });
 
     setNearbyPopup(false);
     setNearbyButton(false);

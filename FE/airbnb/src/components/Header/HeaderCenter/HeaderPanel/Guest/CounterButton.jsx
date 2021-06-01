@@ -6,13 +6,13 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   guestDeleteButton,
   guestField,
+  searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
 
 const MinusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
-  const [deleteButton, setGuestDeleteButton] =
-    useRecoilState(guestDeleteButton);
+  const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
 
   const handleClickMinusButton = (e, id) => {
     e.stopPropagation();
@@ -56,6 +56,7 @@ const MinusButton = ({ count, id }) => {
   useEffect(() => {
     checkCount(count);
     checkDeleteButton();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
@@ -70,10 +71,12 @@ const MinusButton = ({ count, id }) => {
     </CounterButtonStyle>
   );
 };
+
 const PlusButton = ({ count, id }) => {
   const [guestCount, setGuestCount] = useRecoilState(guestField);
   const [disabled, setDisabled] = useState(false);
   const setGuestDeleteButton = useSetRecoilState(guestDeleteButton);
+  const [search, setSearch] = useRecoilState(searchData);
 
   const handleClickPlusButton = (e, id) => {
     e.stopPropagation();
@@ -107,9 +110,21 @@ const PlusButton = ({ count, id }) => {
     guestCount.value.map(
       (guest) => guest.id === id && guest.max === count && setDisabled(true)
     );
+
+    setSearch({
+      ...search,
+      guest: {
+        adult: guestCount.value[0].count,
+        child: guestCount.value[1].count,
+        infant: guestCount.value[2].count,
+      },
+    });
   };
 
   useEffect(() => {
+    // console.log(count);
+    // console.log(guestCount.value);
+    // console.log(search);
     checkCount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);

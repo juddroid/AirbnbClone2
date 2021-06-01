@@ -13,6 +13,7 @@ import {
   checkOutButtonState,
   checkOutDeleteButton,
   checkOutField,
+  searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
 import { getDate } from '../../../../../util';
 import { setState, setToggle } from '../../../../../util.ts';
@@ -29,6 +30,7 @@ const EachDate = ({ eachMonth, setEachMonth, dateState }) => {
   const [checkOutButton, setCheckOutButton] =
     useRecoilState(checkOutButtonState);
   const setCheckOutDelete = useSetRecoilState(checkOutDeleteButton);
+  const [search, setSearch] = useRecoilState(searchData);
 
   const { date, range, hover } = dateBox;
 
@@ -127,13 +129,6 @@ const EachDate = ({ eachMonth, setEachMonth, dateState }) => {
     }
   };
 
-  // 1. 체크인필드 true, 체크아웃필드 false, 체크아웃 버튼 true 일 때, 체크인 버튼을 클릭하면
-  // 2. 체크인 버튼 활성화, 엑스버튼 활성화
-  //  2-1. 엑스버튼 누르면 체크인필드 리셋
-  // 3. 반대로, 체크아웃필드 true, 체크인필드 false, 체크인 버튼 true 일 때, 체크아웃 버튼을 클릭하면
-  // 4. 체크아웃 버튼 활성화, 엑스버튼 활성화
-  //  4-1. 엑스버튼 누르면 체크아웃필드 리셋
-
   const handleClickDate = () => {
     setState(setSelected, true);
 
@@ -189,7 +184,11 @@ const EachDate = ({ eachMonth, setEachMonth, dateState }) => {
     setIsPast(todayDate > currentComponentDate);
     setDisable(todayDate > currentComponentDate || date === null);
     checkSelected();
-
+    setSearch({
+      ...search,
+      checkIn: checkInDate.value,
+      checkOut: checkOutDate.value,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkInDate, checkOutDate]);
 

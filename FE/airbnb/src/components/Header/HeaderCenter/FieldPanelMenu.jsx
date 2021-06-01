@@ -108,6 +108,7 @@ const FieldPanelMenu = () => {
     setSearchTextState(true);
     setCheckInButton(true);
     setCheckOutButton(false);
+    setNearbyButton(false);
     setNearbyPopup(false);
     setGuestButton(false);
     setGuestPopup(false);
@@ -157,6 +158,7 @@ const FieldPanelMenu = () => {
     setGuestPopup((prev) => !prev);
     setSearchState((prev) => !prev);
     setSearchTextState(true);
+    setNearbyButton(false);
     setNearbyPopup(false);
     setCalendarPopup(false);
     setCheckInButton(false);
@@ -196,7 +198,7 @@ const FieldPanelMenu = () => {
   const handleMouseUpNearby = () => {
     setNearbyPopup(true);
   };
-  console.log(guestButton);
+
   useEffect(() => {
     window.addEventListener('click', handleClickPopup);
     return () => {

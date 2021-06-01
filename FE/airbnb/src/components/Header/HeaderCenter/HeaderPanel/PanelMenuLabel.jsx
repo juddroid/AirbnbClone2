@@ -1,15 +1,27 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { nearbyButtonState } from '../../../../Recoil/HeaderFieldsetState';
+import {
+  nearbyButtonState,
+  nearbyField,
+} from '../../../../Recoil/HeaderFieldsetState';
 
 const PanelMenuLabel = ({ name, placeholder }) => {
   const nearbyButton = useRecoilValue(nearbyButtonState);
+  const [nearbyValue, setNearbyValue] = useRecoilState(nearbyField);
+
+  const handleOnChange = (e) => {
+    setNearbyValue(e.target.value);
+  };
 
   return (
     <PanelMenuLabelStyle {...{ nearbyButton }}>
       <PanelMenuLabelWrapper>
         <PanelMenuDiv>{name}</PanelMenuDiv>
-        <PanelMenuInput placeholder={placeholder} />
+        <PanelMenuInput
+          placeholder={placeholder}
+          onChange={handleOnChange}
+          value={nearbyValue}
+        />
       </PanelMenuLabelWrapper>
     </PanelMenuLabelStyle>
   );
@@ -64,17 +76,25 @@ const PanelMenuLabelStyle = styled.label`
     background-color: #ebebeb;
   }
 
-  :focus-within::before {
+  ${({ nearbyButton }) =>
+    nearbyButton &&
+    `
+  ::before {
     display: block;
   }
 
-  :focus-within::after {
+  ::after {
     background-color: #fff;
     border-color: #fff;
     box-shadow: 0px 6px 20px rgb(0 0 0 / 20%);
     left: 0px;
     right: 0px;
   }
+
+  :hover::after {
+    background-color: #fff;
+  }
+  `}
 `;
 
 const PanelMenuLabelWrapper = styled.div`

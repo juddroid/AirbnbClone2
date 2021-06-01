@@ -151,7 +151,7 @@ export const gitHubLogin = atom({
 export const searchData = atom({
   key: 'searchData',
   default: {
-    location: null,
+    location: undefined,
     checkIn: null,
     checkOut: null,
     guest: {
@@ -165,4 +165,9 @@ export const searchData = atom({
 export const guestDeleteButton = atom({
   key: 'guestDeleteButton',
   default: false,
+});
+
+export const nearbyField = atom({
+  key: 'nearbyField',
+  default: ``,
 });

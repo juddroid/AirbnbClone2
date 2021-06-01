@@ -21,7 +21,7 @@ export default PanelLast;
 
 const PanelLastStyle = styled.div`
   ${({ searchState, guestButton }) =>
-    searchState
+    guestButton
       ? `
   appearance: none;
   background: transparent;
