@@ -34,8 +34,7 @@ const Header = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       const profile_url = localStorage.getItem('profile_url');
-      const decoded = jwt_decode(jwt);
-      console.log(jwt);
+
       setUser({
         id: decoded.githubId,
         image: profile_url,

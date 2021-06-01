@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import GoogleMap from './GoogleMap';
+import KakaoMap from './KakaoMap';
 
 const SectionMap = () => {
   return (
     <SectionMapStyle>
       <SectionMapAside>
         <GoogleMap />
+        {/* <KakaoMap /> */}
       </SectionMapAside>
     </SectionMapStyle>
   );

@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 import qs from 'qs';
-import { useSetRecoilState } from 'recoil';
-import { isLoggedIn } from '../Recoil/LogInState';
 
 const Callback = ({ location, history }) => {
-  const setLogIn = useSetRecoilState(isLoggedIn);
-
   useEffect(() => {
     const getToken = async () => {
       const { jwt, profile_url } = qs.parse(window.location.search, {
@@ -15,8 +11,6 @@ const Callback = ({ location, history }) => {
 
       localStorage.setItem('jwt', jwt);
       localStorage.setItem('profile_url', profile_url);
-
-      setLogIn(true);
     };
 
     getToken();
