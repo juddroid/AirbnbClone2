@@ -40,7 +40,6 @@ const Header = () => {
         id: decoded.githubId,
         image: profile_url,
       });
-      setLogIn(true);
     }
   };
 
