@@ -241,3 +241,6 @@ export const SUPER_HOST = '슈퍼호스트';
 // GitHub OAuth
 export const GITHUB_LOGIN =
   'https://github.com/login/oauth/authorize?client_id=ad0b522cb30d79a09f79';
+
+// Reservation > Modal
+export const MODAL_TITLE = '요금을 확인하려면 날짜를 입력하세요.';
