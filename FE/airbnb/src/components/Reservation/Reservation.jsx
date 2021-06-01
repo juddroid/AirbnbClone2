@@ -1,12 +1,26 @@
+import { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import useFetch from '../../customHooks/useFetch';
+import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
+import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
 
 const Reservation = ({ location, match, history }) => {
-  console.log(location, match, history);
+  const setRoomList = useSetRecoilState(nearbyRoomList);
+  const [modal, setModal] = useRecoilState(modalState);
+
+  const rooms = useFetch('http://travel.airbnb.kro.kr/api/rooms', []);
+  console.log(rooms.filteredRooms);
+
+  useEffect(() => {
+    setRoomList(rooms);
+  }, []);
 
   return (
     <ReservationStyle>
+      {modal && <ModalBox />}
       <SectionSearch />
       <SectionMap />
     </ReservationStyle>

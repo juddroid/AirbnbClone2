@@ -1,12 +1,30 @@
+import { useEffect, useRef } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { modalState } from '../../../../../Recoil/ReservationState';
 import CityCardImage from './CityCardImage';
 import CityCardStar from './CityCardStar';
 import CityCardTitle from './CityCardTitle';
 import CityCardType from './CityCardType';
 
 const CityCard = () => {
+  const cityCard = useRef();
+  const setModal = useSetRecoilState(modalState);
+  const handleClickCityCard = (e) => {
+    e.stopPropagation();
+
+    if (cityCard?.current?.contains(e.target)) return setModal(true);
+    setModal(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickCityCard);
+
+    return () => window.removeEventListener('click', handleClickCityCard);
+  }, []);
+
   return (
-    <CityCardStyle>
+    <CityCardStyle ref={cityCard} onClick={handleClickCityCard}>
       <CityCardWrapper>
         <CityCardContainer>
           <CityCardBox>
