@@ -21,11 +21,8 @@ const RegisterLogin = () => {
   };
 
   useEffect(() => {
-    console.log(isLogIn);
-    console.log(user.id);
     isLogIn && setLogInText(user.id);
   }, [isLogIn]);
-
   return (
     <>
       {gitHubLoginState ? (
@@ -81,8 +78,9 @@ const RegisterLoginStyle = styled.div`
   }
 
   ${({ gitHubLoginState, isLogIn }) =>
+    !isLogIn &&
     gitHubLoginState &&
-    !isLogIn`
+    `
     background: #222;
     padding: 9px 16px;
 
