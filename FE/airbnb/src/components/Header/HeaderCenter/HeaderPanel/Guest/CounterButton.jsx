@@ -128,7 +128,7 @@ const PlusButton = ({ count, id }) => {
     checkCount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
-
+  console.table(search);
   return (
     <CounterButtonStyle
       disabled={disabled}
