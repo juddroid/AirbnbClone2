@@ -1,37 +1,61 @@
 import styled from 'styled-components';
 import StarLogo from '../../../../../svg/StarLogo';
+import { getRandom } from '../../../../../util';
 
-const CityCardStar = () => {
+const CityCardStarBig = ({ star }) => {
+  const randomStar = getRandom(1, 5, false);
+  const randomReview = getRandom(20, 150, true);
+  return (
+    <CityCardStarStyle>
+      <SpanBig>
+        <StarLogo />
+        {star ? (
+          <StarScore>{star}</StarScore>
+        ) : (
+          <StarScore>{randomStar}</StarScore>
+        )}
+        <Review>&nbsp;(후기 {randomReview}개)</Review>
+      </SpanBig>
+    </CityCardStarStyle>
+  );
+};
+
+const CityCardStarSmall = ({ star }) => {
+  const randomStar = getRandom(1, 5, false);
+  const randomReview = getRandom(20, 150, true);
   return (
     <CityCardStarStyle>
       <CityCardStarWrapper>
         <SpanBox>
           <StarLogo />
-          <StarScore>4.99</StarScore>
-          <Review>&nbsp;(후기 142개)</Review>
+          {star ? (
+            <StarScore>{star}</StarScore>
+          ) : (
+            <StarScore>{randomStar}</StarScore>
+          )}
+          <Review>&nbsp;(후기 {randomReview}개)</Review>
         </SpanBox>
       </CityCardStarWrapper>
     </CityCardStarStyle>
   );
 };
 
+const CityCardStar = ({ star, type }) => {
+  return {
+    big: <CityCardStarBig {...{ star, type }} />,
+    small: <CityCardStarSmall {...{ star, type }} />,
+  }[type];
+};
+
 export default CityCardStar;
 
 const CityCardStarStyle = styled.div`
-  margin-bottom: 6px;
-
-  font-size: 14px;
-  line-height: 18px;
-  align-items: center;
-  display: flex;
-  width: 100%;
+  flex: 1 0 auto;
+  margin-right: 12px;
 `;
 
 const CityCardStarWrapper = styled.div`
   margin-right: 10px;
-  animation-duration: 0.3s;
-  animation-name: keyframe_18jn58a;
-  animation-timing-function: ease-in-out;
   opacity: 1;
 `;
 
@@ -48,4 +72,11 @@ const StarScore = styled.span`
 
 const Review = styled.span`
   color: rgb(113, 113, 113);
+`;
+
+const SpanBig = styled.span`
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  line-height: 18px;
 `;

@@ -1,14 +1,18 @@
 import { useEffect, useRef } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { modalState } from '../../../../../Recoil/ReservationState';
+import {
+  citySectionState,
+  modalState,
+} from '../../../../../Recoil/ReservationState';
 import CityCardImage from './CityCardImage';
 import CityCardStar from './CityCardStar';
 import CityCardTitle from './CityCardTitle';
 import CityCardType from './CityCardType';
 
-const CityCard = () => {
+const CityCard = ({ city }) => {
   const cityCard = useRef();
+  const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
   const handleClickCityCard = (e) => {
     e.stopPropagation();
@@ -16,12 +20,13 @@ const CityCard = () => {
     if (cityCard?.current?.contains(e.target)) return setModal(true);
     setModal(false);
   };
-
+  const type = citySection ? 'big' : 'small';
   useEffect(() => {
     window.addEventListener('click', handleClickCityCard);
 
     return () => window.removeEventListener('click', handleClickCityCard);
   }, []);
+  console.log(city);
 
   return (
     <CityCardStyle ref={cityCard} onClick={handleClickCityCard}>
@@ -29,10 +34,24 @@ const CityCard = () => {
         <CityCardContainer>
           <CityCardBox>
             <CityCardAnchor />
-            <CityCardImage />
-            <CityCardStar />
-            <CityCardType />
-            <CityCardTitle />
+            {city ? (
+              <div className="row">
+                <CityCardImage roomImages={city.roomImages} {...{ type }} />
+                <CityCardStar star={city.averageRating} />
+                <CityCardType
+                  location={city.location}
+                  type={city.propertyType}
+                />
+                <CityCardTitle title={city.title} />
+              </div>
+            ) : (
+              <>
+                <CityCardImage />
+                <CityCardStar />
+                <CityCardType />
+                <CityCardTitle />
+              </>
+            )}
           </CityCardBox>
         </CityCardContainer>
       </CityCardWrapper>

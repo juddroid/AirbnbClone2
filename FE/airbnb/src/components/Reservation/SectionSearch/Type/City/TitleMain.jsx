@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const TitleMain = () => {
+const TitleMain = ({ cityName }) => {
   return (
     <TitleMainStyle>
       <TitleMainBox>
-        <h3>City</h3>
+        <h3>{cityName}</h3>
       </TitleMainBox>
     </TitleMainStyle>
   );

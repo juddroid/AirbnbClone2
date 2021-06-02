@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-const CityCardTitle = () => {
+const CityCardTitle = ({ title, type }) => {
   return (
-    <CityCardTitleStyle>
-      <span>
-        블루테라{'>'} 코랄 #2, 속초더블루마크, 투베이 오션뷰, 속초해수욕장 도보
-        5분
-      </span>
+    <CityCardTitleStyle {...{ type }}>
+      <span>{title}, 걸어서 5분</span>
     </CityCardTitleStyle>
   );
 };
@@ -18,14 +15,24 @@ const CityCardTitleStyle = styled.div`
   align-items: center;
 
   span {
-    line-height: 20px;
-    max-height: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    color: #222;
-    word-break: break-all;
-    font-size: 16px;
-    line-height: 20px;
+    ${({ type }) =>
+      type === 'big'
+        ? `line-height: 24px;
+           max-height: 24px;
+           overflow: hidden;
+           text-overflow: ellipsis;
+           display: -webkit-box;
+           color: var(--card-typography-color-primary, #222222);
+           word-break: break-all;
+           font-size: 18px;
+           line-height: 24px;`
+        : `line-height: 20px;
+           max-height: 20px;
+           overflow: hidden;
+           text-overflow: ellipsis;
+           color: #222;
+           word-break: break-all;
+           font-size: 16px;
+           line-height: 20px;`};
   }
 `;

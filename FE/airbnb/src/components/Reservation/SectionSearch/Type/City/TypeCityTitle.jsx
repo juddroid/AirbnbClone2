@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import TitleMain from './TitleMain';
 import TitleMore from './TitleMore';
 
-const TypeCityTitle = () => {
+const TypeCityTitle = ({ cityName }) => {
   return (
     <TypeCityTitleStyle>
-      <TitleMain />
+      <TitleMain {...{ cityName }} />
       <TitleMore />
     </TypeCityTitleStyle>
   );

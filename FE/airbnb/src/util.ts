@@ -35,3 +35,20 @@ export const setToggle = (setCallback: any, state: boolean) =>
 export const getDate = (dateObj: IDate) => {
   return new Date(dateObj.year, dateObj.month, dateObj.date);
 };
+
+export const getRandom = (min: number, max: number, isInt: Boolean) => {
+  const random = Math.random() * (max - min) + min;
+  return isInt ? Math.floor(random) : random.toFixed(2);
+};
+
+export const moneyComma = (num: number) => {
+  const arr = num.toString().split('');
+  const comma = arr.reduce((acc, cur, idx) => {
+    if (idx % 3 === arr.length % 3) {
+      cur = `,${cur}`;
+    }
+    acc += cur;
+    return acc;
+  });
+  return comma;
+};

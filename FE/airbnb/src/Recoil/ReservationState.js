@@ -9,3 +9,13 @@ export const modalState = atom({
   key: 'modalState',
   default: false,
 });
+
+export const searchType = atom({
+  key: 'searchType',
+  default: null,
+});
+
+export const citySectionState = atom({
+  key: 'citySectionState',
+  default: false,
+});

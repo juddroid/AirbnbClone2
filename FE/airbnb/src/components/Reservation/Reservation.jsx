@@ -11,19 +11,23 @@ const Reservation = ({ location, match, history }) => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
   const [modal, setModal] = useRecoilState(modalState);
 
-  const rooms = useFetch('http://travel.airbnb.kro.kr/api/rooms', []);
-  console.log(rooms.filteredRooms);
+  const locationData = location.state.data.location === '서울' && '1s';
 
-  useEffect(() => {
-    setRoomList(rooms);
-  }, []);
+  const rooms = useFetch(
+    `http://travel.airbnb.kro.kr/api/ios/rooms?placeId=${locationData}`,
+    []
+  );
+
+  setRoomList(rooms);
 
   return (
-    <ReservationStyle>
+    <>
       {modal && <ModalBox />}
-      <SectionSearch />
-      <SectionMap />
-    </ReservationStyle>
+      <ReservationStyle>
+        <SectionSearch />
+        <SectionMap />
+      </ReservationStyle>
+    </>
   );
 };
 

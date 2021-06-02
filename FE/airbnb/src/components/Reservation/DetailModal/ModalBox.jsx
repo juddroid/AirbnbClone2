@@ -27,11 +27,12 @@ const Background = styled.div`
 `;
 
 const ModalBoxStyle = styled.div`
-  position: sticky;
+  position: fixed;
   top: 160px;
   left: 40%;
   display: flex;
   justify-content: center;
+  width: 400px;
   max-width: 400px;
   z-index: 101;
 `;

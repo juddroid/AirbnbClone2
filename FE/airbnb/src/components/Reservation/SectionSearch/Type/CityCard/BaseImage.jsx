@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import BackgroundImage from './BackgroundImage';
 import CardControler from './CardControler';
 
-const BaseImage = () => {
+const BaseImage = ({ roomImages }) => {
   return (
     <BaseImageStyle>
-      <BackgroundImage />
+      <BackgroundImage {...{ roomImages }} />
       <CardControler />
     </BaseImageStyle>
   );

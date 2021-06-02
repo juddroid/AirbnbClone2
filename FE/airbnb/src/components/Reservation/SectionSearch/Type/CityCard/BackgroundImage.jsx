@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
-const BackgroundImage = () => {
+const BackgroundImage = ({ roomImages }) => {
   return (
     <BackgroundImageStyle>
       <ImageWrapper>
         <span>
           <ImageData>
-            <ImageAnchor />
+            <ImageAnchor>
+              {roomImages && <img src={roomImages[0]} alt={roomImages[0]} />}
+            </ImageAnchor>
           </ImageData>
         </span>
         <PaginationBox>
@@ -67,6 +69,11 @@ const ImageAnchor = styled.a`
   top: 0px;
   left: 0px;
   z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const PaginationBox = styled.div`
