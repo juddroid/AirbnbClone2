@@ -1,8 +1,9 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import dotenv from 'dotenv';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { markerState } from '../../../Recoil/MapState';
 import { v4 as uuidv4 } from 'uuid';
+import { nearbyRoomList } from '../../../Recoil/ReservationState';
 
 const GoogleMap = ({ google }) => {
   const [marker, setMarker] = useRecoilState(markerState);
@@ -16,12 +17,14 @@ const GoogleMap = ({ google }) => {
     const latLng = {
       latitude: geoData.latLng.lat(),
       longitude: geoData.latLng.lng(),
+      title: 'new',
     };
 
     await setMarker([...marker, latLng]);
   };
 
   const displayMarkers = () => {
+    console.log(marker);
     return marker.map((mark, idx) => {
       return (
         <Marker
@@ -29,14 +32,13 @@ const GoogleMap = ({ google }) => {
           id={idx}
           label={mark.title}
           position={{ lat: mark.latitude, lng: mark.longitude }}
-          onClick={() => removeMarkers(idx)}
+          // onClick={() => removeMarkers(idx)}
+          animation={google.maps.Animation.DROP}
+          name={'name'}
+          icon={{ path: google.maps.SymbolPath.CIRCLE, scale: 0 }}
         />
       );
     });
-  };
-
-  const removeMarkers = async (idx) => {
-    await setMarker(marker.filter((mark, i) => i !== idx));
   };
 
   return (
@@ -45,7 +47,7 @@ const GoogleMap = ({ google }) => {
         google={google}
         zoom={14}
         style={mapStyles}
-        initialCenter={{ lat: 37.5, lng: 127 }}
+        initialCenter={{ lat: 37.490810646466926, lng: 127.03341904961496 }}
         onClick={handleClickAddMarkers}
         disableDefaultUI={true}
         fullscreenControl={true}

@@ -1,23 +1,38 @@
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
+import { markerState } from '../../Recoil/MapState';
 import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
+import { moneyComma } from '../../util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
 
 const Reservation = ({ location, match, history }) => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
+  const setMapData = useSetRecoilState(markerState);
   const [modal, setModal] = useRecoilState(modalState);
 
-  const locationData = location.state.data.location === '서울' && '1s';
+  const locationData =
+    location.state.data.location === '서울' && 'ChIJzWXFYYuifDUR64Pq5LTtioU';
+  const placeId = `placeID=${locationData}`;
 
   const rooms = useFetch(
-    `http://travel.airbnb.kro.kr/api/ios/rooms?placeId=${locationData}`,
+    `http://travel.airbnb.kro.kr/api/ios/rooms?${placeId}`,
     []
   );
-
-  setRoomList(rooms);
+  const pagingRooms = rooms.splice(0, 10);
+  setRoomList(pagingRooms);
+  const mapDataList = pagingRooms.map((el) => {
+    const price = moneyComma(el.pricePerNight);
+    return (el = {
+      latitude: el.latitude,
+      longitude: el.longitude,
+      title: `₩${price.toString()}`,
+    });
+  });
+  setMapData(mapDataList);
+  console.log(pagingRooms);
 
   return (
     <>
