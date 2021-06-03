@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const FilterMenu = ({ filter }) => {
+const FilterMenu = ({ filter, id }) => {
   return (
     <FilterMenuStyle>
       <FilterMenuBox>
-        <FilterButton>
+        <FilterButton {...{ id }}>
           <FilterButtonUpper>
             <div>
               <span>{filter}</span>

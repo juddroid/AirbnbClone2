@@ -24,3 +24,8 @@ export const modalPrice = atom({
   key: 'modalPrice',
   default: 0,
 });
+
+export const filterPrice = atom({
+  key: 'filterPrice',
+  default: false,
+});
