@@ -1473,10 +1473,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@juddroid_raccoon/react-slider@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@juddroid_raccoon/react-slider/-/react-slider-1.2.1.tgz#ea82e99ae07e052014b1909fdf841a0715216b48"
-  integrity sha512-WUGuDXPi4gHR8nCD+mW5VwPA11xzF4f4DDYbz0h1yKE9uypLeyj6OHEv/bKEqv5bh8Ats9rtShvjO40xd5zfPw==
+"@juddroid_raccoon/react-slider@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@juddroid_raccoon/react-slider/-/react-slider-1.2.2.tgz#ca38d06208db085adca50f0b86afc6ef3122c77c"
+  integrity sha512-9pvR2JMR/fhJYcn8oLRo9RnEuMpwXYuiEDaIw/nPCB5CKpFag+v+cTG3DQXkUsMfdwzTIQmltfj8UznN3oRoiQ==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"

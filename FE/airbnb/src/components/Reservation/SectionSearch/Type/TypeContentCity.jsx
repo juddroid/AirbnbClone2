@@ -13,8 +13,8 @@ const TypeContentCity = () => {
     <TypeContentStyle>
       <TypeContentWrapper>
         {cityList &&
-          cityList.map((city) => (
-            <TypeCity key={uuidv4()} {...{ city, cityName }} />
+          cityList.map((city, idx) => (
+            <TypeCity key={uuidv4()} id={idx} {...{ city, cityName }} />
           ))}
       </TypeContentWrapper>
     </TypeContentStyle>

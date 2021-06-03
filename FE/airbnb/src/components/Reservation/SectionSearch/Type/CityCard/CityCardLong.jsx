@@ -3,24 +3,31 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import {
   citySectionState,
+  modalPrice,
   modalState,
+  nearbyRoomList,
 } from '../../../../../Recoil/ReservationState';
-import CityCardImage from './CityCardImage';
 import CityCardPrice from './CityCardPrice';
 import CityCardStar from './CityCardStar';
 import CityCardTitle from './CityCardTitle';
 import CityCardType from './CityCardType';
 import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 
-const CityCardLong = ({ city }) => {
+const CityCardLong = ({ city, id }) => {
   const cityCard = useRef();
   const citySection = useRecoilValue(citySectionState);
   const setModal = useSetRecoilState(modalState);
+  const cityList = useRecoilValue(nearbyRoomList);
+  const setModalPrice = useSetRecoilState(modalPrice);
+
   const handleClickCityCard = (e) => {
     e.stopPropagation();
-
-    // if (cityCard?.current?.contains(e.target)) return setModal(true);
-    // setModal(false);
+    console.log(+e.currentTarget.id === id);
+    console.log(cityList[id].pricePerNight);
+    if (e.target.closest('button')) return;
+    if (cityCard?.current?.contains(e.target)) return setModal(true);
+    setModal(false);
+    setModalPrice(cityList[id].pricePerNight);
   };
   const type = citySection ? 'big' : 'small';
   const amenities = city && city.amenities.join(' · ');
@@ -40,13 +47,15 @@ const CityCardLong = ({ city }) => {
 
     return () => window.removeEventListener('click', handleClickCityCard);
   }, []);
-  console.log(city);
 
   return (
-    <CityCardLongStyle ref={cityCard} onClick={handleClickCityCard}>
+    <CityCardLongStyle
+      ref={cityCard}
+      id={id}
+      onClick={(e) => handleClickCityCard(e, id)}
+    >
       {city && (
         <>
-          {/* <CityCardImage roomImages={city.roomImages} {...{ type }} /> */}
           <RaccoonSlider data={city.roomImages} option={option} />
           <CityCardRightBox>
             <CityTitleBox>

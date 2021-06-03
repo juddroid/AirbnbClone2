@@ -19,3 +19,8 @@ export const citySectionState = atom({
   key: 'citySectionState',
   default: false,
 });
+
+export const modalPrice = atom({
+  key: 'modalPrice',
+  default: 0,
+});

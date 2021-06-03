@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import BackgroundImage from './BackgroundImage';
 import CardControler from './CardControler';
 
 const BaseImage = ({ roomImages }) => {
   return (
     <BaseImageStyle>
-      {/* <BackgroundImage {...{ roomImages }} /> */}
-
       <CardControler />
     </BaseImageStyle>
   );
