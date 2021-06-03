@@ -12,6 +12,7 @@ import CityCardStar from './CityCardStar';
 import CityCardTitle from './CityCardTitle';
 import CityCardType from './CityCardType';
 import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
+import ExtraAttach from './ExtraAttach';
 
 const CityCardLong = ({ city, id }) => {
   const cityCard = useRef();
@@ -22,8 +23,7 @@ const CityCardLong = ({ city, id }) => {
 
   const handleClickCityCard = (e) => {
     e.stopPropagation();
-    console.log(+e.currentTarget.id === id);
-    console.log(cityList[id].pricePerNight);
+
     if (e.target.closest('button')) return;
     if (cityCard?.current?.contains(e.target)) return setModal(true);
     setModal(false);
@@ -56,6 +56,7 @@ const CityCardLong = ({ city, id }) => {
     >
       {city && (
         <>
+          <ExtraAttach />
           <RaccoonSlider data={city.roomImages} option={option} />
           <CityCardRightBox>
             <CityTitleBox>

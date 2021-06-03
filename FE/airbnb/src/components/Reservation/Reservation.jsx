@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useFetch from '../../customHooks/useFetch';
@@ -23,6 +22,7 @@ const Reservation = ({ location, match, history }) => {
   return (
     <>
       {modal && <ModalBox />}
+
       <ReservationStyle>
         <SectionSearch />
         <SectionMap />

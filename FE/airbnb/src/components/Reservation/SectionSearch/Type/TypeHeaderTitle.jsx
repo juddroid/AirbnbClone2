@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const TypeHeaderTitle = ({ search }) => {
-  console.log(search);
   const localSearch = JSON.parse(localStorage.getItem('search'));
   const date =
     typeof localSearch.checkIn !== 'string' &&

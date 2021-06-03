@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FILTER } from '../../../../const';
 import FilterMenu from './FilterMenu';
 import { v4 as uuidv4 } from 'uuid';
+import PriceChartModal from '../../PriceChartModal/PriceChartModal';
 
 const TypeHeaderFilter = () => {
   return (
@@ -17,6 +18,7 @@ const TypeHeaderFilter = () => {
                       {FILTER.map((filter) => (
                         <FilterMenu {...{ filter }} key={uuidv4()} />
                       ))}
+                      <PriceChartModal />
                     </FilterBox>
                   </FilterDiv>
                 </FilterSpan>

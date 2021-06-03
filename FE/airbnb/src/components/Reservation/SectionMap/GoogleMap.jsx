@@ -9,7 +9,7 @@ const GoogleMap = ({ google }) => {
 
   const mapStyles = {
     width: `100%`,
-    height: `92%`,
+    height: `94%`,
   };
 
   const handleClickAddMarkers = async (e, aug, geoData) => {

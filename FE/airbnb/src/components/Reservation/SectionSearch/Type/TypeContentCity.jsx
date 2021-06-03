@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const TypeContentCity = () => {
   const cityList = useRecoilValue(nearbyRoomList);
-  console.log(cityList);
+
   const cityName = ``;
 
   return (

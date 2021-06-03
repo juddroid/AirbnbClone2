@@ -2,9 +2,16 @@ import styled from 'styled-components';
 import LikeItLogo from '../../../../../svg/LikeItLogo';
 
 const LikeItBadge = () => {
+  const handleClickLikeIt = (e) => {
+    e.preventDefault();
+    console.log('like it');
+    console.log('need room id');
+    console.log('setLikeItState');
+  };
+
   return (
     <LikeItBadgeStyle>
-      <LikeItButton>
+      <LikeItButton onClick={handleClickLikeIt}>
         <LikeItLogo />
       </LikeItButton>
     </LikeItBadgeStyle>
@@ -41,4 +48,12 @@ const LikeItButton = styled.button`
   margin: 0px;
   width: 32px;
   height: 32px;
+
+  :hover {
+    background: #eeeeee;
+  }
+
+  svg {
+    fill: red;
+  }
 `;
