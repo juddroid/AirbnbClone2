@@ -9,7 +9,7 @@ const GoogleMap = ({ google }) => {
 
   const mapStyles = {
     width: `100%`,
-    height: `100%`,
+    height: `94%`,
   };
 
   const handleClickAddMarkers = async (e, aug, geoData) => {
@@ -43,10 +43,16 @@ const GoogleMap = ({ google }) => {
     <div>
       <Map
         google={google}
-        zoom={10}
+        zoom={14}
         style={mapStyles}
         initialCenter={{ lat: 37.5, lng: 127 }}
         onClick={handleClickAddMarkers}
+        disableDefaultUI={true}
+        fullscreenControl={true}
+        zoomControl={true}
+        scaleControl={false}
+        mapTypeControl={true}
+        gestureHandling={'greedy'}
       >
         {displayMarkers()}
       </Map>

@@ -2,8 +2,28 @@ import styled from 'styled-components';
 import { FILTER } from '../../../../const';
 import FilterMenu from './FilterMenu';
 import { v4 as uuidv4 } from 'uuid';
+import PriceChartModal from '../../PriceChartModal/PriceChartModal';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { filterPrice } from '../../../../Recoil/ReservationState';
 
 const TypeHeaderFilter = () => {
+  const [filterPriceState, setFilterPriceState] = useRecoilState(filterPrice);
+
+  const handleClickFilter = (e) => {
+    if (!e.target.closest('button')) return setFilterPriceState(false);
+    if (+e.target.closest('button').id === 2)
+      return setFilterPriceState((prev) => !prev);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickFilter);
+
+    return () => {
+      window.removeEventListener('click', handleClickFilter);
+    };
+  }, []);
+
   return (
     <TypeHeaderFilterStyle>
       <TypeHeaderFilterWrapper>
@@ -14,9 +34,10 @@ const TypeHeaderFilter = () => {
                 <FilterSpan>
                   <FilterDiv>
                     <FilterBox>
-                      {FILTER.map((filter) => (
-                        <FilterMenu {...{ filter }} key={uuidv4()} />
+                      {FILTER.map((filter, id) => (
+                        <FilterMenu {...{ filter, id }} key={uuidv4()} />
                       ))}
+                      {filterPriceState && <PriceChartModal />}
                     </FilterBox>
                   </FilterDiv>
                 </FilterSpan>

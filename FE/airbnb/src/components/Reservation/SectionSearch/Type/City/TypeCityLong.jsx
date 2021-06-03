@@ -1,23 +1,19 @@
 import styled from 'styled-components';
 import TypeCityContent from './TypeCityContent';
-import TypeCityTitle from './TypeCityTitle';
 
-const TypeCity = ({ city, cityName, id }) => {
+const TypeCityLong = ({ city }) => {
   return (
     <TypeCityStyle>
       <TypeCityWrapper>
         <TypeCityContainer>
-          <TypeCityBox>
-            {cityName && <TypeCityTitle {...{ cityName }} />}
-            <TypeCityContent {...{ city, id }} />
-          </TypeCityBox>
+          <TypeCityContent {...{ city }} />
         </TypeCityContainer>
       </TypeCityWrapper>
     </TypeCityStyle>
   );
 };
 
-export default TypeCity;
+export default TypeCityLong;
 
 const TypeCityStyle = styled.div`
   ::before {
@@ -43,16 +39,9 @@ const TypeCityWrapper = styled.div`
 `;
 
 const TypeCityContainer = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-
   @media (min-width: 744px) {
-    margin-top: 32px;
-    margin-bottom: 32px;
+    padding: 0px;
+    margin-left: -8px;
+    margin-right: -8px;
   }
-`;
-
-const TypeCityBox = styled.div`
-  position: relative;
-  z-index: 0;
 `;

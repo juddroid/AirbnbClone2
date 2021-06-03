@@ -1,11 +1,23 @@
 import styled from 'styled-components';
 
-const TypeHeaderTitle = () => {
+const TypeHeaderTitle = ({ search }) => {
+  const localSearch = JSON.parse(localStorage.getItem('search'));
+  const date =
+    typeof localSearch.checkIn !== 'string' &&
+    ` · ${localSearch.checkIn.month + 1}월 ${localSearch.checkIn.date}일 - ${
+      localSearch.checkOut.month + 1
+    }월 ${localSearch.checkOut.date}일`;
+
+  const local = localSearch.location ? localSearch.location : '근처';
+
   return (
     <TypeHeaderTitleStyle>
-      <TypeHeaderTitleUpper>300개 이상의 숙소</TypeHeaderTitleUpper>
+      <TypeHeaderTitleUpper>
+        300개 이상의 숙소
+        {date ? `${date}` : ``}
+      </TypeHeaderTitleUpper>
       <TypeHeaderTitleBody>
-        <h1>근처의 숙소</h1>
+        <h1>{local}의 숙소</h1>
       </TypeHeaderTitleBody>
     </TypeHeaderTitleStyle>
   );

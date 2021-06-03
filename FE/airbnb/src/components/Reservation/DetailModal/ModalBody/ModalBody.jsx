@@ -8,6 +8,22 @@ import {
 } from '../../../../const';
 
 const ModalBody = () => {
+  const localData = JSON.parse(localStorage.getItem('search'));
+  const checkInData = localData?.checkIn;
+  const checkOutData = localData?.checkOut;
+  const guestData = localData?.guest;
+  const checkIn = checkInData
+    ? `${checkInData.year}. ${checkInData.month + 1}. ${checkInData.date}.`
+    : `${INPUT_DATE_PLACEHOLDER}`;
+  const checkOut = checkOutData
+    ? `${checkOutData.year}. ${checkOutData.month + 1}. ${checkOutData.date}.`
+    : `${INPUT_DATE_PLACEHOLDER}`;
+  const guest = guestData
+    ? `게스트 ${guestData.adult + guestData.child}명, 유아 ${
+        guestData.infant
+      }명`
+    : `${GUEST_PLACEHOLDER}`;
+
   return (
     <ModalBodyStyle>
       <ModalBodyWrapper>
@@ -19,11 +35,11 @@ const ModalBody = () => {
                   <ModalBodyCheckBox>
                     <CheckInBoxStyle>
                       <div>{CHECK_IN}</div>
-                      <div>{INPUT_DATE_PLACEHOLDER}</div>
+                      <div>{checkIn}</div>
                     </CheckInBoxStyle>
                     <CheckOutBoxStyle>
                       <div>{CHECK_OUT}</div>
-                      <div>{INPUT_DATE_PLACEHOLDER}</div>
+                      <div>{checkOut}</div>
                     </CheckOutBoxStyle>
                   </ModalBodyCheckBox>
                 </div>
@@ -35,7 +51,7 @@ const ModalBody = () => {
               <div>
                 <GuestLabel>
                   <div>{GUEST}</div>
-                  <div>{GUEST_PLACEHOLDER}</div>
+                  <div>{guest}</div>
                 </GuestLabel>
               </div>
             </ModalBodyBottom>

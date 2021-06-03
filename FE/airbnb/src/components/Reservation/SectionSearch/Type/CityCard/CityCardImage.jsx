@@ -2,21 +2,46 @@ import styled from 'styled-components';
 import BaseImage from './BaseImage';
 import ExtraAttach from './ExtraAttach';
 
-const CityCardImage = () => {
+const BigCardImage = ({ roomImages }) => {
+  return (
+    <BigCityCardImageStyle>
+      <CityCardImageWrapper>
+        <BaseImage {...{ roomImages }} />
+        <ExtraAttach />
+      </CityCardImageWrapper>
+    </BigCityCardImageStyle>
+  );
+};
+
+const SmallCardImage = ({ roomImages }) => {
   return (
     <CityCardImageStyle>
       <CityCardImageWrapper>
-        <BaseImage />
+        <BaseImage {...{ roomImages }} />
         <ExtraAttach />
       </CityCardImageWrapper>
     </CityCardImageStyle>
   );
 };
 
+const CityCardImage = ({ roomImages, type }) => {
+  return {
+    big: <BigCardImage {...{ roomImages }} />,
+    small: <SmallCardImage {...{ roomImages }} />,
+  }[type];
+};
+
 export default CityCardImage;
 
 const CityCardImageStyle = styled.div`
   margin-bottom: 10px;
+`;
+
+const BigCityCardImageStyle = styled.div`
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
 `;
 
 const CityCardImageWrapper = styled.div`

@@ -15,7 +15,7 @@ const Header = () => {
   const [headerState, setHeaderState] = useRecoilState(headerScrollState);
   const [reservation, setReservationState] = useRecoilState(reservationState);
   const setUser = useSetRecoilState(userData);
-  const setLogIn = useSetRecoilState(isLoggedIn);
+  const isLogIn = useRecoilValue(isLoggedIn);
 
   const handleScrollHeader = () => {
     const isPassedHeader = window.scrollY > 58;
@@ -44,9 +44,10 @@ const Header = () => {
   };
 
   useEffect(() => {
+    console.log('header');
     setHeaderState(false);
     checkLogIn();
-  }, []);
+  }, [isLogIn]);
 
   useEffect(() => {
     if (window?.location?.pathname === '/reservation') {

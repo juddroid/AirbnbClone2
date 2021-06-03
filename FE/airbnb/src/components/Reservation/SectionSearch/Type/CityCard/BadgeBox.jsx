@@ -5,7 +5,7 @@ import LikeItBadge from './LikeItBadge';
 const BadgeBox = () => {
   return (
     <BadgeBoxStyle>
-      <HostBadge />
+      {/* <HostBadge /> */}
       <LikeItBadge />
     </BadgeBoxStyle>
   );
@@ -17,5 +17,5 @@ const BadgeBoxStyle = styled.div`
   padding: 8px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;

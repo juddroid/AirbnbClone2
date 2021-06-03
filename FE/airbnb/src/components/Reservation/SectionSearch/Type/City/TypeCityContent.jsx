@@ -1,19 +1,17 @@
 import styled from 'styled-components';
-import CityCard from '../CityCard/CityCard';
+import CityCardLong from '../CityCard/CityCardLong';
 
-const TypeCityContent = () => {
+const TypeCityContent = ({ city, id }) => {
   return (
     <TypeCityContentStyle>
       <TypeCityContentWrapper>
-        <TypeCityContentContainer>
-          <TypeCityContentBox>
-            <CityCard />
-            <CityCard />
-            <CityCard />
-            <CityCard />
-            <CityCard />
-          </TypeCityContentBox>
-        </TypeCityContentContainer>
+        <TypeCityUpperLine>
+          <div></div>
+        </TypeCityUpperLine>
+        <CityCardLong {...{ city, id }} />
+        <TypeCityBottomLine>
+          <div></div>
+        </TypeCityBottomLine>
       </TypeCityContentWrapper>
     </TypeCityContentStyle>
   );
@@ -22,39 +20,49 @@ const TypeCityContent = () => {
 export default TypeCityContent;
 
 const TypeCityContentStyle = styled.div`
-  position: relative;
-`;
-
-const TypeCityContentWrapper = styled.div`
-  margin-top: 0px;
-  margin-left: -24px;
-  margin-right: -24px;
-  overflow-y: hidden;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  width: 100%;
 
   @media (min-width: 744px) {
-    margin-left: -8px;
-    margin-right: -8px;
-    overflow: hidden;
+    width: 100%;
+  }
+  @media (min-width: 1128px) {
+    width: 100%;
   }
 `;
 
-const TypeCityContentContainer = styled.div`
-  margin-top: 0px;
-  margin-bottom: 0px;
-`;
-
-const TypeCityContentBox = styled.div`
-  transform: translateX(0%);
-
-  padding: 0px 18px 30px;
-  transition: transform 0.5s ease 0s;
-  white-space: nowrap;
-  overflow-x: auto;
-  margin-bottom: -30px;
+const TypeCityContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 8px;
+  padding-bottom: 12px;
 
   @media (min-width: 744px) {
-    margin-bottom: 0px;
-    padding: 0px;
-    overflow: visible;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+`;
+
+const TypeCityUpperLine = styled.div`
+  margin-top: 12px;
+  margin-bottom: 24px;
+
+  div {
+    border-bottom-width: var(--border-rule-border-width, 1px);
+    border-bottom-color: var(--color-divider, #ebebeb);
+    border-bottom: 1px solid rgb(235, 235, 235);
+  }
+`;
+
+const TypeCityBottomLine = styled.div`
+  margin-top: 24px;
+  margin-bottom: 4px;
+
+  div {
+    border-bottom-width: var(--border-rule-border-width, 1px);
+    border-bottom-color: var(--color-divider, #ebebeb);
+    border-bottom: 1px solid rgb(235, 235, 235);
   }
 `;

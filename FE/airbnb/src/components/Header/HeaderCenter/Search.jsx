@@ -12,7 +12,7 @@ import {
   searchData,
   searchTextState,
   nearbyButtonState,
-  checkInFieldStyle,
+  checkInField,
   checkOutField,
 } from '../../../Recoil/HeaderFieldsetState';
 
@@ -25,7 +25,7 @@ const Search = () => {
   const setNearbyPopup = useSetRecoilState(nearbyPopupState);
   const setGuestButton = useSetRecoilState(guestButtonState);
   const setGuestPopup = useSetRecoilState(guestPopupState);
-  const checkIn = useRecoilValue(checkInFieldStyle);
+  const checkIn = useRecoilValue(checkInField);
   const checkOut = useRecoilValue(checkOutField);
 
   const handleClickSearchButton = (e) => {
@@ -50,6 +50,7 @@ const Search = () => {
         infant: 0,
       },
     });
+    localStorage.setItem('search', JSON.stringify(search));
     console.log(search);
   };
 
