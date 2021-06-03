@@ -7,7 +7,7 @@ const BackgroundImage = ({ roomImages }) => {
         <span>
           <ImageData>
             <ImageAnchor>
-              {roomImages && <img src={roomImages[0]} alt={roomImages[0]} />}
+              {/* {roomImages && <img src={roomImages[0]} alt={roomImages[0]} />} */}
             </ImageAnchor>
           </ImageData>
         </span>

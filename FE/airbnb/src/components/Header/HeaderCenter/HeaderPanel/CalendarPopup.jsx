@@ -2,41 +2,41 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { CALENDAR, FREE } from '../../../../const';
 import CalendarTabsButton from './Calendar/CalendarTabsButton';
-// import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
+import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 import CalendarList from './Calendar/CalendarList';
 
 const CalendarPopup = () => {
   const [tabState, setTabState] = useState(true);
 
-  // const data = [
-  //   { data: '1' },
-  //   { data: '2' },
-  //   { data: '3' },
-  //   { data: '4' },
-  //   { data: '5' },
-  //   { data: '6' },
-  //   { data: '7' },
-  //   { data: '8' },
-  //   { data: '9' },
-  //   { data: '10' },
-  //   { data: '11' },
-  //   { data: '12' },
-  //   { data: '13' },
-  //   { data: '14' },
-  //   { data: '15' },
-  //   { data: '16' },
-  //   { data: '17' },
-  //   { data: '18' },
-  //   { data: '19' },
-  // ];
+  const data = [
+    { data: '1' },
+    { data: '2' },
+    { data: '3' },
+    { data: '4' },
+    { data: '5' },
+    { data: '6' },
+    { data: '7' },
+    { data: '8' },
+    { data: '9' },
+    { data: '10' },
+    { data: '11' },
+    { data: '12' },
+    { data: '13' },
+    { data: '14' },
+    { data: '15' },
+    { data: '16' },
+    { data: '17' },
+    { data: '18' },
+    { data: '19' },
+  ];
 
-  // const option = {
-  //   cardSize: 150,
-  //   cardMargin: 5,
-  //   displayCardCount: 3,
-  //   buttonType: 'default',
-  //   buttonSize: 24,
-  // };
+  const option = {
+    cardSize: 150,
+    cardMargin: 5,
+    displayCardCount: 3,
+    buttonType: 'default',
+    buttonSize: 24,
+  };
 
   return (
     <CalendarSection>
@@ -57,7 +57,7 @@ const CalendarPopup = () => {
         </CalendarTabsWrapper>
         <CalendarListWrapper>
           <CalendarList />
-          {/* <RaccoonSlider data={data} option={option} /> */}
+          <RaccoonSlider data={data} option={option} />
         </CalendarListWrapper>
       </CalendarWrapper>
     </CalendarSection>

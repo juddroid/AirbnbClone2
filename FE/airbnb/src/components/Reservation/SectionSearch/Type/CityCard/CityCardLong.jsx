@@ -10,6 +10,7 @@ import CityCardPrice from './CityCardPrice';
 import CityCardStar from './CityCardStar';
 import CityCardTitle from './CityCardTitle';
 import CityCardType from './CityCardType';
+import RaccoonSlider from '@juddroid_raccoon/react-slider/dist/raccoonSlider/RaccoonSlider';
 
 const CityCardLong = ({ city }) => {
   const cityCard = useRef();
@@ -18,11 +19,22 @@ const CityCardLong = ({ city }) => {
   const handleClickCityCard = (e) => {
     e.stopPropagation();
 
-    if (cityCard?.current?.contains(e.target)) return setModal(true);
-    setModal(false);
+    // if (cityCard?.current?.contains(e.target)) return setModal(true);
+    // setModal(false);
   };
   const type = citySection ? 'big' : 'small';
   const amenities = city && city.amenities.join(' · ');
+
+  const option = {
+    cardWidth: 300,
+    cardHeight: 200,
+    cardMargin: 0,
+    dataType: 'img',
+    displayCardCount: 1,
+    buttonType: 'default',
+    buttonSize: 24,
+  };
+
   useEffect(() => {
     window.addEventListener('click', handleClickCityCard);
 
@@ -34,7 +46,8 @@ const CityCardLong = ({ city }) => {
     <CityCardLongStyle ref={cityCard} onClick={handleClickCityCard}>
       {city && (
         <>
-          <CityCardImage roomImages={city.roomImages} {...{ type }} />
+          {/* <CityCardImage roomImages={city.roomImages} {...{ type }} /> */}
+          <RaccoonSlider data={city.roomImages} option={option} />
           <CityCardRightBox>
             <CityTitleBox>
               <CityTitleDiv>

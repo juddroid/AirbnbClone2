@@ -5,7 +5,8 @@ import CardControler from './CardControler';
 const BaseImage = ({ roomImages }) => {
   return (
     <BaseImageStyle>
-      <BackgroundImage {...{ roomImages }} />
+      {/* <BackgroundImage {...{ roomImages }} /> */}
+
       <CardControler />
     </BaseImageStyle>
   );
