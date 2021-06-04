@@ -244,3 +244,25 @@ export const GITHUB_LOGIN =
 
 // Reservation > Modal
 export const MODAL_TITLE = '요금을 확인하려면 날짜를 입력하세요.';
+
+export const PLACE_ID = [
+  'ChIJzWXFYYuifDUR64Pq5LTtioU',
+  'ChIJR4ITliVveTURQmG3LJD9N30',
+  'ChIJTYxvLg7HfDURrJz18pb4R-E',
+  'ChIJ1a3vsrjjZTURMC44oCngkro',
+  'ChIJAWZKutdIZTURtdOKmJ3WltE',
+  'ChIJr6f1ASOJcTURSPUlAe3S9AU',
+  'ChIJEUZ2IApDezURybRd7gIwN_E',
+  'ChIJgd6y4osuZjURATHZM3P6g3A',
+];
+
+export const CITY_LIST = [
+  '서울',
+  '인천',
+  '의정부시',
+  '대구',
+  '대전',
+  '광주',
+  '수원시',
+  '울산',
+];

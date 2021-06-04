@@ -192,12 +192,12 @@ const FieldPanelMenu = () => {
     else handleClickClose();
   };
 
-  const handleMouseDownNearby = () => {
-    setNearbyPopup(false);
-  };
-  const handleMouseUpNearby = () => {
-    setNearbyPopup(true);
-  };
+  // const handleMouseDownNearby = () => {
+  //   setNearbyPopup(false);
+  // };
+  // const handleMouseUpNearby = () => {
+  //   setNearbyPopup(true);
+  // };
 
   useEffect(() => {
     window.addEventListener('click', handleClickPopup);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import HostBadge from './HostBadge';
+// import HostBadge from './HostBadge';
 import LikeItBadge from './LikeItBadge';
 
 const BadgeBox = () => {

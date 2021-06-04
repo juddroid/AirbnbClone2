@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { searchData } from '../../../Recoil/HeaderFieldsetState';
 import SearchPage from './SearchPage';
 import SearchRecent from './SearchRecent';
-import SearchType from './SearchType';
+// import SearchType from './SearchType';
 import SearchCity from './Type/SearchCity';
 
 const SectionSearch = () => {

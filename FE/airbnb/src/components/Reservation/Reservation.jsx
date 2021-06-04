@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { CITY_LIST, PLACE_ID } from '../../const';
 import useFetch from '../../customHooks/useFetch';
 import { markerState } from '../../Recoil/MapState';
 import { modalState, nearbyRoomList } from '../../Recoil/ReservationState';
@@ -13,16 +15,21 @@ const Reservation = ({ location, match, history }) => {
   const setMapData = useSetRecoilState(markerState);
   const [modal, setModal] = useRecoilState(modalState);
 
-  const locationData =
-    location.state.data.location === '서울' && 'ChIJzWXFYYuifDUR64Pq5LTtioU';
-  const placeId = `placeID=${locationData}`;
-
+  const getPlaceId = (city) => {
+    const idx = CITY_LIST.indexOf(city);
+    const id = PLACE_ID[idx];
+    return id;
+  };
+  const locationData = getPlaceId(location.state.data.location);
+  const placeId = locationData && `placeId=${locationData}`;
   const rooms = useFetch(
     `http://travel.airbnb.kro.kr/api/ios/rooms?${placeId}`,
     []
   );
+
   const pagingRooms = rooms.splice(0, 10);
   setRoomList(pagingRooms);
+  console.log(pagingRooms);
   const mapDataList = pagingRooms.map((el) => {
     const price = moneyComma(el.pricePerNight);
     return (el = {
@@ -31,8 +38,10 @@ const Reservation = ({ location, match, history }) => {
       title: `₩${price.toString()}`,
     });
   });
-  setMapData(mapDataList);
-  // console.log(pagingRooms[0].placeId);
+
+  useEffect(() => {
+    setMapData(mapDataList);
+  }, []);
 
   return (
     <>
