@@ -22,7 +22,7 @@ export default LikeItBadge;
 
 const LikeItBadgeStyle = styled.div`
   pointer-events: auto;
-  margin-top: -5px;
+  margin-top: -15px;
   margin-right: -3px;
 `;
 
@@ -54,6 +54,7 @@ const LikeItButton = styled.button`
   }
 
   svg {
-    fill: red;
+    fill: #fff;
+    stroke: gray;
   }
 `;

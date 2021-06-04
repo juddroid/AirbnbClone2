@@ -42,15 +42,7 @@ const TypeCityWrapper = styled.div`
   }
 `;
 
-const TypeCityContainer = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-
-  @media (min-width: 744px) {
-    margin-top: 32px;
-    margin-bottom: 32px;
-  }
-`;
+const TypeCityContainer = styled.div``;
 
 const TypeCityBox = styled.div`
   position: relative;
