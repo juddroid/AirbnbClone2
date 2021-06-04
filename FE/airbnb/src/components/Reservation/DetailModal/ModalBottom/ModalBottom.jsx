@@ -8,7 +8,7 @@ const ModalBottom = () => {
   const mapData = useRecoilValue(markerState);
 
   const handleClickReservationButton = () => {
-    // const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem('jwt');
 
     const localData = localStorage.getItem('search');
     // const checkIn = localData.checkIn;
@@ -38,9 +38,7 @@ const ModalBottom = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization:
-          'Bearer ' +
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaXRodWJBdmF0YXJVcmwiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvNzAzNjExNTI_dj00IiwiZ2l0aHViSWQiOiJqdWRkcm9pZCIsImlzcyI6Imh0dHA6Ly90cmF2ZWwuYWlyYm5iLmtyby5rciJ9.iiwP_bGu-l8JVhhC4YJYKwqh-jhBSekiu-taqANPetw',
+        Authorization: `Bearer ${jwt}`,
       },
       body: JSON.stringify(body),
     });
