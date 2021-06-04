@@ -32,7 +32,7 @@ const Reservation = ({ location, match, history }) => {
     });
   });
   setMapData(mapDataList);
-  console.log(pagingRooms);
+  // console.log(pagingRooms[0].placeId);
 
   return (
     <>
