@@ -1,8 +1,54 @@
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { markerState } from '../../../../Recoil/MapState';
+import { modalState } from '../../../../Recoil/ReservationState';
 
 const ModalBottom = () => {
+  const setModal = useSetRecoilState(modalState);
+  const mapData = useRecoilValue(markerState);
+
+  const handleClickReservationButton = () => {
+    // const jwt = localStorage.getItem('jwt');
+
+    const localData = localStorage.getItem('search');
+    // const checkIn = localData.checkIn;
+    // const checkOut = localData.checkOut;
+
+    // const checkInMonth =
+    //   localData && localData.checkIn?.month?.toString().legnth === 2
+    //     ? localData.checkIn?.month
+    //     : '0' + localData.checkIn?.month.toString();
+    // const checkOutMonth =
+    //   localData && localData.checkOut?.month?.toString().legnth === 2
+    //     ? localData.checkOut?.month
+    //     : '0' + localData.checkOut?.month.toString();
+
+    const body = {
+      // checkIn: `${checkIn?.year}-${checkInMonth}-${checkIn?.date}`,
+      // checkOut: `${checkOut?.year}-${checkOutMonth}-${checkOut?.date}`,
+      checkIn: `2021-07-03`,
+      checkOut: `2021-07-07`,
+      adults: 1,
+      children: 2,
+      infants: 0,
+      totalPrice: 200000,
+    };
+    fetch('http://travel.airbnb.kro.kr/api/book/rooms/15', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization:
+          'Bearer ' +
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaXRodWJBdmF0YXJVcmwiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvNzAzNjExNTI_dj00IiwiZ2l0aHViSWQiOiJqdWRkcm9pZCIsImlzcyI6Imh0dHA6Ly90cmF2ZWwuYWlyYm5iLmtyby5rciJ9.iiwP_bGu-l8JVhhC4YJYKwqh-jhBSekiu-taqANPetw',
+      },
+      body: JSON.stringify(body),
+    });
+    setModal(false);
+  };
+
   return (
-    <ModalBottomStyle>
+    <ModalBottomStyle onClick={handleClickReservationButton}>
       <ReservationButtonStyle>
         <SpanButtonBox>
           <SpanButton>
@@ -22,7 +68,6 @@ const ModalBottomStyle = styled.div`
 
 const ReservationButtonStyle = styled.button`
   background: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
-
   cursor: pointer;
   display: inline-block;
   margin: 0px;

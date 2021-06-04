@@ -22,6 +22,7 @@ const TypeHeaderFilter = () => {
     return () => {
       window.removeEventListener('click', handleClickFilter);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -16,9 +16,9 @@ import {
   searchData,
 } from '../../../../../Recoil/HeaderFieldsetState';
 import { getDate } from '../../../../../util';
-import { setState, setToggle } from '../../../../../util.ts';
+import { setState } from '../../../../../util.ts';
 
-const EachDate = ({ eachMonth, setEachMonth, dateState }) => {
+const EachDate = ({ eachMonth, dateState }) => {
   const [selected, setSelected] = useState(false);
   const [isPast, setIsPast] = useState(true);
   const [disable, setDisable] = useState(false);

@@ -1,6 +1,6 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { BLOCK, NONE, SECTION_SUBURB } from '../../../../const';
+import { BLOCK, CITY_LIST, NONE, SECTION_SUBURB } from '../../../../const';
 import {
   calendarPopupState,
   checkInButtonState,
@@ -9,6 +9,7 @@ import {
   nearbyButtonState,
   nearbyField,
 } from '../../../../Recoil/HeaderFieldsetState';
+import { getRandom } from '../../../../util';
 
 const NearbyPopup = () => {
   const [nearbyPopup, setNearbyPopup] = useRecoilState(nearbyPopupState);
@@ -21,10 +22,16 @@ const NearbyPopup = () => {
   const handleClickNearbyPopup = (e) => {
     e.stopPropagation();
 
+    const getCity = () => {
+      const idx = getRandom(0, CITY_LIST.length, true);
+      return CITY_LIST[idx];
+    };
+    const city = getCity();
+    console.log(city);
     nearbyValue === ''
       ? setUserSearchData({
           ...userSearchData,
-          location: '서울',
+          location: city,
         })
       : setUserSearchData({
           ...userSearchData,

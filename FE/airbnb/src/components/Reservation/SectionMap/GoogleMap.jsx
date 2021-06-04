@@ -1,9 +1,8 @@
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import dotenv from 'dotenv';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { markerState } from '../../../Recoil/MapState';
 import { v4 as uuidv4 } from 'uuid';
-import { nearbyRoomList } from '../../../Recoil/ReservationState';
 import styled from 'styled-components';
 
 const GoogleMap = ({ google }) => {
@@ -48,6 +47,7 @@ const GoogleMap = ({ google }) => {
           google={google}
           visible={true}
           position={{ lat: mark.latitude, lng: mark.longitude }}
+          key={uuidv4()}
         >
           <PriceBackground>{mark.title}</PriceBackground>
         </InfoWindow>

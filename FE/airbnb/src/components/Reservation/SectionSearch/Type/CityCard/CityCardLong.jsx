@@ -46,6 +46,7 @@ const CityCardLong = ({ city, id }) => {
     window.addEventListener('click', handleClickCityCard);
 
     return () => window.removeEventListener('click', handleClickCityCard);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
