@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import { nearbyRoomList } from '../../../../Recoil/ReservationState';
 import TypeCity from './City/TypeCity';
 import { v4 as uuidv4 } from 'uuid';
+import { roomData } from '../../../../shared/mock';
 
 const TypeContentCity = () => {
-  const cityList = useRecoilValue(nearbyRoomList);
+  // const cityList = useRecoilValue(nearbyRoomList);
 
   const cityName = ``;
+  const cityList = roomData['인천'];
 
   return (
     <TypeContentStyle>

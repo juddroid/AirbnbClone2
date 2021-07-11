@@ -9,6 +9,7 @@ import { moneyComma } from '../../util';
 import ModalBox from './DetailModal/ModalBox';
 import SectionMap from './SectionMap/SectionMap';
 import SectionSearch from './SectionSearch/SectionSearch';
+import { roomData } from '../../shared/mock';
 
 const Reservation = ({ location, match, history }) => {
   const setRoomList = useSetRecoilState(nearbyRoomList);
@@ -22,15 +23,17 @@ const Reservation = ({ location, match, history }) => {
   };
   const locationData = getPlaceId(location.state.data.location);
   const placeId = locationData && `placeId=${locationData}`;
-  const rooms = useFetch(
-    `http://travel.airbnb.kro.kr/api/ios/rooms?${placeId}`,
-    []
-  );
+  // const rooms = useFetch(
+  //   `http://travel.airbnb.kro.kr/api/ios/rooms?${placeId}`,
+  //   []
+  // );
+  const rooms = roomData;
+  console.log(rooms);
 
-  const pagingRooms = rooms.splice(0, 10);
-  setRoomList(pagingRooms);
-  console.log(pagingRooms);
-  const mapDataList = pagingRooms.map((el) => {
+  // const pagingRooms = rooms.splice(0, 10);
+  // setRoomList(pagingRooms);
+
+  const mapDataList = roomData['인천'].map((el) => {
     const price = moneyComma(el.pricePerNight);
     return (el = {
       latitude: el.latitude,

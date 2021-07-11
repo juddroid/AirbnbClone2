@@ -30,7 +30,7 @@ const CityCardLong = ({ city, id }) => {
     setModalPrice(cityList[id].pricePerNight);
   };
   const type = citySection ? 'big' : 'small';
-  const amenities = city && city.amenities.join(' · ');
+  // const amenities = city && city.amenities.join(' · ');
 
   const option = {
     cardWidth: 300,
@@ -70,15 +70,15 @@ const CityCardLong = ({ city, id }) => {
                 <CityCardTitle title={city.title} {...{ type }} />
                 <ShortLine />
                 <OptionUpperStyle>
-                  <span>
+                  {/* <span>
                     최대 인원 {city.maximumNumberOfGuests}명 · 침실{' '}
                     {city.roomAndBedOption.beds}개 · 침대{' '}
                     {city.roomAndBedOption.bedRooms}개 · 욕실{' '}
                     {city.roomAndBedOption.bathRooms}개
-                  </span>
+                  </span> */}
                 </OptionUpperStyle>
                 <OptionBottomStyle>
-                  <span>{amenities}</span>
+                  {/* <span>{amenities}</span> */}
                 </OptionBottomStyle>
                 <PriceBox>
                   <CityCardStar star={city.averageRating} {...{ type }} />
