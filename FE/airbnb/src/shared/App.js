@@ -10,7 +10,7 @@ import { isLoggedIn } from '../Recoil/LogInState';
 
 function App() {
   const isLogIn = useRecoilValue(isLoggedIn);
-  console.log(isLogIn);
+
   return (
     <ThemeProvider {...{ theme }}>
       <GlobalStyles />

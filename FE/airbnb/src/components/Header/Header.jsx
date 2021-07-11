@@ -44,7 +44,6 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log('header');
     setHeaderState(false);
     checkLogIn();
   }, [isLogIn]);

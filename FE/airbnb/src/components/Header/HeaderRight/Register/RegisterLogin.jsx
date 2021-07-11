@@ -21,7 +21,6 @@ const RegisterLogin = () => {
   };
 
   useEffect(() => {
-    console.log('check id');
     isLogIn && setLogInText(user.id);
   }, [isLogIn, user.id]);
   return (

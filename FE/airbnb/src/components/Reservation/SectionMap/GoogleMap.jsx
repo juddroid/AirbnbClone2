@@ -24,7 +24,6 @@ const GoogleMap = ({ google }) => {
   // };
 
   const displayMarkers = () => {
-    console.log(marker);
     return marker.map((mark, idx) => {
       return (
         <Marker

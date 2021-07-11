@@ -28,7 +28,7 @@ const Reservation = ({ location, match, history }) => {
   //   []
   // );
   const rooms = roomData;
-  console.log(rooms);
+  // console.log(rooms);
 
   // const pagingRooms = rooms.splice(0, 10);
   // setRoomList(pagingRooms);

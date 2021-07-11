@@ -51,7 +51,6 @@ const Search = () => {
       },
     });
     localStorage.setItem('search', JSON.stringify(search));
-    console.log(search);
   };
 
   return (
