@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "airbnb": "raccoon-airbnb",
+    "default": "raccoon-airbnb"
+  }
+}
